@@ -17,6 +17,10 @@ public class Field {
     private String name;
 
     @NotNull
+    @Column(name = "ORDER", nullable = false)
+    private int order;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @Column(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
@@ -30,10 +34,11 @@ public class Field {
     {
 
     }
-    public Field(@NotNull String name, @NotNull DocumentKind documentKind, @NotNull FieldType fieldType) {
+    public Field(@NotNull String name, @NotNull int order, @NotNull DocumentKind documentKind, @NotNull FieldType fieldType) {
         this.name = name;
         this.documentKind = documentKind;
         this.fieldType = fieldType;
+        this.order = order;
     }
 
     public long getId() {
@@ -46,6 +51,14 @@ public class Field {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public DocumentKind getDocumentKind() {

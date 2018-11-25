@@ -14,6 +14,10 @@ public class FormDocument {
     private long id;
 
     @NotNull
+    @Column(name = "ORDER", nullable = false)
+    private int order;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
@@ -32,13 +36,22 @@ public class FormDocument {
 
     }
 
-    public FormDocument(DocumentKind documentKind, UserForm userForm) {
+    public FormDocument(@NotNull int order, @NotNull DocumentKind documentKind, @NotNull UserForm userForm) {
+        this.order = order;
         this.documentKind = documentKind;
         this.userForm = userForm;
     }
 
     public long getId() {
         return id;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public DocumentKind getDocumentKind() {

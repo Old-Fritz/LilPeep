@@ -17,6 +17,10 @@ public class Settings {
     private String value;
 
     @NotNull
+    @Column(name = "ORDER", nullable = false)
+    private int order;
+
+    @NotNull
     @Column(name = "ID_USER", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
@@ -31,14 +35,23 @@ public class Settings {
 
     }
 
-    public Settings(@NotNull String value, @NotNull User user, @NotNull SettingsType type) {
+    public Settings(@NotNull String value, @NotNull int order, @NotNull User user, @NotNull SettingsType type) {
         this.value = value;
+        this.order = order;
         this.user = user;
         this.type = type;
     }
 
     public long getId() {
         return id;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public String getValue() {

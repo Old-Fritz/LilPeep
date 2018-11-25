@@ -25,6 +25,10 @@ public class UserForm {
     private String url;
 
     @NotNull
+    @Column(name = "ORDER", nullable = false)
+    private int order;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_USER", nullable = false)
     private User user;
@@ -38,15 +42,24 @@ public class UserForm {
 
     }
 
-    public UserForm(@NotNull int documentCount, @NotNull String name, @NotNull String url, @NotNull User user) {
+    public UserForm(@NotNull int documentCount, @NotNull String name, @NotNull String url, @NotNull int order, @NotNull User user) {
         this.documentCount = documentCount;
         this.name = name;
         this.url = url;
         this.user = user;
+        this.order = order;
     }
 
     public long getId() {
         return id;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public int getDocumentCount() {
