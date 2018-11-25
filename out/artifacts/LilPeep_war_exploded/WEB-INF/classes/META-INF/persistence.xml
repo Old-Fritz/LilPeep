@@ -5,10 +5,22 @@
             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
     <!-- Define persistence unit -->
-    <persistence-unit name="testUnit" transaction-type="JTA">
+    <persistence-unit name="mainUnit" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/heliosDB</jta-data-source>
-        <class>Book</class>
+        <class>Entities.Complaint</class>
+        <class>Entities.DocumentKind</class>
+        <class>Entities.Field</class>
+        <class>Entities.FieldType</class>
+        <class>Entities.Complaint</class>
+        <class>Entities.Picture</class>
+        <class>Entities.Settings</class>
+        <class>Entities.SettingsType</class>
+        <class>Entities.User</class>
+        <class>Entities.UserDocument</class>
+        <class>Entities.UserDocumentField</class>
+        <class>Entities.UserForm</class>
+        <class>Entities.UserKind</class>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables" />
             <property name="eclipselink.ddl-generation.output-mode" value="database" />

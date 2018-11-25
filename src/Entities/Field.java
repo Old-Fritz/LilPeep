@@ -17,17 +17,17 @@ public class Field {
     private String name;
 
     @NotNull
-    @Column(name = "ORDER", nullable = false)
+    @Column(name = "OBJ_ORDER", nullable = false)
     private int order;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(name = "ID_DOCUMENT_KIND", nullable = false)
+    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(name = "ID_TYPE", nullable = false)
+    @JoinColumn(name = "ID_TYPE", nullable = false)
     private FieldType fieldType;
 
     public Field()

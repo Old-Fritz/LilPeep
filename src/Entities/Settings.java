@@ -17,16 +17,16 @@ public class Settings {
     private String value;
 
     @NotNull
-    @Column(name = "ORDER", nullable = false)
+    @Column(name = "OBJ_ORDER", nullable = false)
     private int order;
 
     @NotNull
-    @Column(name = "ID_USER", nullable = false)
+    @JoinColumn(name = "ID_USER", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     @NotNull
-    @Column(name = "ID_SETTINGS_TYPE", nullable = false)
+    @JoinColumn(name = "ID_SETTINGS_TYPE", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private SettingsType type;
 

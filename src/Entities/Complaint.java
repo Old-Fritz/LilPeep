@@ -15,6 +15,7 @@ public class Complaint {
     private long id;
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "DATE", nullable = false)
     private Date date;
 

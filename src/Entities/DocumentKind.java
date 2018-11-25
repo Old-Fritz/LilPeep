@@ -25,12 +25,16 @@ public class DocumentKind {
     @Column(name = "DESCRIPTION", nullable = false,columnDefinition = "TEXT")
     private String description;
 
+    @NotNull
+    @Column(name = "OBJ_ORDER", nullable = false)
+    private int order;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PICTURE", nullable = false)
     private Picture picture;
 
     @NotNull
-    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Field> fields;
 
     public DocumentKind()
@@ -38,19 +42,24 @@ public class DocumentKind {
 
     }
 
-    public DocumentKind(@NotNull int fieldsCount, @NotNull String name, @NotNull String description, Picture picture) {
+    public DocumentKind(@NotNull int fieldsCount, @NotNull String name, @NotNull String description, @NotNull int order, Picture picture) {
         this.fieldsCount = fieldsCount;
         this.name = name;
         this.description = description;
         this.picture = picture;
+        this.order = order;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public int getFieldsCount() {

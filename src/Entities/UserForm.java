@@ -25,7 +25,7 @@ public class UserForm {
     private String url;
 
     @NotNull
-    @Column(name = "ORDER", nullable = false)
+    @Column(name = "OBJ_ORDER", nullable = false)
     private int order;
 
     @NotNull
@@ -34,7 +34,7 @@ public class UserForm {
     private User user;
 
     @NotNull
-    @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<FormDocument> formDocuments;
 
     public UserForm()

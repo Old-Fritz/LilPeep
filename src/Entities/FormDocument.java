@@ -14,7 +14,7 @@ public class FormDocument {
     private long id;
 
     @NotNull
-    @Column(name = "ORDER", nullable = false)
+    @Column(name = "OBJ_ORDER", nullable = false)
     private int order;
 
     @NotNull
@@ -28,7 +28,7 @@ public class FormDocument {
     private UserForm userForm;
 
     @NotNull
-    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY)
+    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
     private List<FormDocumentField> formDocumentFields;
 
     public FormDocument()
