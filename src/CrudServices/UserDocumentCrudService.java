@@ -21,6 +21,9 @@ public interface UserDocumentCrudService extends CrudService<UserDocument>{
     @Override
     List<UserDocument> findAll();
 
+    /** Список документов пользователя */
     List<UserDocument> findByUser(User user);
+
+    /** Поиск документов пользователя по названию */
     List<UserDocument> findByUserAndName(User user, String name);
 }

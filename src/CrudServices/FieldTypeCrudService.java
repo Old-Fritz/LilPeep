@@ -20,5 +20,6 @@ public interface FieldTypeCrudService extends CrudService<FieldType>{
     @Override
     List<FieldType> findAll();
 
-    FieldType findByName(String  name);
+    /** Поиск типа поля по имени */
+    FieldType findByName(String name);
 }

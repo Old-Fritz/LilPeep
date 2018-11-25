@@ -22,5 +22,6 @@ public interface UserDocumentFieldCrudService extends CrudService<UserDocumentFi
     @Override
     List<UserDocumentField> findAll();
 
+    /** Список полей документа пользователя */
     List<UserDocumentField> findByUserDocument(UserDocument userDocument);
 }

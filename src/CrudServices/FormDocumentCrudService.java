@@ -21,5 +21,6 @@ public interface FormDocumentCrudService extends CrudService<FormDocument> {
     @Override
     List<FormDocument> findAll();
 
+    /** Список документов формы по форме владельца */
     List<FormDocument> findByUserForm(UserForm form);
 }

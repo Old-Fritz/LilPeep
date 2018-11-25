@@ -34,5 +34,7 @@
     <orderEntry type="library" exported="" name="Javax" level="project" />
     <orderEntry type="library" exported="" name="eclipselink" level="project" />
     <orderEntry type="library" exported="" name="postgresql-42.2.5.jre6" level="project" />
+    <orderEntry type="library" name="javax.validation:validation-api:2.0.1.Final" level="project" />
+    <orderEntry type="library" name="bean-validator" level="project" />
   </component>
 </module>

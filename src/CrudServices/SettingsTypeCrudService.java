@@ -20,5 +20,6 @@ public interface SettingsTypeCrudService extends CrudService<SettingsType>{
     @Override
     List<SettingsType> findAll();
 
+    /** Получение типа настройки по названию */
     SettingsType getByName(String name);
 }

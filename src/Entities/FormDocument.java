@@ -1,6 +1,6 @@
 package Entities;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,25 +8,31 @@ import java.util.List;
 @Entity
 @Table(name = "FORM_DOCUMENT")
 public class FormDocument {
+
+    /** Primary key для сущности */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private long id;
 
+    /** Порядковый номер */
     @NotNull
     @Column(name = "OBJ_ORDER", nullable = false)
     private int order;
 
+    /** Тип документа */
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
 
+    /** Форма владельца */
     @NotNull
     @JoinColumn(name = "ID_FORM", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private UserForm userForm;
 
+    /** Список полей документа в форме */
     @NotNull
     @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
     private List<FormDocumentField> formDocumentFields;
@@ -36,6 +42,12 @@ public class FormDocument {
 
     }
 
+    /**
+     * Форма документа
+     * @param order порядковый номер
+     * @param documentKind тип документа
+     * @param userForm форма владельца
+     */
     public FormDocument(@NotNull int order, @NotNull DocumentKind documentKind, @NotNull UserForm userForm) {
         this.order = order;
         this.documentKind = documentKind;
