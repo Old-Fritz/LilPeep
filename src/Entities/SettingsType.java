@@ -1,15 +1,19 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "SETTINGS_TYPE")
 public class SettingsType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @NotNull
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     public SettingsType()
@@ -17,7 +21,7 @@ public class SettingsType {
 
     }
 
-    public SettingsType(String name) {
+    public SettingsType(@NotNull String name) {
         this.name = name;
     }
 

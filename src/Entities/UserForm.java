@@ -1,21 +1,36 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "USER_FORM")
 public class UserForm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    @Column(name = "DOCUMENT_COUNT", nullable = false)
     private int documentCount;
+
+    @NotNull
+    @Column(name = "NAME", nullable = false)
     private String name;
+
+    @NotNull
+    @Column(name = "URL", nullable = false)
     private String url;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_USER", nullable = false)
     private User user;
 
+    @NotNull
+    @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY)
     private List<FormDocument> formDocuments;
 
     public UserForm()
@@ -23,7 +38,7 @@ public class UserForm {
 
     }
 
-    public UserForm(int documentCount, String name, String url, User user) {
+    public UserForm(@NotNull int documentCount, @NotNull String name, @NotNull String url, @NotNull User user) {
         this.documentCount = documentCount;
         this.name = name;
         this.url = url;
