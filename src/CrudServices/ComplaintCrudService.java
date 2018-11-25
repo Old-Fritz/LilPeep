@@ -15,7 +15,10 @@ public interface ComplaintCrudService extends CrudService<Complaint> {
     void deleteById(long id);
 
     @Override
-    Complaint save(Complaint obj);
+    void save(Complaint obj);
+
+    @Override
+    Complaint update(Complaint obj);
 
     @Override
     List<Complaint> findAll();
