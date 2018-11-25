@@ -13,7 +13,7 @@ public class SettingsType {
     private long id;
 
     @NotNull
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
     public SettingsType()

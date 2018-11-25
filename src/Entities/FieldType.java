@@ -12,7 +12,7 @@ public class FieldType {
     @Column(name = "ID", nullable = false)
     private long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", nullable = false, unique = true)
     @NotNull
     private String name;
 

@@ -4,10 +4,15 @@ import CrudServices.FormDocumentFieldCrudService;
 import Entities.FormDocument;
 import Entities.FormDocumentField;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class FormDocumentFieldCrudServiceBean implements FormDocumentFieldCrudService  {
     @PersistenceContext
     EntityManager em;

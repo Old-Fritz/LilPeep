@@ -12,7 +12,7 @@ public class Picture {
     @Column(name = "ID", nullable = false)
     private long id;
 
-    @Column(name = "URL", nullable = false)
+    @Column(name = "URL", nullable = false, unique = true)
     @NotNull
     private String url;
 

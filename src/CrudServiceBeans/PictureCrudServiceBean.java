@@ -3,10 +3,15 @@ package CrudServiceBeans;
 import CrudServices.PictureCrudService;
 import Entities.Picture;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class PictureCrudServiceBean implements PictureCrudService {
     @PersistenceContext
     EntityManager em;

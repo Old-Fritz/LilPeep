@@ -19,7 +19,7 @@ public class Complaint {
     private Date date;
 
     @NotNull
-    @Column(name = "TEXT", nullable = false)
+    @Column(name = "TEXT", nullable = false, columnDefinition = "TEXT")
     private String text;
 
     @NotNull

@@ -22,10 +22,9 @@ public class DocumentKind {
     private String name;
 
     @NotNull
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "DESCRIPTION", nullable = false,columnDefinition = "TEXT")
     private String description;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PICTURE", nullable = false)
     private Picture picture;
@@ -39,7 +38,7 @@ public class DocumentKind {
 
     }
 
-    public DocumentKind(@NotNull int fieldsCount, @NotNull String name, @NotNull String description, @NotNull Picture picture) {
+    public DocumentKind(@NotNull int fieldsCount, @NotNull String name, @NotNull String description, Picture picture) {
         this.fieldsCount = fieldsCount;
         this.name = name;
         this.description = description;

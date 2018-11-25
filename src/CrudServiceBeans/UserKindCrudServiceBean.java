@@ -3,10 +3,15 @@ package CrudServiceBeans;
 import CrudServices.UserKindCrudService;
 import Entities.UserKind;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class UserKindCrudServiceBean implements UserKindCrudService {
     @PersistenceContext
     EntityManager em;

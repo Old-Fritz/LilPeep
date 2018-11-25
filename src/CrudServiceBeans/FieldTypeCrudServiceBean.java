@@ -3,10 +3,15 @@ package CrudServiceBeans;
 import CrudServices.FieldTypeCrudService;
 import Entities.FieldType;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class FieldTypeCrudServiceBean implements FieldTypeCrudService  {
     @PersistenceContext
     EntityManager em;
