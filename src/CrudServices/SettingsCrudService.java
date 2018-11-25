@@ -21,5 +21,6 @@ public interface SettingsCrudService extends CrudService<Settings>{
     @Override
     List<Settings> findAll();
 
+    /** Список настроек пользователя */
     List<Settings> getByUser(User user);
 }

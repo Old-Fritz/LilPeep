@@ -23,6 +23,9 @@ public interface ComplaintCrudService extends CrudService<Complaint> {
     @Override
     List<Complaint> findAll();
 
+    /** Поиск по пользователю */
     List<Complaint> findByUser(User user);
+
+    /** Поиск по отправителю */
     List<Complaint> findBySender(User sender);
 }

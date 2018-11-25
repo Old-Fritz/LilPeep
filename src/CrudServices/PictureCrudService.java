@@ -20,5 +20,6 @@ public interface PictureCrudService extends CrudService<Picture>{
     @Override
     List<Picture> findAll();
 
+    /** Поиск картинки по URL */
     Picture findByURL(String url);
 }

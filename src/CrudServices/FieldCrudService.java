@@ -21,5 +21,6 @@ public interface FieldCrudService  extends CrudService<Field> {
     @Override
     List<Field> findAll();
 
+    /** Список полей документа */
     List<Field> findByDocumentKind(DocumentKind documentKind);
 }

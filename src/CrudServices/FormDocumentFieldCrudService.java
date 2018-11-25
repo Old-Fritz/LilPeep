@@ -21,6 +21,9 @@ public interface FormDocumentFieldCrudService extends CrudService<FormDocumentFi
     @Override
     List<FormDocumentField> findAll();
 
+    /** Список полей документа формы */
     List<FormDocumentField> findByFormDocument(FormDocument formDocument);
+
+    /** Список неиспользованных полей документа формы */
     List<FormDocumentField> findNotUsedByFormDocument(FormDocument formDocument);
 }
