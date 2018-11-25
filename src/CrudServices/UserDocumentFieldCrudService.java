@@ -1,6 +1,7 @@
 package CrudServices;
 
 import Entities.User;
+import Entities.UserDocument;
 import Entities.UserDocumentField;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface UserDocumentFieldCrudService extends CrudService<UserDocumentFi
     @Override
     List<UserDocumentField> findAll();
 
-    List<UserDocumentField> findByuser(User user);
+    List<UserDocumentField> findByUserDocument(UserDocument userDocument);
 }

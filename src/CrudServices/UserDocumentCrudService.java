@@ -22,4 +22,5 @@ public interface UserDocumentCrudService extends CrudService<UserDocument>{
     List<UserDocument> findAll();
 
     List<UserDocument> findByUser(User user);
+    List<UserDocument> findByUserAndName(User user, String name);
 }

@@ -22,4 +22,5 @@ public interface UserFormCrudService extends CrudService<UserForm>{
     List<UserForm> findAll();
 
     List<UserForm> getByUser(User user);
+    List<UserForm> getByUserAndName(User user, String name);
 }
