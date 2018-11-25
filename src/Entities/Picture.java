@@ -1,15 +1,19 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "PICTURE")
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @Column(name = "URL", nullable = false)
+    @NotNull
     private String url;
 
     public Picture()
@@ -17,7 +21,7 @@ public class Picture {
 
     }
 
-    public Picture(String url) {
+    public Picture(@NotNull String url) {
         this.url = url;
     }
 

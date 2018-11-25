@@ -1,16 +1,29 @@
 package Entities;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "USER_DOCUMENT")
 public class UserDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private DocumentKind documentKind;
+
+    @NotNull
+    @JoinColumn(name = "ID_USER", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
+    @NotNull
+    @OneToMany(mappedBy = "userDocument", fetch = FetchType.LAZY)
     private List<UserDocumentField> userDocumentFields;
 
     public UserDocument()
@@ -18,7 +31,7 @@ public class UserDocument {
 
     }
 
-    public UserDocument(DocumentKind documentKind, User user) {
+    public UserDocument(@NotNull DocumentKind documentKind, @NotNull User user) {
         this.documentKind = documentKind;
         this.user = user;
     }

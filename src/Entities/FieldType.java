@@ -1,15 +1,19 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "FIELD_TYPE")
 public class FieldType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @Column(name = "NAME", nullable = false)
+    @NotNull
     private String name;
 
     public FieldType()
@@ -17,7 +21,7 @@ public class FieldType {
 
     }
 
-    public FieldType(String name) {
+    public FieldType(@NotNull String name) {
         this.name = name;
     }
 

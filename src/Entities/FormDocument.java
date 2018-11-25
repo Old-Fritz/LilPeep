@@ -1,19 +1,30 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "FORM_DOCUMENT")
 public class FormDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
+
+    @NotNull
+    @JoinColumn(name = "ID_FORM", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserForm userForm;
 
+    @NotNull
+    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY)
     private List<FormDocumentField> formDocumentFields;
 
     public FormDocument()

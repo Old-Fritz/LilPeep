@@ -30,12 +30,13 @@ public class ComplaintCrudServiceBean implements ComplaintCrudService {
 
     @Override
     public Complaint save(Complaint obj) {
-        return em.merge(obj)
+        return em.merge(obj);
     }
 
     @Override
     public List<Complaint> findAll() {
-        return em.;
+        //return em.;
+        return null;
     }
 
     @Override

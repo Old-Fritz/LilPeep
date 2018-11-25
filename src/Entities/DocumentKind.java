@@ -1,21 +1,37 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "DOCUMENT_KIND")
 public class DocumentKind {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @NotNull
+    @Column(name = "FIELD_COUNT", nullable = false)
     private int fieldsCount;
+
+    @NotNull
+    @Column(name = "NAME", nullable = false)
     private String name;
+
+    @NotNull
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_PICTURE", nullable = false)
     private Picture picture;
 
+    @NotNull
+    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY)
     private List<Field> fields;
 
     public DocumentKind()
@@ -23,7 +39,7 @@ public class DocumentKind {
 
     }
 
-    public DocumentKind(int fieldsCount, String name, String description, Picture picture) {
+    public DocumentKind(@NotNull int fieldsCount, @NotNull String name, @NotNull String description, @NotNull Picture picture) {
         this.fieldsCount = fieldsCount;
         this.name = name;
         this.description = description;

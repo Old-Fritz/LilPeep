@@ -1,17 +1,29 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "USER_DOCUMENT_FIELD")
 public class UserDocumentField {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID",nullable = false)
     private long id;
+
+    @Column(name = "VALUE",nullable = false)
+    @NotNull
     private String value;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_FIELD",nullable = false)
+    @NotNull
     private Field field;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_USER_DOCUMENT",nullable = false)
+    @NotNull
     private UserDocument userDocument;
 
     public UserDocumentField()
@@ -19,7 +31,7 @@ public class UserDocumentField {
 
     }
 
-    public UserDocumentField(String value, Field field, UserDocument userDocument) {
+    public UserDocumentField(@NotNull String value, @NotNull Field field, @NotNull UserDocument userDocument) {
         this.value = value;
         this.field = field;
         this.userDocument = userDocument;

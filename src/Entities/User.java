@@ -1,20 +1,33 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private long id;
+
+    @NotNull
+    @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @NotNull
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
+
+    @NotNull
+    @JoinColumn(name = "ID_TYPE", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private UserKind userKind;
 
+    @NotNull
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Settings> settings;
 
     public User()
@@ -22,7 +35,7 @@ public class User {
 
     }
 
-    public User(String email, String password, UserKind userKind) {
+    public User(@NotNull String email, @NotNull String password, @NotNull UserKind userKind) {
         this.email = email;
         this.password = password;
         this.userKind = userKind;
