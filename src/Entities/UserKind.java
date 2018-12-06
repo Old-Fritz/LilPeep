@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
+/** Primary key для сущности */
 @Entity
 @Table(name = "USER_KIND")
 public class UserKind {

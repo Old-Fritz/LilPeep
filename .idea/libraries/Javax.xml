@@ -5,6 +5,7 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.persistence.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet-api.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp-api.jar!/" />
+      <root url="jar://C:/glassfish3/glassfish/modules/bean-validator.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
