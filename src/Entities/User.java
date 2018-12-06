@@ -32,7 +32,6 @@ public class User {
     private UserKind userKind;
 
     /** Список настроек пользователя */
-    @NotNull
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Settings> settings;
 

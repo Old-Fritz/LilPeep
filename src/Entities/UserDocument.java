@@ -27,7 +27,6 @@ public class UserDocument {
     private User user;
 
     /** Список полей документа пользователя */
-    @NotNull
     @OneToMany(mappedBy = "userDocument", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<UserDocumentField> userDocumentFields;
 

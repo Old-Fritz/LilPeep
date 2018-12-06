@@ -49,6 +49,7 @@ public class UserDocumentCrudServiceBean implements UserDocumentCrudService {
 
     @Override
     public List<UserDocument> findByUserAndName(User user, String name) {
-        return em.createQuery("select t from UserDocument t inner join DocumentKind d where d=t.documentKind and t.user.id = " + user.getId() + " and d.name like '%"+ name+"%'", UserDocument.class).getResultList();
+        return em.createQuery("select t from UserDocument t inner join t.documentKind d" +
+                " where t.user.id = " + user.getId() + " and LOWER(d.name) like '%"+ name.toLowerCase()+"%'", UserDocument.class).getResultList();
     }
 }

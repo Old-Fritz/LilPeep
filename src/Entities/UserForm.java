@@ -40,7 +40,6 @@ public class UserForm {
     private User user;
 
     /** Список форм ползователя */
-    @NotNull
     @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<FormDocument> formDocuments;
 

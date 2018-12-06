@@ -37,11 +37,10 @@ public class DocumentKind {
 
     /** ID URL картинки документа */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_PICTURE", nullable = false)
+    @JoinColumn(name = "ID_PICTURE")
     private Picture picture;
 
     /** Поля документа */
-    @NotNull
     @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Field> fields;
 
