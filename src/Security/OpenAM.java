@@ -9,12 +9,20 @@ import com.sun.identity.authentication.spi.AuthLoginException;
 import javax.ejb.Stateless;
 import javax.security.auth.callback.*;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Stateless
 public class OpenAM {
 
-    private String loginIndexName = "DataStore";
+    private String loginIndexName = "SingleAuth";
+    private String urlStr = "http://openam.example.com:8080/openAM";
     private SSOTokenManager manager;
+
+    public OpenAM()
+    {
+
+    }
 
 
     public long validateToken(String tokenID)
@@ -35,7 +43,8 @@ public class OpenAM {
     }
 
     protected AuthContext getAuthContext(String orgName)
-            throws AuthLoginException {
+            throws AuthLoginException, MalformedURLException {
+        URL url = new URL(urlStr);
         AuthContext lc = new AuthContext(orgName);
         AuthContext.IndexType indexType = AuthContext.IndexType.MODULE_INSTANCE;
         lc.login(indexType, loginIndexName);
@@ -46,7 +55,7 @@ public class OpenAM {
     public boolean login(User user)
     {
         try{
-            AuthContext lc = getAuthContext(user.getUserKind().getName());
+            AuthContext lc = getAuthContext("/SimpleUser");
             Callback[] callbacks = null;
 
             while(lc.hasMoreRequirements())
@@ -69,7 +78,7 @@ public class OpenAM {
         }
         catch (Exception e)
         {
-            return false;
+                   return false;
         }
     }
 
@@ -108,7 +117,7 @@ public class OpenAM {
 
     private void handleNameCallback(NameCallback nc, User user)
             throws IOException {
-        nc.setName(user.getEmail());
+        nc.setName(user.getId()+"");
     }
 
     private void handleTextInputCallback(TextInputCallback tic, User user)

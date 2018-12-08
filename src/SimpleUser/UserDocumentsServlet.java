@@ -22,7 +22,7 @@ public class UserDocumentsServlet extends HttpServlet {
     private UserCrudService userCrudService;
 
     @EJB
-    SSOManager ssoManager;
+    private SSOManager ssoManager;
 
     @EJB
     private UserDocumentCrudService userDocumentCrudService;
@@ -38,7 +38,7 @@ public class UserDocumentsServlet extends HttpServlet {
         }
 
         // security check
-        int userID = ssoManager.validateUser(req.getParameter("ssoToken"));
+        long userID = ssoManager.validateUser(req.getParameter("ssoToken"));
         User user = userCrudService.findById(userID);
         if(user==null)
             return;

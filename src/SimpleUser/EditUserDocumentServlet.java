@@ -32,7 +32,7 @@ public class EditUserDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userID = ssoManager.validateUser(req.getParameter("ssoToken"));
+        long userID = ssoManager.validateUser(req.getParameter("ssoToken"));
         int documentID;
         try {
             documentID = Integer.parseInt(req.getParameter("documentID"));

@@ -1,5 +1,6 @@
 import CrudServices.*;
 import Entities.*;
+import Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -8,29 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Random;
 
-@WebServlet(name = "Servlet", urlPatterns = {"/servlet"})
+@WebServlet(name = "Servlet", urlPatterns = {"/servlet2"})
 public class Servlet extends HttpServlet {
 
     @EJB
     UserKindCrudService userKindCrudService;
+
     @EJB
-    UserCrudService userCrudService;
-    @EJB
-    DocumentKindCrudService documentKindCrudService;
-    @EJB
-    FieldTypeCrudService fieldTypeCrudService;
-    @EJB
-    FieldCrudService fieldCrudService;
-    @EJB
-    UserDocumentCrudService userDocumentCrudService;
-    @EJB
-    PictureCrudService pictureCrudService;
+    SSOManager ssoManager;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        ssoManager.login("qwe@mail.ru", "abcd", userKindCrudService.findById(12));
+        /*
         UserKind simpleUser = new UserKind("Simple user");
         userKindCrudService.save(simpleUser);
         User user1 = new User("qwe@mail.ru","abcd",simpleUser);
@@ -89,5 +82,6 @@ public class Servlet extends HttpServlet {
         userDocumentCrudService.save(document5);
 
         resp.getWriter().write("loadDone");
+        */
     }
 }

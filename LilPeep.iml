@@ -37,5 +37,6 @@
     <orderEntry type="library" name="javax.validation:validation-api:2.0.1.Final" level="project" />
     <orderEntry type="library" name="bean-validator" level="project" />
     <orderEntry type="library" exported="" name="ClientSDK-14.1.13" level="project" />
+    <orderEntry type="library" exported="" name="agent" level="project" />
   </component>
 </module>

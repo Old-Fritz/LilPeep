@@ -5,23 +5,27 @@ import Entities.User;
 import Entities.UserKind;
 import com.iplanet.sso.SSOToken;
 import com.iplanet.sso.SSOTokenManager;
+import com.sun.identity.agents.arch.AgentConfiguration;
 
 import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 
 
 @Stateless
+@Local
 public class SSOManager {
-
-    private SSOTokenManager manager;
-    private SSOToken token;
 
     @EJB
     private UserCrudService userCrudService;
 
     @EJB
     private OpenAM openAM;
+
+    public SSOManager()
+    {
+    }
 
     public long validateUser(String ssoToken)
     {
