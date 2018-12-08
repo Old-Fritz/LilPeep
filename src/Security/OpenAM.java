@@ -16,7 +16,6 @@ import java.net.URL;
 public class OpenAM {
 
     private String loginIndexName = "SingleAuth";
-    private String urlStr = "http://openam.example.com:8080/openAM";
     private SSOTokenManager manager;
 
     public OpenAM()
@@ -24,8 +23,7 @@ public class OpenAM {
 
     }
 
-
-    public long validateToken(String tokenID)
+    public long getUserID(String tokenID)
     {
         try{
             manager = SSOTokenManager.getInstance();
@@ -44,7 +42,6 @@ public class OpenAM {
 
     protected AuthContext getAuthContext(String orgName)
             throws AuthLoginException, MalformedURLException {
-        URL url = new URL(urlStr);
         AuthContext lc = new AuthContext(orgName);
         AuthContext.IndexType indexType = AuthContext.IndexType.MODULE_INSTANCE;
         lc.login(indexType, loginIndexName);
@@ -52,11 +49,11 @@ public class OpenAM {
         return lc;
     }
 
-    public boolean login(User user)
+    public String login(User user)
     {
         try{
-            AuthContext lc = getAuthContext("/SimpleUser");
-            Callback[] callbacks = null;
+            AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
+            Callback[] callbacks;
 
             while(lc.hasMoreRequirements())
             {
@@ -71,22 +68,22 @@ public class OpenAM {
             if(lc.getStatus()==AuthContext.Status.SUCCESS)
             {
                 lc.getSSOToken().setProperty("userID",user.getId()+"");
-                return true;
+                return lc.getSSOToken().getTokenID().toString();
             }
 
-            return false;
+            return null;
         }
         catch (Exception e)
         {
-                   return false;
+            return null;
         }
     }
 
     public void logout(User user)
     {
         try{
-            AuthContext lc = getAuthContext(user.getUserKind().getName());
-            lc.logout();
+            AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
+            lc.logoutUsingTokenID();
         }
         catch (Exception e) {
 

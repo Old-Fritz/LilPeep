@@ -2,6 +2,7 @@ package SimpleUser;
 
 import CrudServices.UserDocumentCrudService;
 import CrudServices.UserDocumentFieldCrudService;
+import Entities.User;
 import Entities.UserDocument;
 import Entities.UserDocumentField;
 import Security.SSOManager;
@@ -32,7 +33,7 @@ public class EditUserDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long userID = ssoManager.validateUser(req.getParameter("ssoToken"));
+        User user = ssoManager.getCurrentUser(req);
         int documentID;
         try {
             documentID = Integer.parseInt(req.getParameter("documentID"));
@@ -40,7 +41,7 @@ public class EditUserDocumentServlet extends HttpServlet {
         UserDocument document = userDocumentCrudService.findById(documentID);
 
         // security check
-        if(document.getUser().getId()!=userID)
+        if(document.getUser()!=user)
             return;
 
         super.service(req, resp);

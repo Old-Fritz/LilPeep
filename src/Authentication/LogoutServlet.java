@@ -1,4 +1,6 @@
-import CrudServices.UserKindCrudService;
+package Authentication;
+
+import Entities.User;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -9,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Servlet2", urlPatterns = {"/servlet"})
-public class Servlet2 extends HttpServlet {
-    @EJB
-    private UserKindCrudService userKindCrudService;
+@WebServlet(name="LogoutServlet", urlPatterns = {"/logout"} )
+public class LogoutServlet extends HttpServlet{
 
     @EJB
-    private SSOManager ssoManager;
+    SSOManager ssoManager;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ssoManager.login("qwe@mail.ru", "abcd", userKindCrudService.findById(12));
+        ssoManager.logout(req, resp);
+        resp.sendRedirect(ssoManager.getApplicationRoot());
     }
 }

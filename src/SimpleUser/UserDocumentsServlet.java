@@ -15,11 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="UserDocumentList",urlPatterns = {"/user/documents", "/user"})
+@WebServlet(name="UserDocumentList",urlPatterns = {"/user/documents", "/user", "/user/"})
 public class UserDocumentsServlet extends HttpServlet {
-
-    @EJB
-    private UserCrudService userCrudService;
 
     @EJB
     private SSOManager ssoManager;
@@ -38,10 +35,12 @@ public class UserDocumentsServlet extends HttpServlet {
         }
 
         // security check
-        long userID = ssoManager.validateUser(req.getParameter("ssoToken"));
-        User user = userCrudService.findById(userID);
+        User user = ssoManager.getCurrentUser(req);
         if(user==null)
+        {
+            // RMQ
             return;
+        }
 
         // return only list of documents
         String text = req.getParameter("text");
@@ -51,6 +50,4 @@ public class UserDocumentsServlet extends HttpServlet {
         req.setAttribute("documents", documents);
         req.getRequestDispatcher("/SimpleUser/JSP/UserDocumentList.jsp").forward(req,resp);
     }
-
-
 }

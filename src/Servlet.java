@@ -3,6 +3,7 @@ import Entities.*;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
+import javax.ejb.Remote;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,22 +11,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Servlet", urlPatterns = {"/servlet2"})
+@WebServlet(name = "Servlet", urlPatterns = {"/servlet"})
 public class Servlet extends HttpServlet {
 
     @EJB
     UserKindCrudService userKindCrudService;
-
     @EJB
-    SSOManager ssoManager;
+    UserCrudService userCrudService;
+    @EJB
+    PictureCrudService pictureCrudService;
+    @EJB
+    DocumentKindCrudService documentKindCrudService;
+    @EJB
+    FieldCrudService fieldCrudService;
+    @EJB
+    FieldTypeCrudService fieldTypeCrudService;
+    @EJB
+    UserDocumentCrudService userDocumentCrudService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ssoManager.login("qwe@mail.ru", "abcd", userKindCrudService.findById(12));
-        /*
-        UserKind simpleUser = new UserKind("Simple user");
+        //ssoManager.login("qwe@mail.ru", "abcd", userKindCrudService.findById(12));
+
+        UserKind simpleUser = new UserKind("Simple user", "/SimpleUser", "/user");
+        UserKind onwer = new UserKind("Owner", "/Owner", "/owner");
+        UserKind admin = new UserKind("Admin", "/Admin", "/admin");
         userKindCrudService.save(simpleUser);
+        userKindCrudService.save(onwer);
+        userKindCrudService.save(admin);
         User user1 = new User("qwe@mail.ru","abcd",simpleUser);
         User user2 = new User("abc@mail.ru","qwer",simpleUser);
         userCrudService.save(user1);
@@ -82,6 +96,6 @@ public class Servlet extends HttpServlet {
         userDocumentCrudService.save(document5);
 
         resp.getWriter().write("loadDone");
-        */
+
     }
 }
