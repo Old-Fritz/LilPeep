@@ -45,7 +45,7 @@ public class Servlet extends HttpServlet {
         userCrudService.save(user1);
         userCrudService.save(user2);
 
-        Picture picture = new Picture("https://sun9-4.userapi.com/68tYs55HM47h_Ay8Od--wu228wiGC8LS-rNqZw/vE8bcKm3SxQ.jpg");
+        Picture picture = new Picture("https://i.ytimg.com/vi/6Y3HE1_-lDQ/maxresdefault.jpg");
         pictureCrudService.save(picture);
 
         DocumentKind documentKind1 = new DocumentKind(3,"docSimple1", "coolDoc1", 0,picture);
