@@ -4,6 +4,7 @@ import CrudServices.DocumentKindCrudService;
 import CrudServices.UserDocumentCrudService;
 import CrudServices.UserDocumentFieldCrudService;
 import Entities.*;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -13,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name="AddedUserDocument",urlPatterns = {"/user/addedDocument"})
 public class AddedUserDocumentServlet extends HttpServlet {
@@ -26,8 +25,13 @@ public class AddedUserDocumentServlet extends HttpServlet {
 
     @EJB
     private DocumentKindCrudService documentKindCrudService;
+
     @EJB
     private UserDocumentFieldCrudService userDocumentFieldCrudService;
+
+    @EJB
+    private RabbitSender sender;
+
 
     private DocumentKind document;
     private User user;
@@ -42,14 +46,13 @@ public class AddedUserDocumentServlet extends HttpServlet {
             if(document==null)
                 throw new Exception();
         }catch (Exception e) {
-            //RMQ
+            sender.sendErr("Ошибка при открытии документа: " + e.toString());
             return;
         }
 
         // check for existing of this document
-        if(userDocumentCrudService.findByUserAndDocument(user,document)!=null)
-        {
-            //RMQ
+        if(userDocumentCrudService.findByUserAndDocument(user,document)!=null) {
+            sender.sendErr("Такой документ уже существует");
             return;
         }
 
@@ -69,18 +72,15 @@ public class AddedUserDocumentServlet extends HttpServlet {
         userDocumentCrudService.save(userDocument);
 
         // change all field values
-        for(int i = 0;i<document.getFieldsCount();i++)
-        {
+        for(int i = 0;i<document.getFieldsCount();i++) {
             String fieldValue = req.getParameter("field" + i);
             if(fieldValue == null)
                 fieldValue = "";
             UserDocumentField field = new UserDocumentField(fieldValue,document.getFields().get(i),userDocument);
             try {
                 userDocumentFieldCrudService.save(field);
-            }
-            catch (Exception e)
-            {
-                //RMQ
+            } catch (Exception e) {
+                sender.sendErr("Ошибка при сохранении документа: " + e.toString());
             }
         }
         resp.sendRedirect(req.getContextPath()+"/user/");

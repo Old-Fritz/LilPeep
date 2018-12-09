@@ -49,8 +49,7 @@ public class OpenAM {
         return lc;
     }
 
-    public String login(User user)
-    {
+    public String login(User user) {
         try{
             AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
             Callback[] callbacks;
@@ -72,20 +71,16 @@ public class OpenAM {
             }
 
             return null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public void logout(User user)
-    {
+    public void logout(User user) {
         try{
             AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
             lc.logoutUsingTokenID();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
 
         }
     }

@@ -5,6 +5,7 @@ import CrudServices.FormDocumentCrudService;
 import CrudServices.FormDocumentFieldCrudService;
 import CrudServices.UserFormCrudService;
 import Entities.*;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -31,15 +32,17 @@ public class EditFormServlet extends HttpServlet {
     @EJB
     FormDocumentFieldCrudService formDocumentFieldCrudService;
 
+    @EJB
+    private RabbitSender sender;
+
     private UserForm form;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user
         User user = ssoManager.getCurrentUser(req);
-        if(user==null)
-        {
-            // RMQ
+        if(user==null) {
+            sender.sendErr("Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
@@ -50,7 +53,7 @@ public class EditFormServlet extends HttpServlet {
             if(form==null||form.getUser().getId()!=user.getId())
                 throw new Exception();
         }catch (Exception e){
-            // RMQ
+            sender.sendErr("Не удалось получить форму: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/owner/");
             return;
         }
@@ -93,7 +96,7 @@ public class EditFormServlet extends HttpServlet {
                 req.getRequestDispatcher("/Owner/JSP/FormDocument.jsp").forward(req,resp);
                 return;
             }catch (Exception e){
-                //RMQ
+                sender.sendErr("Не удалось получить документ: " + e.toString());
             }
         }
 
@@ -104,14 +107,12 @@ public class EditFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        if(type == null)
-        {
-            // RMQ
+        if(type == null) {
+            sender.sendErr("Такого параметра не существует");
             return;
         }
         // show simple page without any info
-        if(type == "document")
-        {
+        if(type.equals("document")) {
             createDocument(req);
             return;
         }
@@ -133,28 +134,24 @@ public class EditFormServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        if(type == null)
-        {
-            // RMQ
+        if(type == null) {
+            sender.sendErr("Такого параметра не существует");
             return;
         }
         // show simple page without any info
-        if(type == "document")
-        {
+        if(type.equals("document")) {
             try{
                 long documentID = Long.parseLong(req.getParameter("documentID"));
                 formDocumentFieldCrudService.deleteById(documentID);
                 form.setDocumentCount(form.getDocumentCount()+1);
 
             }catch (Exception e){
-                // RMQ
+                sender.sendErr("Ошибка при удалении документа: " + e.toString());
             }
-            return;
         }
     }
 
-    void createDocument(HttpServletRequest req)
-    {
+    private void createDocument(HttpServletRequest req) {
         try{
             long documentID = Long.parseLong(req.getParameter("documentID"));
 
@@ -174,7 +171,7 @@ public class EditFormServlet extends HttpServlet {
             form.setDocumentCount(form.getDocumentCount()+1);
 
         }catch (Exception e){
-            // RMQ
+            sender.sendErr("Ошибка при удалении документа: " + e.toString());
         }
     }
 

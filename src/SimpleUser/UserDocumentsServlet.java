@@ -4,6 +4,7 @@ import CrudServices.UserCrudService;
 import CrudServices.UserDocumentCrudService;
 import Entities.User;
 import Entities.UserDocument;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -24,6 +25,9 @@ public class UserDocumentsServlet extends HttpServlet {
     @EJB
     private UserDocumentCrudService userDocumentCrudService;
 
+    @EJB
+    private RabbitSender sender;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
@@ -36,9 +40,8 @@ public class UserDocumentsServlet extends HttpServlet {
 
         // security check
         User user = ssoManager.getCurrentUser(req);
-        if(user==null)
-        {
-            // RMQ
+        if(user==null) {
+            sender.sendErr("Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }

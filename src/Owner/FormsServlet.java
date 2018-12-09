@@ -3,6 +3,7 @@ package Owner;
 import CrudServices.UserFormCrudService;
 import Entities.User;
 import Entities.UserForm;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -20,6 +21,10 @@ public class FormsServlet extends HttpServlet{
     private SSOManager ssoManager;
     @EJB
     private UserFormCrudService userFormCrudService;
+
+    @EJB
+    private RabbitSender sender;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
@@ -32,9 +37,8 @@ public class FormsServlet extends HttpServlet{
 
         // security check
         User user = ssoManager.getCurrentUser(req);
-        if(user==null)
-        {
-            // RMQ
+        if(user==null) {
+            sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
