@@ -3,6 +3,7 @@ package Security;
 import CrudServices.UserCrudService;
 import Entities.User;
 import Entities.UserKind;
+import Rabbit.RabbitSender;
 import com.iplanet.sso.SSOToken;
 import com.iplanet.sso.SSOTokenManager;
 import com.sun.identity.agents.arch.AgentConfiguration;
@@ -13,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 @Stateless
@@ -25,38 +27,36 @@ public class SSOManager {
     @EJB
     private OpenAM openAM;
 
+    @EJB
+    private RabbitSender sender;
+
     private String tokenCookieName = "iPlanetDirectoryPro";
 
-    public SSOManager()
-    {
+    public SSOManager(){
+
     }
 
-    public User getCurrentUser(HttpServletRequest req)
-    {
+    public User getCurrentUser(HttpServletRequest req) {
         String ssoToken = getSSOToken(req.getCookies());
         long userID = openAM.getUserID(ssoToken);
         return userCrudService.findById(userID);
     }
 
-    public boolean login(HttpServletResponse resp, String email, String password, UserKind userKind)
-    {
-        User user = userCrudService.getByEmailAndKind(email,userKind);
-        if(user == null)
-        {
-            //RMQ
+    public boolean login(HttpServletResponse resp, String email, String password, UserKind userKind) throws IOException {
+        User user = userCrudService.findByEmailAndKind(email,userKind);
+        if(user == null) {
+            sender.sendOut("Такого пользователя не существует");
             return false;
         }
 
-        if(!user.getPassword().equals(password))
-        {
-            //RMQ
+        if(!user.getPassword().equals(password)) {
+            sender.sendOut("Неверный пароль");
             return false;
         }
 
         String SSOTokenId = openAM.login(user);
-        if(SSOTokenId==null)
-        {
-            //RMQ
+        if(SSOTokenId==null) {
+            sender.sendErr("Случился БИБИБ");
             return false;
         }
 
@@ -74,13 +74,11 @@ public class SSOManager {
             resp.addCookie(delCookie);
     }
 
-    public boolean register(String email, String password, UserKind userKind)
-    {
-        User user = userCrudService.getByEmailAndKind(email,userKind);
+    public boolean register(String email, String password, UserKind userKind) throws IOException {
+        User user = userCrudService.findByEmailAndKind(email,userKind);
         // can't register existed user
-        if(user!=null)
-        {
-            // RMQ
+        if(user!=null) {
+            sender.sendOut("Это имя пользователя уже занято");
             return false;
         }
 
@@ -90,7 +88,7 @@ public class SSOManager {
         }
         catch (Exception e)
         {
-            // RMQ
+            sender.sendErr("Не зарегистрировать пользователя: " + e.toString());
             return false;
         }
 

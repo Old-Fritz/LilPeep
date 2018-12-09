@@ -4,6 +4,7 @@ import CrudServices.UserCrudService;
 import CrudServices.UserKindCrudService;
 import Entities.User;
 import Entities.UserKind;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -21,6 +22,9 @@ public class LoginServlet extends HttpServlet{
 
     @EJB
     private UserKindCrudService userKindCrudService;
+
+    @EJB
+    private RabbitSender sender;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,9 +45,8 @@ public class LoginServlet extends HttpServlet{
         // get parameters
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if(email == null || password == null)
-        {
-            //RMQ
+        if(email == null || password == null) {
+            sender.sendErr("Отсутствует e-mail и/или пароль");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
@@ -53,18 +56,15 @@ public class LoginServlet extends HttpServlet{
             userKind = userKindCrudService.findById(kindID);
             if(userKind == null)
                 throw new Exception();
-        }
-        catch (Exception e)
-        {
-            //RMQ
+        } catch (Exception e) {
+            sender.sendErr("Такого типа записи не существует");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         // try login
-        if(!ssoManager.login(resp, email,password,userKind))
-        {
-            //RMQ
+        if(!ssoManager.login(resp, email,password,userKind)) {
+            sender.sendErr("Авторизация не удалась, попробуйте ещё раз");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
