@@ -21,5 +21,5 @@ public interface SettingsTypeCrudService extends CrudService<SettingsType>{
     List<SettingsType> findAll();
 
     /** Получение типа настройки по названию */
-    SettingsType getByName(String name);
+    SettingsType findByName(String name);
 }

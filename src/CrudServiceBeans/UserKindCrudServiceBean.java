@@ -43,7 +43,7 @@ public class UserKindCrudServiceBean implements UserKindCrudService {
     }
 
     @Override
-    public UserKind getByName(String name) {
+    public UserKind findByName(String name) {
         return em.createQuery("select t from UserKind t where t.name = " + name, UserKind.class).getSingleResult();
     }
 }

@@ -45,7 +45,7 @@ public class FormDocumentFieldCrudServiceBean implements FormDocumentFieldCrudSe
 
     @Override
     public List<FormDocumentField> findByFormDocument(FormDocument formDocument) {
-        return em.createQuery("select t from FormDocumentField t where t.formDocument = " + formDocument.getId(), FormDocumentField.class).getResultList();
+        return em.createQuery("select t from FormDocumentField t where t.formDocument.id = " + formDocument.getId(), FormDocumentField.class).getResultList();
     }
 
     @Override

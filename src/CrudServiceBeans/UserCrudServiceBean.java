@@ -44,7 +44,7 @@ public class UserCrudServiceBean implements UserCrudService {
     }
 
     @Override
-    public User getByEmailAndKind(String email, UserKind kind) {
+    public User findByEmailAndKind(String email, UserKind kind) {
         try {
             return em.createQuery("select t from User t where t.email = '" + email + "' and t.userKind.id = " + kind.getId(), User.class).getSingleResult();
         }catch (Exception e){

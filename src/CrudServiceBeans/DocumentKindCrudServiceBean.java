@@ -62,13 +62,20 @@ public class DocumentKindCrudServiceBean implements DocumentKindCrudService {
 
     @Override
     public List<DocumentKind> findUsedByUser(User user) {
-        return em.createQuery(
-                "select t from DocumentKind t inner join UserDocument d where d.documentKind = t and d.user.id = " + user.getId()
+        return em.createQuery("select t from UserDocument d  inner join d.documentKind t" +
+                        " where d.user.id = " + user.getId()
                 , DocumentKind.class).getResultList();
     }
 
     @Override
     public List<DocumentKind> findNotUsedByUserFormAndName(UserForm userForm, String name) {
+        List<DocumentKind> list = em.createQuery("select t from DocumentKind t" +
+                " where t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
+
+        list.removeAll(em.createQuery("select t from FormDocument d join d.documentKind t" +
+                " where d.userForm.id ="+ userForm.getId()+
+                " and t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
+
         return em.createQuery(
                 "select distinct t from DocumentKind t left outer join FormDocument d where d.documentKind = t and d.userForm.id != " + userForm.getId() +
                         " and t.name like '%" + name +"%'"
@@ -78,7 +85,8 @@ public class DocumentKindCrudServiceBean implements DocumentKindCrudService {
     @Override
     public List<DocumentKind> findUsedByUserForm(UserForm userForm) {
         return em.createQuery(
-                "select t from DocumentKind t inner join FormDocument d where d.documentKind = t and d.userForm.id = " + userForm.getId()
+                "select t from FormDocument d inner join d.documentKind t where" +
+                        " d.userForm.id = " + userForm.getId()
                 , DocumentKind.class).getResultList();
     }
 }

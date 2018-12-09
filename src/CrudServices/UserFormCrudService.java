@@ -22,8 +22,8 @@ public interface UserFormCrudService extends CrudService<UserForm>{
     List<UserForm> findAll();
 
     /** Список форм владельца */
-    List<UserForm> getByUser(User user);
+    List<UserForm> findByUser(User user);
 
     /** Поиск форм владельца по названию */
-    List<UserForm> getByUserAndName(User user, String name);
+    List<UserForm> findByUserAndName(User user, String name);
 }

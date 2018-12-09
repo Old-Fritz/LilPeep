@@ -21,5 +21,5 @@ public interface UserKindCrudService extends CrudService<UserKind>{
     List<UserKind> findAll();
 
     /** Определение типа учётной записи по имени */
-    UserKind getByName(String name);
+    UserKind findByName(String name);
 }

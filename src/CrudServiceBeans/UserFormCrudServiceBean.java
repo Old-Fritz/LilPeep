@@ -44,12 +44,12 @@ public class UserFormCrudServiceBean implements UserFormCrudService {
     }
 
     @Override
-    public List<UserForm> getByUser(User user) {
+    public List<UserForm> findByUser(User user) {
         return em.createQuery("select t from UserForm t where t.user.id = " +user.getId(), UserForm.class).getResultList();
     }
 
     @Override
-    public List<UserForm> getByUserAndName(User user, String name) {
-        return em.createQuery("select t from UserForm t where t.user.id = " +user.getId() + " and t.name like '%" + name + "'%" , UserForm.class).getResultList();
+    public List<UserForm> findByUserAndName(User user, String name) {
+        return em.createQuery("select t from UserForm t where t.user.id = " +user.getId() + " and LOWER(t.name) like '%" + name.toLowerCase() + "'%" , UserForm.class).getResultList();
     }
 }

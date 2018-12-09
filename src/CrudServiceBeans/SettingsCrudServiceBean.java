@@ -44,7 +44,7 @@ public class SettingsCrudServiceBean implements SettingsCrudService {
     }
 
     @Override
-    public List<Settings> getByUser(User user) {
+    public List<Settings> findByUser(User user) {
         return user.getSettings();
     }
 }
