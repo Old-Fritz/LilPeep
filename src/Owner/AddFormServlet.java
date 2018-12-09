@@ -34,6 +34,6 @@ public class AddFormServlet extends HttpServlet {
         UserForm form = new UserForm(0, "", "", userFormCrudService.findByUser(user).size(), user);
         userFormCrudService.save(form);
 
-        resp.sendRedirect(req.getContextPath() + "/editForm?formID=" + form.getId());
+        resp.sendRedirect(req.getContextPath() + "/owner/editForm?formID=" + form.getId());
     }
 }

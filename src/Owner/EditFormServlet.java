@@ -144,6 +144,7 @@ public class EditFormServlet extends HttpServlet {
             try{
                 long documentID = Long.parseLong(req.getParameter("documentID"));
                 formDocumentFieldCrudService.deleteById(documentID);
+                form.setDocumentCount(form.getDocumentCount()+1);
 
             }catch (Exception e){
                 // RMQ
@@ -169,6 +170,8 @@ public class EditFormServlet extends HttpServlet {
                 FormDocumentField formField = new FormDocumentField(document,field,false);
                 formDocumentFieldCrudService.save(formField);
             }
+
+            form.setDocumentCount(form.getDocumentCount()+1);
 
         }catch (Exception e){
             // RMQ

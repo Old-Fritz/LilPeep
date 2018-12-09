@@ -23,4 +23,6 @@ public interface UserCrudService extends CrudService<User> {
 
     /** Поиск пользователя по e-mail и типу */
     User findByEmailAndKind(String email, UserKind kind);
+
+    List<User> findByEmailLikeAndKind(String email, UserKind kind);
 }
