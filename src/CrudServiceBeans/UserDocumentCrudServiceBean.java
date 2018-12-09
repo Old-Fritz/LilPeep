@@ -1,6 +1,7 @@
 package CrudServiceBeans;
 
 import CrudServices.UserDocumentCrudService;
+import Entities.DocumentKind;
 import Entities.User;
 import Entities.UserDocument;
 
@@ -51,5 +52,17 @@ public class UserDocumentCrudServiceBean implements UserDocumentCrudService {
     public List<UserDocument> findByUserAndName(User user, String name) {
         return em.createQuery("select t from UserDocument t inner join t.documentKind d" +
                 " where t.user.id = " + user.getId() + " and LOWER(d.name) like '%"+ name.toLowerCase()+"%'", UserDocument.class).getResultList();
+    }
+
+    @Override
+    public UserDocument findByUserAndDocument(User user, DocumentKind documentKind) {
+        try{
+            return em.createQuery("select t from UserDocument t where" +
+                    " t.user.id="+user.getId()+
+                    " and t.documentKind.id="+documentKind.getId(),
+                    UserDocument.class).getSingleResult();
+        }catch (Exception e){
+            return null;
+        }
     }
 }

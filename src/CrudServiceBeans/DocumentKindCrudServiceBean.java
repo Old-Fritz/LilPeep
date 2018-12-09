@@ -51,10 +51,13 @@ public class DocumentKindCrudServiceBean implements DocumentKindCrudService {
 
     @Override
     public List<DocumentKind> findNotUsedByUserAndName(User user, String name) {
-        return em.createQuery(
-                "select distinct t from DocumentKind t left outer join UserDocument d where d.documentKind = t and d.user.id != " + user.getId() +
-                        " and t.name like '%" + name +"%'"
-                , DocumentKind.class).getResultList();
+        List<DocumentKind> list = em.createQuery("select t from DocumentKind t" +
+                " where t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
+
+        list.removeAll(em.createQuery("select t from UserDocument d join d.documentKind t" +
+                        " where d.user.id ="+ user.getId()+
+                        " and t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
+        return list;
     }
 
     @Override

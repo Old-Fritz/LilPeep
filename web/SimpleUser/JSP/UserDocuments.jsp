@@ -1,6 +1,3 @@
-<%@ page import="Entities.UserDocument" %>
-<%@ page import="java.util.List" %>
-
 <script>
     function getList(input) {
         let xhr = new XMLHttpRequest();
@@ -19,4 +16,12 @@
 <input type="text" oninput="getList(this.value)"/>
 <script>getList("")</script>
 
-<div id="list"/>
+<div id="list">
+</div>
+
+
+<br><br><br>
+<button onclick="window.location='addDocument'">Add document</button>
+<button onclick="window.location='documents'">Documents</button>
+<button onclick="window.location='settings'">Settings</button>
+<button onclick="window.location='../logout'">Logout</button>

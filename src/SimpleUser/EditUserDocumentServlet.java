@@ -34,15 +34,25 @@ public class EditUserDocumentServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = ssoManager.getCurrentUser(req);
-        int documentID;
+        // getting document
         try {
-            documentID = Integer.parseInt(req.getParameter("documentID"));
-        }catch (Exception e) {return;}
-        UserDocument document = userDocumentCrudService.findById(documentID);
+            long documentID = Long.parseLong(req.getParameter("documentID"));
+            document = userDocumentCrudService.findById(documentID);
+            if(document==null)
+                throw new Exception();
+        }catch (Exception e) {
+            //RMQ
+            resp.sendRedirect(req.getContextPath()+"/user/");
+            return;
+        }
 
         // security check
-        if(document.getUser()!=user)
+        if(document.getUser().getId()!=user.getId())
+        {
+            //RMQ
+            resp.sendRedirect(req.getContextPath()+"/user/");
             return;
+        }
 
         super.service(req, resp);
     }
@@ -51,7 +61,7 @@ public class EditUserDocumentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // send document in jsp to show
         req.setAttribute("document",document);
-        req.getRequestDispatcher("/SimpleUser/EditUserDocument.jsp").forward(req,resp);
+        req.getRequestDispatcher("/SimpleUser/JSP/EditUserDocument.jsp").forward(req,resp);
     }
 
     @Override
@@ -65,11 +75,14 @@ public class EditUserDocumentServlet extends HttpServlet {
             if(fieldValue == null)
                 fieldValue = "";
             fields.get(i).setValue(fieldValue);
+            fields.set(i,userDocumentFieldCrudService.update(fields.get(i)));
         }
+        resp.sendRedirect(req.getContextPath()+"/user/");
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         userDocumentCrudService.deleteById(document.getId());
+        resp.sendRedirect(req.getContextPath()+"/user/documents");
     }
 }

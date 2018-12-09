@@ -39,6 +39,7 @@ public class UserDocumentsServlet extends HttpServlet {
         if(user==null)
         {
             // RMQ
+            resp.sendRedirect(req.getContextPath()+"/login");
             return;
         }
 

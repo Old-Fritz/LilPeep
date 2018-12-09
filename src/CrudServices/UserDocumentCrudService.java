@@ -1,5 +1,6 @@
 package CrudServices;
 
+import Entities.DocumentKind;
 import Entities.User;
 import Entities.UserDocument;
 
@@ -26,4 +27,7 @@ public interface UserDocumentCrudService extends CrudService<UserDocument>{
 
     /** Поиск документов пользователя по названию */
     List<UserDocument> findByUserAndName(User user, String name);
+
+    /** Поиск документа пользователя определенного типа **/
+    UserDocument findByUserAndDocument(User user, DocumentKind documentKind);
 }
