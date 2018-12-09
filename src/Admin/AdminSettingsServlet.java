@@ -1,4 +1,4 @@
-package SimpleUser;
+package Admin;
 
 import Entities.Settings;
 import Entities.User;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="UserSettings",urlPatterns = {"/user/editDocument"})
-public class UserSettingsServlet extends HttpServlet {
+@WebServlet(name="AdminSettings",urlPatterns = {"/admin/Settings"})
+public class AdminSettingsServlet extends HttpServlet {
 
     @EJB
     private SSOManager ssoManager;
@@ -27,11 +27,11 @@ public class UserSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/SimpleUser/JSP/UserSettings").forward(req,resp);
+        req.getRequestDispatcher("/Admin/JSP/AdminSettings").forward(req, resp);
         User user = ssoManager.getCurrentUser(req);
-        if(user==null) {
+        if (user == null) {
             sender.sendErr("Ошибка доступа");
-            resp.sendRedirect(req.getContextPath()+"/logout");
+            resp.sendRedirect(req.getContextPath() + "/logout");
             return;
         }
         settings = user.getSettings();
@@ -39,13 +39,12 @@ public class UserSettingsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        for(int i = 0;i<settings.size();i++) {
+        for (int i = 0; i < settings.size(); i++) {
             String settingValue = req.getParameter("setting" + i);
-            if(settingValue == null)
+            if (settingValue == null)
                 settingValue = "";
             settings.get(i).setValue(settingValue);
         }
-        resp.sendRedirect(req.getContextPath()+"/user/");
+        resp.sendRedirect(req.getContextPath() + "/admin/");
     }
 }
-

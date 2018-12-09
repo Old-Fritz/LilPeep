@@ -8,6 +8,7 @@ import Entities.DocumentKind;
 import Entities.Field;
 import Entities.FieldType;
 import Entities.Picture;
+import Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -30,13 +31,16 @@ public class EditDocumentServlet extends HttpServlet {
     @EJB
     private PictureCrudService pictureCrudService;
 
+    @EJB
+    private RabbitSender sender;
+
     private DocumentKind documentKind;
     private boolean isNew = false;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            documentKind = (DocumentKind)req.getSession().getAttribute("newAttribute");
+            documentKind = (DocumentKind)req.getSession().getAttribute("newDocument");
             if(documentKind == null){
                 long documentID=Long.parseLong(req.getParameter("documentID"));
                 documentKind=documentKindCrudService.findById(documentID);
@@ -47,7 +51,7 @@ public class EditDocumentServlet extends HttpServlet {
                 isNew=true;
         }
         catch (Exception e){
-            // RMQ
+            sender.sendErr("Не удалось загрузить документ: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/admin/");
             return;
         }
@@ -57,15 +61,13 @@ public class EditDocumentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        if(type == null || type.equals("page"))
-        {
+        if(type == null || type.equals("page")) {
             req.getRequestDispatcher("/Admin/JSP/EditDocument.jsp").forward(req,resp);
             return;
         }
 
         // return only types of field
-        if(type.equals("types"))
-        {
+        if(type.equals("types")) {
             List<FieldType> types = fieldTypeCrudService.findAll();
             // send document in jsp to show
             req.setAttribute("types",types);
@@ -82,7 +84,7 @@ public class EditDocumentServlet extends HttpServlet {
             try{
                 addField(req);
             } catch (Exception e){
-                // RMQ
+                sender.sendErr("Не удалось добавить поле: " + e.toString());
             }
             return;
         }

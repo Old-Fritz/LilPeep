@@ -25,6 +25,6 @@ public class AddDocumentServlet extends HttpServlet {
         DocumentKind documentKind = new DocumentKind(0,"","",documentKindCrudService.findAll().size(), null);
 
         req.getSession().setAttribute("newDocument", documentKind);
-        req.getRequestDispatcher("/admin/editDocument").forward(req,resp);
+        req.getRequestDispatcher("/Admin/JSP/editDocument").forward(req,resp);
     }
 }

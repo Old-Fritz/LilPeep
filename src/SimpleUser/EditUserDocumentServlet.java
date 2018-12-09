@@ -70,7 +70,6 @@ public class EditUserDocumentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<UserDocumentField> fields = document.getUserDocumentFields();
-
         // change all field values
         for(int i = 0;i<fields.size();i++) {
             String fieldValue = req.getParameter("field" + i);
