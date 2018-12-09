@@ -1,10 +1,13 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
 /** Primary key для сущности */
+@Data
 @Entity
 @Table(name = "USER_KIND")
 public class UserKind {
@@ -42,34 +45,6 @@ public class UserKind {
     public UserKind(@NotNull String name, @NotNull String openSSORealm, @NotNull String urlPattern) {
         this.name = name;
         this.openSSORealm = openSSORealm;
-        this.urlPattern = urlPattern;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getOpenSSORealm() {
-        return openSSORealm;
-    }
-
-    public void setOpenSSORealm(String openSSORealm) {
-        this.openSSORealm = openSSORealm;
-    }
-
-    public String getUrlPattern() {
-        return urlPattern;
-    }
-
-    public void setUrlPattern(String urlPattern) {
         this.urlPattern = urlPattern;
     }
 }

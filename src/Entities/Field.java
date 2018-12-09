@@ -1,9 +1,11 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
-
+@Data
 @Entity
 @Table(name = "FIELD")
 public class Field {
@@ -53,41 +55,5 @@ public class Field {
         this.documentKind = documentKind;
         this.fieldType = fieldType;
         this.order = order;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public DocumentKind getDocumentKind() {
-        return documentKind;
-    }
-
-    public void setDocumentKind(DocumentKind documentKind) {
-        this.documentKind = documentKind;
-    }
-
-    public FieldType getFieldType() {
-        return fieldType;
-    }
-
-    public void setFieldType(FieldType fieldType) {
-        this.fieldType = fieldType;
     }
 }

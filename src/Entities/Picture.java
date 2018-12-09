@@ -1,9 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "PICTURE")
 public class Picture {
@@ -31,15 +34,4 @@ public class Picture {
         this.url = url;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

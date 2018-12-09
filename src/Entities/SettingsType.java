@@ -1,9 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "SETTINGS_TYPE")
 public class SettingsType {
@@ -31,15 +34,4 @@ public class SettingsType {
         this.name = name;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

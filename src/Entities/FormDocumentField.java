@@ -1,9 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "FORM_DOCUMENT_FIELD")
 public class FormDocumentField {
@@ -45,33 +48,5 @@ public class FormDocumentField {
         this.formDocument = formDocument;
         this.field = field;
         this.isChecked = isChecked;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public FormDocument getFormDocument() {
-        return formDocument;
-    }
-
-    public void setFormDocument(FormDocument formDocument) {
-        this.formDocument = formDocument;
-    }
-
-    public Field getField() {
-        return field;
-    }
-
-    public void setField(Field field) {
-        this.field = field;
     }
 }

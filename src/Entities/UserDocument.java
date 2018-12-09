@@ -1,10 +1,13 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "USER_DOCUMENT")
 public class UserDocument {
@@ -45,31 +48,4 @@ public class UserDocument {
         this.user = user;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public DocumentKind getDocumentKind() {
-        return documentKind;
-    }
-
-    public void setDocumentKind(DocumentKind documentKind) {
-        this.documentKind = documentKind;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<UserDocumentField> getUserDocumentFields() {
-        return userDocumentFields;
-    }
-
-    public void setUserDocumentFields(List<UserDocumentField> userDocumentFields) {
-        this.userDocumentFields = userDocumentFields;
-    }
 }

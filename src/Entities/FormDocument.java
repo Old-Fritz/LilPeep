@@ -1,10 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
-
+@Data
 @Entity
 @Table(name = "FORM_DOCUMENT")
 public class FormDocument {
@@ -51,41 +53,5 @@ public class FormDocument {
         this.order = order;
         this.documentKind = documentKind;
         this.userForm = userForm;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public DocumentKind getDocumentKind() {
-        return documentKind;
-    }
-
-    public void setDocumentKind(DocumentKind documentKind) {
-        this.documentKind = documentKind;
-    }
-
-    public UserForm getUserForm() {
-        return userForm;
-    }
-
-    public void setUserForm(UserForm userForm) {
-        this.userForm = userForm;
-    }
-
-    public List<FormDocumentField> getFormDocumentFields() {
-        return formDocumentFields;
-    }
-
-    public void setFormDocumentFields(List<FormDocumentField> formDocumentFields) {
-        this.formDocumentFields = formDocumentFields;
     }
 }

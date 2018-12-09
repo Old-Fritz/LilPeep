@@ -1,10 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
-
+@Data
 @Entity
 @Table(name = "DOCUMENT_KIND")
 public class DocumentKind {
@@ -65,55 +67,5 @@ public class DocumentKind {
         this.order = order;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public int getFieldsCount() {
-        return fieldsCount;
-    }
-
-    public void setFieldsCount(int fieldsCount) {
-        this.fieldsCount = fieldsCount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Picture getPicture() {
-        return picture;
-    }
-
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
-
-    public List<Field> getFields() {
-        return fields;
-    }
-
-    public void setFields(List<Field> fields) {
-        this.fields = fields;
-    }
 }

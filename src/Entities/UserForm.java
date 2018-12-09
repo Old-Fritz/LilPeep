@@ -1,10 +1,13 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "USER_FORM")
 public class UserForm {
@@ -62,57 +65,5 @@ public class UserForm {
         this.url = url;
         this.user = user;
         this.order = order;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public int getDocumentCount() {
-        return documentCount;
-    }
-
-    public void setDocumentCount(int documentCount) {
-        this.documentCount = documentCount;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<FormDocument> getFormDocuments() {
-        return formDocuments;
-    }
-
-    public void setFormDocuments(List<FormDocument> formDocuments) {
-        this.formDocuments = formDocuments;
     }
 }

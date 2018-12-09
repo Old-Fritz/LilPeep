@@ -1,9 +1,12 @@
 package Entities;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "SETTINGS")
 public class Settings {
@@ -51,42 +54,6 @@ public class Settings {
         this.value = value;
         this.order = order;
         this.user = user;
-        this.type = type;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public SettingsType getType() {
-        return type;
-    }
-
-    public void setType(SettingsType type) {
         this.type = type;
     }
 }
