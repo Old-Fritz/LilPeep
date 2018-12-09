@@ -5,6 +5,7 @@ import CrudServices.UserDocumentCrudService;
 import Entities.DocumentKind;
 import Entities.User;
 import Entities.UserDocument;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -18,17 +19,21 @@ import java.util.List;
 
 @WebServlet(name="AddUserDocument",urlPatterns = {"/user/addDocument"})
 public class AddUserDocumentServlet extends HttpServlet{
+
     @EJB
     private SSOManager ssoManager;
+
     @EJB
     private DocumentKindCrudService documentKindCrudService;
+
+    @EJB
+    private RabbitSender sender;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
         // show simple page without any info
-        if(type == null || type.equals("page"))
-        {
+        if(type == null || type.equals("page")) {
             req.getRequestDispatcher("/SimpleUser/JSP/AddUserDocument.jsp").forward(req,resp);
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
@@ -36,9 +41,8 @@ public class AddUserDocumentServlet extends HttpServlet{
 
         // get user
         User user = ssoManager.getCurrentUser(req);
-        if(user==null)
-        {
-            // RMQ
+        if(user==null) {
+            sender.sendErr("Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }

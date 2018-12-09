@@ -3,6 +3,7 @@ package Owner;
 import CrudServices.UserFormCrudService;
 import Entities.User;
 import Entities.UserForm;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -18,15 +19,19 @@ import java.io.IOException;
 public class AddFormServlet extends HttpServlet {
     @EJB
     SSOManager ssoManager;
+
     @EJB
     UserFormCrudService userFormCrudService;
+
+    @EJB
+    private RabbitSender sender;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
-            // RMQ
+            sender.sendErr("Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath() + "/logout");
             return;
         }

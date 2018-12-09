@@ -5,6 +5,7 @@ import CrudServices.UserDocumentFieldCrudService;
 import Entities.User;
 import Entities.UserDocument;
 import Entities.UserDocumentField;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -29,6 +30,9 @@ public class EditUserDocumentServlet extends HttpServlet {
     @EJB
     private UserDocumentFieldCrudService userDocumentFieldCrudService;
 
+    @EJB
+    private RabbitSender sender;
+
     private UserDocument document;
 
     @Override
@@ -41,15 +45,14 @@ public class EditUserDocumentServlet extends HttpServlet {
             if(document==null)
                 throw new Exception();
         }catch (Exception e) {
-            //RMQ
+            sender.sendErr("Ошибка при открытии документа: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
 
         // security check
-        if(document.getUser().getId()!=user.getId())
-        {
-            //RMQ
+        if(document.getUser().getId()!=user.getId()) {
+            sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
@@ -69,8 +72,7 @@ public class EditUserDocumentServlet extends HttpServlet {
         List<UserDocumentField> fields = document.getUserDocumentFields();
 
         // change all field values
-        for(int i = 0;i<fields.size();i++)
-        {
+        for(int i = 0;i<fields.size();i++) {
             String fieldValue = req.getParameter("field" + i);
             if(fieldValue == null)
                 fieldValue = "";

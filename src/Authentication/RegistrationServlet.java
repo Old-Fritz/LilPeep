@@ -4,6 +4,7 @@ import CrudServices.UserCrudService;
 import CrudServices.UserKindCrudService;
 import Entities.User;
 import Entities.UserKind;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -21,6 +22,9 @@ public class RegistrationServlet extends HttpServlet {
 
     @EJB
     private UserKindCrudService userKindCrudService;
+
+    @EJB
+    private RabbitSender sender;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,7 +46,7 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("passwordRepeat");
         if (email == null || password == null) {
-            //RMQ
+            sender.sendErr("Отсутствует e-mail и/или пароль");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
@@ -53,14 +57,14 @@ public class RegistrationServlet extends HttpServlet {
             if (userKind == null)
                 throw new Exception();
         } catch (Exception e) {
-            //RMQ
+            sender.sendErr("Такого типа записи не существует.");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         // check correct double input of password
         if (!password.equals(passwordRepeat)) {
-            //RMQ
+            sender.sendOut("Пароли не совпадают!!!");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
