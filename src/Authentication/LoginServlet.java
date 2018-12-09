@@ -20,15 +20,11 @@ public class LoginServlet extends HttpServlet{
     private SSOManager ssoManager;
 
     @EJB
-    private UserCrudService userCrudService;
-
-    @EJB
     private UserKindCrudService userKindCrudService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user;
-        user = ssoManager.getCurrentUser(req);
+        User user = ssoManager.getCurrentUser(req);
         // forward to login page if user hasn't logged in
         if(user==null)
         {
@@ -37,7 +33,7 @@ public class LoginServlet extends HttpServlet{
         }
 
         // go to requirable page if user has logged in
-        resp.sendRedirect(ssoManager.getApplicationRoot() + user.getUserKind().getUrlPattern());
+        resp.sendRedirect(req.getContextPath()+ user.getUserKind().getUrlPattern());
     }
 
     @Override
@@ -48,6 +44,7 @@ public class LoginServlet extends HttpServlet{
         if(email == null || password == null)
         {
             //RMQ
+            resp.sendRedirect(req.getRequestURI());
             return;
         }
         UserKind userKind;
@@ -60,6 +57,7 @@ public class LoginServlet extends HttpServlet{
         catch (Exception e)
         {
             //RMQ
+            resp.sendRedirect(req.getRequestURI());
             return;
         }
 
@@ -67,10 +65,11 @@ public class LoginServlet extends HttpServlet{
         if(!ssoManager.login(resp, email,password,userKind))
         {
             //RMQ
+            resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         // go to requirable page
-        resp.sendRedirect(ssoManager.getApplicationRoot()+ userKind.getUrlPattern());
+        resp.sendRedirect(req.getRequestURI());
     }
 }

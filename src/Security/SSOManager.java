@@ -27,8 +27,6 @@ public class SSOManager {
 
     private String tokenCookieName = "iPlanetDirectoryPro";
 
-    private String applicationRoot = "/LilPeep";
-
     public SSOManager()
     {
     }
@@ -122,10 +120,5 @@ public class SSOManager {
             }
         }
         return null;
-    }
-
-    public String getApplicationRoot()
-    {
-        return applicationRoot;
     }
 }

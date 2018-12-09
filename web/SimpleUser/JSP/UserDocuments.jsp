@@ -4,8 +4,7 @@
 <script>
     function getList(input) {
         let xhr = new XMLHttpRequest();
-        let queryString = "userID=" + <%=request.getParameter("userID")%>+
-            "&type=list" +
+        let queryString = "type=list" +
             "&text="+ input;
 
         xhr.open("GET","documents?"+queryString, true);

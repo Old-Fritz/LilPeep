@@ -11,6 +11,8 @@
     <title>LIL PEEP</title>
   </head>
   <body>
-  Lil Peep (Lil Intelligent Light Protected Entrance Environment Peep)
+  Lil Peep (Lil Intelligent Light Protected Entrance Environment Peep)<br>
+  <button onclick="window.location = 'login'">Login</button><br>
+  <button onclick="window.location = 'register'">Register</button><br>
   </body>
 </html>
