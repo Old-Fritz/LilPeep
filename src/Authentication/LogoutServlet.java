@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Сервлет выхода
+ */
+
 @WebServlet(name="LogoutServlet", urlPatterns = {"/logout"} )
 public class LogoutServlet extends HttpServlet{
 

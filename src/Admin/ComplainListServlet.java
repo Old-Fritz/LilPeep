@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *Сервлет жалобы
+ */
+
 @WebServlet(name = "ComplainListServlet", urlPatterns = {"/admin/complains"})
 public class ComplainListServlet extends HttpServlet{
     @EJB

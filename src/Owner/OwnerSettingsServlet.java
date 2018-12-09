@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет настроек хозяина сайта
+ */
+
 @WebServlet(name="OwnerSettings",urlPatterns = {"/owner/editDocument"})
 public class OwnerSettingsServlet extends HttpServlet {
 

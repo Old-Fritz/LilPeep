@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет изменения документа администратора
+ */
+
 @WebServlet(name="EditDocumentServlet")
 public class EditDocumentServlet extends HttpServlet {
 
@@ -111,8 +115,7 @@ public class EditDocumentServlet extends HttpServlet {
             documentKindCrudService.save(documentKind);
     }
 
-    private void addField(HttpServletRequest req) throws Exception
-    {
+    private void addField(HttpServletRequest req) throws Exception {
         long typeID = Long.parseLong(req.getParameter("typeID"));
         String name = req.getParameter("name");
         if(name==null)

@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Менеджер системы единого входа
+ */
 @Stateless
 @Local
 public class SSOManager {
@@ -36,13 +38,26 @@ public class SSOManager {
 
     }
 
+    /**
+     * Получение текущего пользователя
+     * @param req HTTP-запрос
+     * @return текущий пользователь
+     */
     public User getCurrentUser(HttpServletRequest req) {
         String ssoToken = getSSOToken(req.getCookies());
         long userID = openAM.getUserID(ssoToken);
         return userCrudService.findById(userID);
     }
 
-    public boolean login(HttpServletResponse resp, String email, String password, UserKind userKind) throws IOException {
+    /**
+     * Авторизация пользлователя
+     * @param resp HTTP-ответ
+     * @param email e-mail пользователя
+     * @param password пароль пользователя
+     * @param userKind тип учётной записи
+     * @return true при удачной авторизации, false — при неудачной
+     */
+    public boolean login(HttpServletResponse resp, String email, String password, UserKind userKind){
         User user = userCrudService.findByEmailAndKind(email,userKind);
         if(user == null) {
             sender.sendOut("Такого пользователя не существует");
@@ -64,6 +79,11 @@ public class SSOManager {
         return true;
     }
 
+    /**
+     * Выход пользователя из системы
+     * @param req HTTP-запрос
+     * @param resp HTTP-ответ
+     */
     public void logout(HttpServletRequest req, HttpServletResponse resp)
     {
         User user = getCurrentUser(req);
@@ -74,7 +94,15 @@ public class SSOManager {
             resp.addCookie(delCookie);
     }
 
-    public boolean register(String email, String password, UserKind userKind) throws IOException {
+
+    /**
+     * Регистрация пользователя
+     * @param email e-mail пользователя
+     * @param password пароль пользователя
+     * @param userKind тип учётной записи
+     * @return true при удачной регистрации, false — при неудачной
+     */
+    public boolean register(String email, String password, UserKind userKind) {
         User user = userCrudService.findByEmailAndKind(email,userKind);
         // can't register existed user
         if(user!=null) {
@@ -95,6 +123,11 @@ public class SSOManager {
         return true;
     }
 
+    /**
+     * Получениее SSO-токена через cookie-файлы
+     * @param cookies cookie-файлы
+     * @return SSO-токен ввиде строки
+     */
     private String getSSOToken(Cookie[] cookies)
     {
         for(Cookie cookie : cookies)
@@ -105,6 +138,12 @@ public class SSOManager {
 
         return null;
     }
+
+    /**
+     * Поиск cookie-файла для удаления
+     * @param cookies cookie-файлы
+     * @return файл для удаления, или null, если такой не найден
+     */
 
     private Cookie deleteSSOCookie(Cookie[] cookies)
     {

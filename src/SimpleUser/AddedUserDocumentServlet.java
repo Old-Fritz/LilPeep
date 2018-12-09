@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+/**
+ * Сервлет успешного добавления документа
+ */
 @WebServlet(name="AddedUserDocument",urlPatterns = {"/user/addedDocument"})
 public class AddedUserDocumentServlet extends HttpServlet {
     @EJB

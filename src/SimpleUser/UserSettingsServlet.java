@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет настроек пользователя
+ */
 @WebServlet(name="UserSettings",urlPatterns = {"/user/editDocument"})
 public class UserSettingsServlet extends HttpServlet {
 

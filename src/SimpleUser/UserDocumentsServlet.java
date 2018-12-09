@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет документа пользователя
+ */
 @WebServlet(name="UserDocumentList",urlPatterns = {"/user/documents", "/user/"})
 public class UserDocumentsServlet extends HttpServlet {
 

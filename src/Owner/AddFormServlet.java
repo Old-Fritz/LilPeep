@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Сервлет добавления формы
+ */
 @WebServlet(name = "AddFormServlet", urlPatterns = {"addForm"})
 public class AddFormServlet extends HttpServlet {
     @EJB

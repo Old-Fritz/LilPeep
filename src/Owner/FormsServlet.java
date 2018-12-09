@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет формы
+ */
 @WebServlet(name = "FormsServlet",urlPatterns = {"ownwer/","owner/forms"})
 public class FormsServlet extends HttpServlet{
     @EJB

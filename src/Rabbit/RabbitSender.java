@@ -9,6 +9,10 @@ import javax.ejb.Stateless;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+
+/**
+ * Класс, реализующий функции отправки сообщений RabbitMQ
+ */
 @Local
 @Stateless
 public class RabbitSender {
@@ -27,6 +31,10 @@ public class RabbitSender {
         channel.queueDeclare(QUEUE_ERR,false, false, false, null);
     }
 
+    /**
+     * Вывод сообщения в поток вывода
+     * @param msg сообщение
+     */
     public void sendOut(String msg) {
         try {
             channel.basicPublish("", QUEUE_OUT, null, msg.getBytes());
@@ -35,6 +43,10 @@ public class RabbitSender {
         }
     }
 
+    /**
+     * Вывод сообщения в поток ошибок
+     * @param msg сообщение
+     */
     public void sendErr(String msg) {
         try {
             channel.basicPublish("", QUEUE_ERR, null, msg.getBytes());

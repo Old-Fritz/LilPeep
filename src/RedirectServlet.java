@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Сервлет перенаправления, если пользователь случайно забудет слэш
+ */
 @WebServlet(name = "RedirectServlet", urlPatterns = {"/user","/owner", "/admin"})
 public class RedirectServlet extends HttpServlet {
     @Override

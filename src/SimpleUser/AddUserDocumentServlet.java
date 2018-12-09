@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
+/**
+ * Сервлет добавления документа
+ */
 @WebServlet(name="AddUserDocument",urlPatterns = {"/user/addDocument"})
 public class AddUserDocumentServlet extends HttpServlet{
 

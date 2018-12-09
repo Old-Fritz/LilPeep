@@ -18,7 +18,9 @@ import javax.swing.text.Document;
 import java.io.IOException;
 import java.util.List;
 
-
+/**
+ * Сервлет редактирования документа пользователя
+ */
 @WebServlet(name="EditUserDocument",urlPatterns = {"/user/editDocument"})
 public class EditUserDocumentServlet extends HttpServlet {
     @EJB

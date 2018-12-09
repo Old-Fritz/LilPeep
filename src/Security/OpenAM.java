@@ -12,18 +12,22 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+/**
+ * API для подключения к серверу OpenAM
+ */
 @Stateless
 public class OpenAM {
 
     private String loginIndexName = "SingleAuth";
     private SSOTokenManager manager;
 
-    public OpenAM()
-    {
-
-    }
-
-    public long getUserID(String tokenID)
+    /**
+     * Получить ID пользователя
+     * @param tokenID токен
+     * @return ID пользователя
+     */
+    long getUserID(String tokenID)
     {
         try{
             manager = SSOTokenManager.getInstance();
@@ -40,7 +44,12 @@ public class OpenAM {
         }
     }
 
-    protected AuthContext getAuthContext(String orgName)
+    /**
+     * Получение контекста авторизации
+     * @param orgName имя реалма, обрабатывающего запросы
+     * @return контекст авторизации
+     */
+    private AuthContext getAuthContext(String orgName)
             throws AuthLoginException, MalformedURLException {
         AuthContext lc = new AuthContext(orgName);
         AuthContext.IndexType indexType = AuthContext.IndexType.MODULE_INSTANCE;
@@ -49,7 +58,12 @@ public class OpenAM {
         return lc;
     }
 
-    public String login(User user) {
+    /**
+     * Авторизация пользователя
+     * @param user пользователь
+     * @return токен
+     */
+    String login(User user) {
         try{
             AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
             Callback[] callbacks;
@@ -76,6 +90,10 @@ public class OpenAM {
         }
     }
 
+    /**
+     * Выход пользователя из системы
+     * @param user пользователь
+     */
     public void logout(User user) {
         try{
             AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
@@ -85,6 +103,12 @@ public class OpenAM {
         }
     }
 
+    /**
+     * Добавить сообщение коллбека
+     * @param callbacks коллбеки
+     * @param user пользователь
+     * @throws UnsupportedCallbackException если данный коллбек не поддерживается
+     */
     private void addLoginCallbackMessage(Callback[] callbacks, User user)
             throws UnsupportedCallbackException {
         int i = 0;

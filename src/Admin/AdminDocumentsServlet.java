@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет документов администратора
+ */
 @WebServlet(name = "AdminDocumentsServlet", urlPatterns = {"/admin/", "/admin/"})
 public class AdminDocumentsServlet extends HttpServlet {
     @EJB

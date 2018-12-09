@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Сервлет изменения формы
+ */
 @WebServlet(name = "EditFormServlet", urlPatterns = {"editForm"})
 public class EditFormServlet extends HttpServlet {
     @EJB
@@ -151,6 +155,10 @@ public class EditFormServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Создание документа
+     * @param req HTTP-запрос
+     */
     private void createDocument(HttpServletRequest req) {
         try{
             long documentID = Long.parseLong(req.getParameter("documentID"));

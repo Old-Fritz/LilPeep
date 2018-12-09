@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Сервлет списка владельцев
+ */
+
 @WebServlet(name = "OwnerListServlet", urlPatterns = {"/admin/owners"})
 public class OwnerListServlet extends HttpServlet {
     @EJB

@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
+/**
+ * Сервлет настроек администратора
+ */
 @WebServlet(name="AdminSettings",urlPatterns = {"/admin/Settings"})
 public class AdminSettingsServlet extends HttpServlet {
 

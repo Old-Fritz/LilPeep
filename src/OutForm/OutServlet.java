@@ -4,6 +4,7 @@ import CrudServices.ComplaintCrudService;
 import CrudServices.UserDocumentCrudService;
 import CrudServices.UserFormCrudService;
 import Entities.*;
+import Rabbit.RabbitSender;
 import Security.SSOManager;
 
 import javax.ejb.EJB;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Сервлет внешней формы
+ */
 @WebServlet(name="OutServlet", urlPatterns = {"/user/out"})
 public class OutServlet extends HttpServlet {
     @EJB
@@ -25,6 +29,9 @@ public class OutServlet extends HttpServlet {
     UserDocumentCrudService userDocumentCrudService;
     @EJB
     SSOManager ssoManager;
+
+    @EJB
+    RabbitSender sender;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,7 +46,7 @@ public class OutServlet extends HttpServlet {
             if(form==null)
                 throw new Exception();
         }catch(Exception e){
-            // RMQ
+            sender.sendErr("Не удалось получить форму");
             req.getRequestDispatcher("/Common/InvalideForm.jsp").forward(req,resp);
             return;
         }
@@ -78,8 +85,12 @@ public class OutServlet extends HttpServlet {
         resp.getWriter().write(data);
     }
 
-    void makeComplaint(HttpServletRequest req, User user)
-    {
+    /**
+     * Создание жалобы
+     * @param req HTTP-запрос
+     * @param user пользователь
+     */
+    private void makeComplaint(HttpServletRequest req, User user) {
         User owner = ((UserForm)req.getAttribute("form")).getUser();
         String text = req.getParameter("text");
         if(text==null)
@@ -88,17 +99,20 @@ public class OutServlet extends HttpServlet {
         complaintCrudService.save(complaint);
     }
 
-    private String packData(User user, UserForm userForm)
-    {
+    /**
+     * Упаковка данных для отправки форме
+     * @param user пользователь
+     * @param userForm форма
+     * @return данные для отправки ввиде строки
+     */
+    private String packData(User user, UserForm userForm) {
         String data = "";
-        for(FormDocument document:userForm.getFormDocuments())
-        {
+        for(FormDocument document:userForm.getFormDocuments()) {
             data+=document.getId()+'\n';
             UserDocument userDocument = userDocumentCrudService.findByUserAndDocument(user,document.getDocumentKind());
             if(userDocument==null)
                 continue;
-            for(int i = 0;i<document.getFormDocumentFields().size();i++)
-            {
+            for(int i = 0;i<document.getFormDocumentFields().size();i++) {
                 String value = "";
                 if(userDocument!=null)
                     value = userDocument.getUserDocumentFields().get(i).getValue();
