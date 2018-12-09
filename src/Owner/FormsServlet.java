@@ -26,7 +26,7 @@ public class FormsServlet extends HttpServlet{
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
-            req.getRequestDispatcher("/SimpleUser/JSP/Forms.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Owner/JSP/Forms.jsp").forward(req,resp);
             return;
         }
 
@@ -43,8 +43,8 @@ public class FormsServlet extends HttpServlet{
         String text = req.getParameter("text");
         if(text==null)
             text="";
-        List<UserForm> documents = userFormCrudService.findByUserAndName(user,text);
-        req.setAttribute("documents", documents);
-        req.getRequestDispatcher("/SimpleUser/JSP/UserDocumentList.jsp").forward(req,resp);
+        List<UserForm> forms = userFormCrudService.findByUserAndName(user,text);
+        req.setAttribute("forms", forms);
+        req.getRequestDispatcher("/Owner/JSP/FormsList.jsp").forward(req,resp);
     }
 }
