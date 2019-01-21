@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="GlassFish">
+    <CLASSES>
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet-api.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp-api.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.ejb-api.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.persistence.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jstl.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jstl-api.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
