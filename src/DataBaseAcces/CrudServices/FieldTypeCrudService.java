@@ -1,6 +1,6 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.FieldType;
+import DataBaseAcces.Entities.FieldType;
 
 import java.util.List;
 

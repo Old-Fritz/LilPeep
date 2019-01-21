@@ -1,11 +1,9 @@
-package Admin;
+package Users.Admin;
 
-import CrudServices.DocumentKindCrudService;
-import CrudServices.UserCrudService;
-import CrudServices.UserKindCrudService;
-import Entities.DocumentKind;
-import Entities.User;
-import Entities.UserKind;
+import DataBaseAcces.CrudServices.UserCrudService;
+import DataBaseAcces.CrudServices.UserKindCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserKind;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,9 +21,9 @@ import java.util.List;
 @WebServlet(name = "OwnerListServlet", urlPatterns = {"/admin/owners"})
 public class OwnerListServlet extends HttpServlet {
     @EJB
-    UserKindCrudService userKindCrudService;
+    private UserKindCrudService userKindCrudService;
     @EJB
-    UserCrudService userCrudService;
+    private UserCrudService userCrudService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,9 +39,9 @@ public class OwnerListServlet extends HttpServlet {
         String text = req.getParameter("text");
         if(text==null)
             text="";
-        UserKind userKind = userKindCrudService.findByName("Owner");
+        UserKind userKind = userKindCrudService.findByName("Users/Owner");
         List<User> owners = userCrudService.findByEmailLikeAndKind(text,userKind);
         req.setAttribute("owners", owners);
-        req.getRequestDispatcher("/SimpleUser/JSP/OwnerList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/OwnerList.jsp").forward(req,resp);
     }
 }

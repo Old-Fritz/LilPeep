@@ -1,6 +1,6 @@
-<%@ page import="Entities.UserDocumentField" %>
+<%@ page import="DataBaseAcces.Entities.UserDocumentField" %>
 <%@ page import="java.util.List" %>
-<jsp:useBean id="document" type="Entities.UserDocument" scope="request"></jsp:useBean>
+<jsp:useBean id="document" type="DataBaseAcces.Entities.UserDocument" scope="request"></jsp:useBean>
 
 <script>
     function deleteDocument() {

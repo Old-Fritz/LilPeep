@@ -1,10 +1,7 @@
-package Admin;
+package Users.Admin;
 
-import CrudServices.DocumentKindCrudService;
-import Entities.DocumentKind;
-import Entities.User;
-import Entities.UserDocument;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.DocumentKindCrudService;
+import DataBaseAcces.Entities.DocumentKind;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,7 +15,7 @@ import java.util.List;
 /**
  * Сервлет документов администратора
  */
-@WebServlet(name = "AdminDocumentsServlet", urlPatterns = {"/admin/", "/admin/"})
+@WebServlet(name = "AdminDocumentsServlet", urlPatterns = {"/admin/", "/admin/documents"})
 public class AdminDocumentsServlet extends HttpServlet {
     @EJB
     private DocumentKindCrudService documentKindCrudService;

@@ -1,8 +1,8 @@
-package CrudServiceBeans;
+package DataBaseAcces.CrudServiceBeans;
 
-import CrudServices.ComplaintCrudService;
-import Entities.Complaint;
-import Entities.User;
+import DataBaseAcces.CrudServices.ComplaintCrudService;
+import DataBaseAcces.Entities.Complaint;
+import DataBaseAcces.Entities.User;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

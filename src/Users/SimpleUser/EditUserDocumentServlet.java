@@ -1,12 +1,12 @@
-package SimpleUser;
+package Users.SimpleUser;
 
-import CrudServices.UserDocumentCrudService;
-import CrudServices.UserDocumentFieldCrudService;
-import Entities.User;
-import Entities.UserDocument;
-import Entities.UserDocumentField;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.UserDocumentCrudService;
+import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserDocument;
+import DataBaseAcces.Entities.UserDocumentField;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.Document;
 import java.io.IOException;
 import java.util.List;
 
@@ -66,7 +65,7 @@ public class EditUserDocumentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // send document in jsp to show
         req.setAttribute("document",document);
-        req.getRequestDispatcher("/SimpleUser/JSP/EditUserDocument.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/EditUserDocument.jsp").forward(req,resp);
     }
 
     @Override

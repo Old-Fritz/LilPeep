@@ -1,9 +1,9 @@
-package Owner;
+package Users.Owner;
 
-import Entities.Settings;
-import Entities.User;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.Entities.Settings;
+import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.List;
  * Сервлет настроек хозяина сайта
  */
 
-@WebServlet(name="OwnerSettings",urlPatterns = {"/owner/editDocument"})
+@WebServlet(name="OwnerSettings",urlPatterns = {"/owner/settings"})
 public class OwnerSettingsServlet extends HttpServlet {
 
     @EJB
@@ -31,7 +31,7 @@ public class OwnerSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/Owner/JSP/OwnerSettings").forward(req,resp);
+        req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");

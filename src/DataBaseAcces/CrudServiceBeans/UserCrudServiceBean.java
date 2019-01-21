@@ -1,8 +1,8 @@
-package CrudServiceBeans;
+package DataBaseAcces.CrudServiceBeans;
 
-import CrudServices.UserCrudService;
-import Entities.User;
-import Entities.UserKind;
+import DataBaseAcces.CrudServices.UserCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserKind;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -46,7 +46,16 @@ public class UserCrudServiceBean implements UserCrudService {
     @Override
     public User findByEmailAndKind(String email, UserKind kind) {
         try {
-            return em.createQuery("select t from User t where t.email = '" + email + "' and t.userKind.id = " + kind.getId(), User.class).getSingleResult();
+            return em.createQuery("select t from User t where t.email = '" + email + "' and t.userKind.id = " + kind.getId(), User.class).getResultList().get(0);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> findByEmailLikeAndKind(String email, UserKind kind) {
+        try {
+            return em.createQuery("select t from User t where LOWER(t.email) like '%" + email.toLowerCase() + "%' and t.userKind.id = " + kind.getId(), User.class).getResultList();
         }catch (Exception e){
             return null;
         }

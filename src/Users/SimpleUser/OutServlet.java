@@ -1,4 +1,4 @@
-package Users.OutForm;
+package Users.SimpleUser;
 
 import DataBaseAcces.CrudServices.ComplaintCrudService;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
@@ -22,16 +22,16 @@ import java.util.Date;
 @WebServlet(name="OutServlet", urlPatterns = {"/user/out"})
 public class OutServlet extends HttpServlet {
     @EJB
-    UserFormCrudService userFormCrudService;
+    private UserFormCrudService userFormCrudService;
     @EJB
-    ComplaintCrudService complaintCrudService;
+    private ComplaintCrudService complaintCrudService;
     @EJB
-    UserDocumentCrudService userDocumentCrudService;
+    private UserDocumentCrudService userDocumentCrudService;
     @EJB
-    SSOManager ssoManager;
+    private SSOManager ssoManager;
 
     @EJB
-    RabbitSender sender;
+    private RabbitSender sender;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,6 +1,6 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.Picture;
+import DataBaseAcces.Entities.Picture;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.SettingsType;
+import DataBaseAcces.Entities.SettingsType;
 
 import java.util.List;
 

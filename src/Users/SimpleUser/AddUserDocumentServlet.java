@@ -1,12 +1,10 @@
-package SimpleUser;
+package Users.SimpleUser;
 
-import CrudServices.DocumentKindCrudService;
-import CrudServices.UserDocumentCrudService;
-import Entities.DocumentKind;
-import Entities.User;
-import Entities.UserDocument;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.DocumentKindCrudService;
+import DataBaseAcces.Entities.DocumentKind;
+import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -38,7 +36,7 @@ public class AddUserDocumentServlet extends HttpServlet{
         String type = req.getParameter("type");
         // show simple page without any info
         if(type == null || type.equals("page")) {
-            req.getRequestDispatcher("/SimpleUser/JSP/AddUserDocument.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/SimpleUser/JSP/AddUserDocument.jsp").forward(req,resp);
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
@@ -57,6 +55,6 @@ public class AddUserDocumentServlet extends HttpServlet{
             text="";
         List<DocumentKind> documents = documentKindCrudService.findNotUsedByUserAndName(user,text);
         req.setAttribute("documents", documents);
-        req.getRequestDispatcher("/SimpleUser/JSP/DocumentsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/DocumentsList.jsp").forward(req,resp);
     }
 }

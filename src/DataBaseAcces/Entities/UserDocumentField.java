@@ -1,4 +1,4 @@
-package Entities;
+package DataBaseAcces.Entities;
 
 import lombok.Data;
 

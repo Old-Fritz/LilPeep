@@ -1,7 +1,7 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.Settings;
-import Entities.User;
+import DataBaseAcces.Entities.Settings;
+import DataBaseAcces.Entities.User;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-<%@ page import="Entities.Field" %>
+<%@ page import="DataBaseAcces.Entities.Field" %>
 <%@ page import="java.util.List" %>
-<jsp:useBean id="document" type="Entities.DocumentKind" scope="request"></jsp:useBean>
+<jsp:useBean id="document" type="DataBaseAcces.Entities.DocumentKind" scope="request"></jsp:useBean>
 
 <h><%=document.getName()%></h>
 <br>

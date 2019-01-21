@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="Entities.DocumentKind" %>
+<%@ page import="DataBaseAcces.Entities.DocumentKind" %>
 
 <%List<DocumentKind> documents = (List<DocumentKind>)request.getAttribute("documents");
 for(DocumentKind document:documents){%>

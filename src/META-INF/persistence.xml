@@ -8,22 +8,24 @@
     <persistence-unit name="mainUnit" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/heliosDB</jta-data-source>
-        <class>Entities.Complaint</class>
-        <class>Entities.DocumentKind</class>
-        <class>Entities.Field</class>
-        <class>Entities.FieldType</class>
-        <class>Entities.Complaint</class>
-        <class>Entities.Picture</class>
-        <class>Entities.Settings</class>
-        <class>Entities.SettingsType</class>
-        <class>Entities.User</class>
-        <class>Entities.UserDocument</class>
-        <class>Entities.UserDocumentField</class>
-        <class>Entities.UserForm</class>
-        <class>Entities.UserKind</class>
+        <class>DataBaseAcces.Entities.Complaint</class>
+        <class>DataBaseAcces.Entities.DocumentKind</class>
+        <class>DataBaseAcces.Entities.Field</class>
+        <class>DataBaseAcces.Entities.FieldType</class>
+        <class>DataBaseAcces.Entities.Complaint</class>
+        <class>DataBaseAcces.Entities.Picture</class>
+        <class>DataBaseAcces.Entities.Settings</class>
+        <class>DataBaseAcces.Entities.SettingsType</class>
+        <class>DataBaseAcces.Entities.User</class>
+        <class>DataBaseAcces.Entities.UserDocument</class>
+        <class>DataBaseAcces.Entities.UserDocumentField</class>
+        <class>DataBaseAcces.Entities.UserForm</class>
+        <class>DataBaseAcces.Entities.UserKind</class>
         <properties>
-            <property name="eclipselink.ddl-generation" value="create-tables" />
-            <property name="eclipselink.ddl-generation.output-mode" value="database" />
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
         </properties>
     </persistence-unit>
 </persistence>

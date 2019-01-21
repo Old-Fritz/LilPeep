@@ -1,12 +1,12 @@
-package Owner;
+package Users.Owner;
 
-import CrudServices.DocumentKindCrudService;
-import CrudServices.FormDocumentCrudService;
-import CrudServices.FormDocumentFieldCrudService;
-import CrudServices.UserFormCrudService;
-import Entities.*;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.DocumentKindCrudService;
+import DataBaseAcces.CrudServices.FormDocumentCrudService;
+import DataBaseAcces.CrudServices.FormDocumentFieldCrudService;
+import DataBaseAcces.CrudServices.UserFormCrudService;
+import DataBaseAcces.Entities.*;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,27 +14,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * Сервлет изменения формы
  */
-@WebServlet(name = "EditFormServlet", urlPatterns = {"editForm"})
+@WebServlet(name = "EditFormServlet", urlPatterns = {"/owner/editForm"})
 public class EditFormServlet extends HttpServlet {
     @EJB
-    SSOManager ssoManager;
+    private SSOManager ssoManager;
     @EJB
-    UserFormCrudService userFormCrudService;
+    private UserFormCrudService userFormCrudService;
     @EJB
-    DocumentKindCrudService documentKindCrudService;
+    private DocumentKindCrudService documentKindCrudService;
     @EJB
-    FormDocumentCrudService formDocumentCrudService;
+    private FormDocumentCrudService formDocumentCrudService;
     @EJB
-    FormDocumentFieldCrudService formDocumentFieldCrudService;
+    private FormDocumentFieldCrudService formDocumentFieldCrudService;
 
     @EJB
     private RabbitSender sender;
@@ -73,7 +71,7 @@ public class EditFormServlet extends HttpServlet {
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
-            req.getRequestDispatcher("/Owner/JSP/AddForm.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Owner/JSP/AddForm.jsp").forward(req,resp);
             return;
         }
 
@@ -86,7 +84,7 @@ public class EditFormServlet extends HttpServlet {
             List<DocumentKind> documents = documentKindCrudService.findNotUsedByUserFormAndName(form,text);
             // send document in jsp to show
             req.setAttribute("documents",documents);
-            req.getRequestDispatcher("/Owner/JSP/FormDocumentList.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Owner/JSP/FormDocumentList.jsp").forward(req,resp);
             return;
         }
 
@@ -97,7 +95,7 @@ public class EditFormServlet extends HttpServlet {
                 long documentInd = Long.parseLong(req.getParameter("documentInd"));
                 FormDocument document = formDocumentCrudService.findById(documentInd);
                 req.setAttribute("document", document);
-                req.getRequestDispatcher("/Owner/JSP/FormDocument.jsp").forward(req,resp);
+                req.getRequestDispatcher("/Users/Owner/JSP/FormDocument.jsp").forward(req,resp);
                 return;
             }catch (Exception e){
                 sender.sendErr("Не удалось получить документ: " + e.toString());

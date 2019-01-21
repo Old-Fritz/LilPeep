@@ -1,7 +1,7 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.FormDocument;
-import Entities.FormDocumentField;
+import DataBaseAcces.Entities.FormDocument;
+import DataBaseAcces.Entities.FormDocumentField;
 
 import java.util.List;
 

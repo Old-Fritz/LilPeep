@@ -1,11 +1,7 @@
-package Admin;
+package Users.Admin;
 
-import CrudServices.ComplaintCrudService;
-import CrudServices.UserCrudService;
-import CrudServices.UserKindCrudService;
-import Entities.Complaint;
-import Entities.User;
-import Entities.UserKind;
+import DataBaseAcces.CrudServices.ComplaintCrudService;
+import DataBaseAcces.Entities.Complaint;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,14 +19,14 @@ import java.util.List;
 @WebServlet(name = "ComplainListServlet", urlPatterns = {"/admin/complains"})
 public class ComplainListServlet extends HttpServlet{
     @EJB
-    ComplaintCrudService complaintCrudService;
+    private ComplaintCrudService complaintCrudService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // show page with list
         List<Complaint> complaints = complaintCrudService.findAll();
         req.setAttribute("complaints", complaints);
-        req.getRequestDispatcher("/Admin/JSP/Complains.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Admin/JSP/Complains.jsp").forward(req,resp);
     }
 
 }

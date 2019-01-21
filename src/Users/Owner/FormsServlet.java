@@ -1,10 +1,10 @@
-package Owner;
+package Users.Owner;
 
-import CrudServices.UserFormCrudService;
-import Entities.User;
-import Entities.UserForm;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.UserFormCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserForm;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Сервлет формы
  */
-@WebServlet(name = "FormsServlet",urlPatterns = {"ownwer/","owner/forms"})
+@WebServlet(name = "FormsServlet",urlPatterns = {"/owner/","/owner/forms"})
 public class FormsServlet extends HttpServlet{
     @EJB
     private SSOManager ssoManager;
@@ -34,7 +34,7 @@ public class FormsServlet extends HttpServlet{
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
-            req.getRequestDispatcher("/Owner/JSP/Forms.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Owner/JSP/Forms.jsp").forward(req,resp);
             return;
         }
 
@@ -52,6 +52,6 @@ public class FormsServlet extends HttpServlet{
             text="";
         List<UserForm> forms = userFormCrudService.findByUserAndName(user,text);
         req.setAttribute("forms", forms);
-        req.getRequestDispatcher("/Owner/JSP/FormsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Owner/JSP/FormsList.jsp").forward(req,resp);
     }
 }

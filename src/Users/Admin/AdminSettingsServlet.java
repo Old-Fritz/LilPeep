@@ -1,9 +1,9 @@
-package Admin;
+package Users.Admin;
 
-import Entities.Settings;
-import Entities.User;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.Entities.Settings;
+import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Сервлет настроек администратора
  */
-@WebServlet(name="AdminSettings",urlPatterns = {"/admin/Settings"})
+@WebServlet(name="AdminSettings",urlPatterns = {"/admin/settings"})
 public class AdminSettingsServlet extends HttpServlet {
 
     @EJB
@@ -31,7 +31,7 @@ public class AdminSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/Admin/JSP/AdminSettings").forward(req, resp);
+        req.getRequestDispatcher("/Users/Admin/JSP/AdminSettings").forward(req, resp);
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
             sender.sendErr("Ошибка доступа");

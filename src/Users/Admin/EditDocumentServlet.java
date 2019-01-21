@@ -1,14 +1,14 @@
-package Admin;
+package Users.Admin;
 
-import CrudServices.DocumentKindCrudService;
-import CrudServices.FieldCrudService;
-import CrudServices.FieldTypeCrudService;
-import CrudServices.PictureCrudService;
-import Entities.DocumentKind;
-import Entities.Field;
-import Entities.FieldType;
-import Entities.Picture;
-import Rabbit.RabbitSender;
+import DataBaseAcces.CrudServices.DocumentKindCrudService;
+import DataBaseAcces.CrudServices.FieldCrudService;
+import DataBaseAcces.CrudServices.FieldTypeCrudService;
+import DataBaseAcces.CrudServices.PictureCrudService;
+import DataBaseAcces.Entities.DocumentKind;
+import DataBaseAcces.Entities.Field;
+import DataBaseAcces.Entities.FieldType;
+import DataBaseAcces.Entities.Picture;
+import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ import java.util.List;
  * Сервлет изменения документа администратора
  */
 
-@WebServlet(name="EditDocumentServlet")
+@WebServlet(name="EditDocumentServlet", urlPatterns = {"/admin/editDocument"})
 public class EditDocumentServlet extends HttpServlet {
 
     @EJB
@@ -66,7 +66,7 @@ public class EditDocumentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
         if(type == null || type.equals("page")) {
-            req.getRequestDispatcher("/Admin/JSP/EditDocument.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Admin/JSP/EditDocument.jsp").forward(req,resp);
             return;
         }
 
@@ -75,7 +75,7 @@ public class EditDocumentServlet extends HttpServlet {
             List<FieldType> types = fieldTypeCrudService.findAll();
             // send document in jsp to show
             req.setAttribute("types",types);
-            req.getRequestDispatcher("/Admin/JSP/FieldTypesList.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Admin/JSP/FieldTypesList.jsp").forward(req,resp);
             return;
         }
     }

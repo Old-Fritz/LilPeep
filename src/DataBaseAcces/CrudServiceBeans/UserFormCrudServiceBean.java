@@ -1,8 +1,8 @@
-package CrudServiceBeans;
+package DataBaseAcces.CrudServiceBeans;
 
-import CrudServices.UserFormCrudService;
-import Entities.User;
-import Entities.UserForm;
+import DataBaseAcces.CrudServices.UserFormCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserForm;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

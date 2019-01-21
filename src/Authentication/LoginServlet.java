@@ -1,11 +1,10 @@
 package Authentication;
 
-import CrudServices.UserCrudService;
-import CrudServices.UserKindCrudService;
-import Entities.User;
-import Entities.UserKind;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.UserKindCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserKind;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -41,7 +40,7 @@ public class LoginServlet extends HttpServlet{
         }
 
         // go to requirable page if user has logged in
-        resp.sendRedirect(req.getContextPath()+ user.getUserKind().getUrlPattern());
+        resp.sendRedirect(req.getContextPath() + user.getUserKind().getUrlPattern());
     }
 
     @Override

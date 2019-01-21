@@ -1,9 +1,9 @@
-package SimpleUser;
+package Users.SimpleUser;
 
-import Entities.Settings;
-import Entities.User;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.Entities.Settings;
+import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Сервлет настроек пользователя
  */
-@WebServlet(name="UserSettings",urlPatterns = {"/user/editDocument"})
+@WebServlet(name="UserSettings",urlPatterns = {"/user/settings"})
 public class UserSettingsServlet extends HttpServlet {
 
     @EJB
@@ -30,7 +30,7 @@ public class UserSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/SimpleUser/JSP/UserSettings").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/UserSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");

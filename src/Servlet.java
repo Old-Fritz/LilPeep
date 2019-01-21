@@ -1,9 +1,7 @@
-import CrudServices.*;
-import Entities.*;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.*;
+import DataBaseAcces.Entities.*;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +32,9 @@ public class Servlet extends HttpServlet {
 
         //ssoManager.login("qwe@mail.ru", "abcd", userKindCrudService.findById(12));
 
-        UserKind simpleUser = new UserKind("Simple user", "/SimpleUser", "/user");
-        UserKind onwer = new UserKind("Owner", "/Owner", "/owner");
-        UserKind admin = new UserKind("Admin", "/Admin", "/admin");
+        UserKind simpleUser = new UserKind("Simple user", "/Users/SimpleUser", "/user");
+        UserKind onwer = new UserKind("Users/Owner", "/Users/Owner", "/owner");
+        UserKind admin = new UserKind("Users/Admin", "/Users/Admin", "/admin");
         userKindCrudService.save(simpleUser);
         userKindCrudService.save(onwer);
         userKindCrudService.save(admin);

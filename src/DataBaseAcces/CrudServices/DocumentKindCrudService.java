@@ -1,8 +1,8 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.DocumentKind;
-import Entities.User;
-import Entities.UserForm;
+import DataBaseAcces.Entities.DocumentKind;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserForm;
 
 import java.util.List;
 

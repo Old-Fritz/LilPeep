@@ -1,7 +1,7 @@
-package CrudServiceBeans;
+package DataBaseAcces.CrudServiceBeans;
 
-import CrudServices.UserKindCrudService;
-import Entities.UserKind;
+import DataBaseAcces.CrudServices.UserKindCrudService;
+import DataBaseAcces.Entities.UserKind;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

@@ -1,11 +1,11 @@
-package Rabbit;
+package ExternalServices.Rabbit;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
 import javax.ejb.Local;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
  * Класс, реализующий функции отправки сообщений RabbitMQ
  */
 @Local
-@Stateless
+@Stateful
 public class RabbitSender {
 
     private final String QUEUE_OUT = "out";
@@ -22,13 +22,22 @@ public class RabbitSender {
 
     private Channel channel;
 
-    public RabbitSender() throws IOException, TimeoutException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
-        channel.queueDeclare(QUEUE_OUT,false, false, false, null);
-        channel.queueDeclare(QUEUE_ERR,false, false, false, null);
+    public RabbitSender() {
+
+        /*
+        try{
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            Connection connection = factory.newConnection();
+            channel = connection.createChannel();
+            channel.queueDeclare(QUEUE_OUT,false, false, false, null);
+            channel.queueDeclare(QUEUE_ERR,false, false, false, null);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        */
     }
 
     /**
@@ -36,11 +45,13 @@ public class RabbitSender {
      * @param msg сообщение
      */
     public void sendOut(String msg) {
+        /*
         try {
             channel.basicPublish("", QUEUE_OUT, null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 
     /**
@@ -48,10 +59,12 @@ public class RabbitSender {
      * @param msg сообщение
      */
     public void sendErr(String msg) {
+        /*
         try {
             channel.basicPublish("", QUEUE_ERR, null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 }

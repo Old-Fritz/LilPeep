@@ -1,11 +1,10 @@
-package SimpleUser;
+package Users.SimpleUser;
 
-import CrudServices.UserCrudService;
-import CrudServices.UserDocumentCrudService;
-import Entities.User;
-import Entities.UserDocument;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.UserDocumentCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserDocument;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -37,7 +36,7 @@ public class UserDocumentsServlet extends HttpServlet {
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
-            req.getRequestDispatcher("/SimpleUser/JSP/UserDocuments.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/SimpleUser/JSP/UserDocuments.jsp").forward(req,resp);
             return;
         }
 
@@ -55,6 +54,6 @@ public class UserDocumentsServlet extends HttpServlet {
             text="";
         List<UserDocument> documents = userDocumentCrudService.findByUserAndName(user,text);
         req.setAttribute("documents", documents);
-        req.getRequestDispatcher("/SimpleUser/JSP/UserDocumentList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/UserDocumentList.jsp").forward(req,resp);
     }
 }

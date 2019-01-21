@@ -1,9 +1,9 @@
-package Security;
+package ExternalServices.Security;
 
 import DataBaseAcces.CrudServices.UserCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserKind;
-import Rabbit.RabbitSender;
+import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;

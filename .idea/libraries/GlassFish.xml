@@ -8,6 +8,7 @@
       <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jstl.jar!/" />
       <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jstl-api.jar!/" />
       <root url="jar://C:/glassfish5/glassfish/modules/javax.servlet.jsp.jar!/" />
+      <root url="jar://C:/glassfish5/glassfish/modules/bean-validator.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

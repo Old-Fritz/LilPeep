@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="Entities.FormDocumentField" %>
-<%@ page import="Entities.FormDocument" %>
+<%@ page import="DataBaseAcces.Entities.FormDocumentField" %>
+<%@ page import="DataBaseAcces.Entities.FormDocument" %>
 
 <script>
     function deleteDocument(id) {

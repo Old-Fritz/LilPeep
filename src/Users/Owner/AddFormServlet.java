@@ -1,10 +1,10 @@
-package Owner;
+package Users.Owner;
 
-import CrudServices.UserFormCrudService;
-import Entities.User;
-import Entities.UserForm;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.UserFormCrudService;
+import DataBaseAcces.Entities.User;
+import DataBaseAcces.Entities.UserForm;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -17,13 +17,13 @@ import java.io.IOException;
 /**
  * Сервлет добавления формы
  */
-@WebServlet(name = "AddFormServlet", urlPatterns = {"addForm"})
+@WebServlet(name = "AddFormServlet", urlPatterns = {"/owner/addForm"})
 public class AddFormServlet extends HttpServlet {
     @EJB
-    SSOManager ssoManager;
+    private SSOManager ssoManager;
 
     @EJB
-    UserFormCrudService userFormCrudService;
+    private UserFormCrudService userFormCrudService;
 
     @EJB
     private RabbitSender sender;

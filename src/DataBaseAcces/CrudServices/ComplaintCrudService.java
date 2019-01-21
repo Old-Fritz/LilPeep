@@ -1,12 +1,11 @@
-package CrudServices;
+package DataBaseAcces.CrudServices;
 
-import Entities.Complaint;
-import Entities.User;
+import DataBaseAcces.Entities.Complaint;
+import DataBaseAcces.Entities.User;
 
 import javax.ejb.Local;
 import java.util.List;
 
-@Local
 public interface ComplaintCrudService extends CrudService<Complaint> {
     @Override
     Complaint findById(long id);

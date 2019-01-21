@@ -1,7 +1,6 @@
 package Authentication;
 
-import Entities.User;
-import Security.SSOManager;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,7 +18,7 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet{
 
     @EJB
-    SSOManager ssoManager;
+    private SSOManager ssoManager;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

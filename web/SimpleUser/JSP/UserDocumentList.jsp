@@ -1,4 +1,4 @@
-<%@ page import="Entities.UserDocument" %>
+<%@ page import="DataBaseAcces.Entities.UserDocument" %>
 <%@ page import="java.util.List" %>
 
 <%List<UserDocument> documents = (List<UserDocument>)request.getAttribute("documents");

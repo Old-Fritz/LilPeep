@@ -1,11 +1,11 @@
-package SimpleUser;
+package Users.SimpleUser;
 
-import CrudServices.DocumentKindCrudService;
-import CrudServices.UserDocumentCrudService;
-import CrudServices.UserDocumentFieldCrudService;
-import Entities.*;
-import Rabbit.RabbitSender;
-import Security.SSOManager;
+import DataBaseAcces.CrudServices.DocumentKindCrudService;
+import DataBaseAcces.CrudServices.UserDocumentCrudService;
+import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
+import DataBaseAcces.Entities.*;
+import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -35,7 +35,6 @@ public class AddedUserDocumentServlet extends HttpServlet {
 
     @EJB
     private RabbitSender sender;
-
 
     private DocumentKind document;
     private User user;
@@ -67,7 +66,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // send document in jsp to show
         req.setAttribute("document",document);
-        req.getRequestDispatcher("/SimpleUser/JSP/AddedUserDocument.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/AddedUserDocument.jsp").forward(req,resp);
     }
 
     @Override

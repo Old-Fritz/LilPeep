@@ -1,4 +1,4 @@
-package Security;
+package ExternalServices.Security;
 
 import DataBaseAcces.Entities.User;
 import com.iplanet.sso.SSOToken;
@@ -6,6 +6,7 @@ import com.iplanet.sso.SSOTokenManager;
 import com.sun.identity.authentication.AuthContext;
 import com.sun.identity.authentication.spi.AuthLoginException;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.security.auth.callback.*;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.net.MalformedURLException;
 /**
  * API для подключения к серверу OpenAM
  */
+@Local
 @Stateless
 public class OpenAM {
 
@@ -26,8 +28,10 @@ public class OpenAM {
      * @param tokenID токен
      * @return ID пользователя
      */
-    long getUserID(String tokenID)
+    public long getUserID(String tokenID)
     {
+        if(tokenID==null)
+            return -1;
         try{
             manager = SSOTokenManager.getInstance();
             SSOToken token = manager.createSSOToken(tokenID);

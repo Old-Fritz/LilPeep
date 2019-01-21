@@ -1,7 +1,7 @@
-package CrudServiceBeans;
+package DataBaseAcces.CrudServiceBeans;
 
-import CrudServices.PictureCrudService;
-import Entities.Picture;
+import DataBaseAcces.CrudServices.PictureCrudService;
+import DataBaseAcces.Entities.Picture;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

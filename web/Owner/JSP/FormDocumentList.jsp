@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="Entities.DocumentKind" %>
+<%@ page import="DataBaseAcces.Entities.DocumentKind" %>
 <script>
     function addDocument(id) {
         let xhr = new XMLHttpRequest();
