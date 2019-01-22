@@ -22,7 +22,7 @@
         <input type="text" name="email" required/>
         <br><br>
         <div>Пароль</div>
-        <input type="text" name="password" required/>
+        <input type="password" name="password" required/>
         <br><br>
         <div>Тип учётной записи</div>
         <select name="kindID">

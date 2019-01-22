@@ -20,11 +20,11 @@
         <br>
         <br>
         <div>Пароль</div>
-        <input type="text" name="password" required/>
+        <input type="password" name="password" required/>
         <br>
         <br>
         <div>Повторите пароль</div>
-        <input type="text" name="passwordRepeat" required/>
+        <input type="password" name="passwordRepeat" required/>
         <br>
         <br>
         <div>Тип учётной записи</div>

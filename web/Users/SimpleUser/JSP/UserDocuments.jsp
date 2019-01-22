@@ -7,10 +7,10 @@
     <body>
         <table>
             <td class="docedit">
-                <h1>Список документов</h1>
                 <jsp:include page="../Includes/leftPanel.html"/>
             </td>
             <td class="content">
+                <h1>Список документов</h1>
                 <input type="text" oninput="getList(this.value)"/>
                 {Сюда список из документов}
             </td>
