@@ -29,6 +29,7 @@ public class RabbitSender {
     private Channel channel;
 
     public RabbitSender() {
+        /*
         sessionID++;
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -40,12 +41,9 @@ public class RabbitSender {
             channel.queueDeclare(QUEUE_ERR,false, false, false, null);
         }
         catch (Exception e) {
-            try {
-                e.printStackTrace(new PrintStream("D:\\bibib.txt"));
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
-            }
+            e.printStackTrace();
         }
+        */
     }
 
     /**
@@ -53,11 +51,13 @@ public class RabbitSender {
      * @param msg сообщение
      */
     public void sendOut(String msg) {
+        /*
         try {
             channel.basicPublish("", QUEUE_OUT, null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 
     /**
@@ -65,19 +65,23 @@ public class RabbitSender {
      * @param msg сообщение
      */
     public void sendErr(String msg) {
+        /*
         try {
             channel.basicPublish("", QUEUE_ERR, null, msg.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @PreDestroy
     protected void onDestroy() {
+        /*
         try {
             channel.close();
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
+        */
     }
 }

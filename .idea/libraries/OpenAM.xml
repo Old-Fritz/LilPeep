@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="OpenAM">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/ClientSDK-14.1.16.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/agent.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/openssoclientsdk.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

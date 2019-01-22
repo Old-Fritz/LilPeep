@@ -10,7 +10,7 @@
     </filter>
     <filter-mapping>
         <filter-name>Agent</filter-name>
-        <url-pattern>/user/*</url-pattern>
+        <url-pattern>/users/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>FORWARD</dispatcher>

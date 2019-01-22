@@ -66,7 +66,7 @@ public class OpenAM {
      * @param user пользователь
      * @return токен
      */
-    String login(User user) {
+    public String login(User user) {
         try{
             AuthContext lc = getAuthContext(user.getUserKind().getOpenSSORealm());
             Callback[] callbacks;
