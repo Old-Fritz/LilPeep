@@ -13,7 +13,7 @@
                 <span class="title"><b>Авторизация</b></span>
             </th>
             <th>
-                <span class="title">Регистрация</span>
+                <span class="title" onClick="window.location.href='http://ya.ru'">Регистрация</span>
             </th>
         </table>
         <hr class="titleline"/>

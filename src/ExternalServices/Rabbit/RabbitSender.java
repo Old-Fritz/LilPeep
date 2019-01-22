@@ -4,6 +4,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
+import javax.annotation.PreDestroy;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import java.io.FileNotFoundException;
@@ -71,10 +72,12 @@ public class RabbitSender {
         }
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        channel.abort();
-        channel.close();
-        super.finalize();
+    @PreDestroy
+    protected void onDestroy() {
+        try {
+            channel.close();
+        } catch (IOException | TimeoutException e) {
+            e.printStackTrace();
+        }
     }
 }
