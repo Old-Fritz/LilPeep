@@ -4,7 +4,10 @@
     <head>
         <meta charset="utf-8">
         <title>Список документов</title>
+<<<<<<< HEAD
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
+=======
+>>>>>>> nekit
         <script>
             function getList(input) {
                 let xhr = new XMLHttpRequest();

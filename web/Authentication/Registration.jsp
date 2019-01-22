@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
+<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <title>Регистарция</title>
@@ -37,4 +38,6 @@
             </form>
         </div>
     </body>
+=======
+>>>>>>> nekit
 </html>

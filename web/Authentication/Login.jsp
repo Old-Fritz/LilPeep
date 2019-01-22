@@ -16,6 +16,7 @@
             </th>
         </table>
         <br><br>
+<<<<<<< HEAD
         <div class="loginmenu">
             <form method = "POST" action="login">
                 <div>Логин</div>
@@ -35,4 +36,6 @@
             </form>
         </div>
     </body>
+=======
+>>>>>>> nekit
 </html>

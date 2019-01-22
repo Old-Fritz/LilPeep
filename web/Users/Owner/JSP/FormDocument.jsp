@@ -21,12 +21,11 @@
 
 <%  FormDocument document = (FormDocument)request.getAttribute("document"); %>
 <h><%=document.getDocumentKind().getName()%></h>
-<button onclick="deleteDocument(<%=document.getId()%>)">delete</button>
+<button onclick="deleteDocument(<%=document.getId()%>)">Удалить</button>
 <%  List<FormDocumentField> formDocumentFields = document.getFormDocumentFields();
     for(FormDocumentField field : formDocumentFields){
         String checked = field.isChecked() ? "checked" :"";
         %>
-
         <input type="checkbox" name="<%=document.getId()+"_"+field.getId()%>" <%=checked%>><%=field.getField().getName()%></input>
         <br>
 <%  }%>

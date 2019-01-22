@@ -6,6 +6,8 @@
     <br>
     <div class="button" onclick="window.location='addDocument'">Добавить документ</div>
     <br>
+    <div class="button" onclick="window.location='owners'">Список владельцев</div>
+    <br>
     <div class="button" onclick="window.location='complains'">Поступившие жалобы</div>
     <br><br>
     <div class="button" onclick="window.location='../logout'">Выйти</div>
