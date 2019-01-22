@@ -7,6 +7,20 @@
 <<<<<<< HEAD
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
 =======
+        <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
+    </head>
+    <body>
+        <table>
+            <td class="docedit">
+                <jsp:include page="../Includes/leftPanel.html"/>
+            </td>
+            <td class="content">
+                <h1>Список документов</h1>
+                <input type="text" oninput="getList(this.value)"/>
+                {Сюда список из документов}
+            </td>
+            <script>getList("")</script>
+        </table>
 >>>>>>> nekit
         <script>
             function getList(input) {

@@ -37,5 +37,18 @@
         </div>
     </body>
 =======
+        <div>Пароль</div>
+        <input type="password" name="password" required/>
+        <br><br>
+        <div>Тип учётной записи</div>
+        <select name="kindID">
+            <option selected value="1">Пользователь</option>
+            <option value="2">Владелец сайта</option>
+        </select>
+        <br><br><br>
+        <button type="submit" class>Войти</button>
+    </form>
+</div>
+</body>
 >>>>>>> nekit
 </html>
