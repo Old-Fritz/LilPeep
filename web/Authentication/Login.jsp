@@ -12,7 +12,7 @@
         <span selected class="title"><b>Авторизация</b></span>
     </th>
     <th>
-        <span class="title" onClick="window.location='/register'">Регистрация</span>
+        <span class="title" onClick="window.location='register'">Регистрация</span>
     </th>
 </table>
 <br><br>

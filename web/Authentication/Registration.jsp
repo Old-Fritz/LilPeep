@@ -4,12 +4,12 @@
 </head>
 <body>
 <table class="titlebar">
-    <th><span class="title" onClick="window.location='/login'">
-        Авторизация
-        </span></th>
-    <th><span selected class="title">
-        <b>Регистрация</b>
-        </span></th>
+    <th>
+        <span class="title" onClick="window.location='login'">Авторизация</span>
+    </th>
+    <th>
+        <span selected class="title"><b>Регистрация</b></span>
+    </th>
 </table>
 <br>
 <br>

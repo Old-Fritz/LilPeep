@@ -7,3 +7,4 @@ for(UserDocument document:documents){%>
     <button onclick="window.location = 'editDocument?documentID=<%=document.getId()%>'">open</button>
     <br>
 <%}%>
+
