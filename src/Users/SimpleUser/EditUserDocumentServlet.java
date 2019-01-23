@@ -5,6 +5,7 @@ import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserDocument;
 import DataBaseAcces.Entities.UserDocumentField;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -38,6 +39,7 @@ public class EditUserDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         User user = ssoManager.getCurrentUser(req);
         // getting document
         try {

@@ -2,6 +2,7 @@ package Users.Admin;
 
 import DataBaseAcces.Entities.Settings;
 import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -28,6 +29,12 @@ public class AdminSettingsServlet extends HttpServlet {
     private RabbitSender sender;
 
     private List<Settings> settings;
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
+        super.service(req, resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

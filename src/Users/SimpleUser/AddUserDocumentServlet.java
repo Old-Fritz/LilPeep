@@ -3,6 +3,7 @@ package Users.SimpleUser;
 import DataBaseAcces.CrudServices.DocumentKindCrudService;
 import DataBaseAcces.Entities.DocumentKind;
 import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -30,6 +31,12 @@ public class AddUserDocumentServlet extends HttpServlet{
 
     @EJB
     private RabbitSender sender;
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
+        super.service(req, resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

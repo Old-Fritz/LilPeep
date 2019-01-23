@@ -3,11 +3,13 @@ package ExternalServices.Rabbit;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
+import com.sun.deploy.net.HttpRequest;
 
 import javax.annotation.PreDestroy;
 import javax.ejb.EJBContext;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
+import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,16 +24,24 @@ import java.util.concurrent.TimeoutException;
 @Stateful
 public class RabbitSender {
 
-    private final String QUEUE_OUT = "out"+sessionID;
-    private final String QUEUE_ERR = "err"+sessionID;
+    private String QUEUE_OUT = null;
+    private String QUEUE_ERR = null;
 
-    private static int sessionID = 0;
+    private String sessionID = "";
 
     private Channel channel;
 
     public RabbitSender() {
-        /*
-        sessionID++;
+
+    }
+
+    public void init(String sessionID) {
+        if(this.sessionID.equals(sessionID))
+            //Переинициализировать не надо
+            return;
+        this.sessionID = sessionID;
+        QUEUE_OUT = "out"+sessionID;
+        QUEUE_ERR = "err"+sessionID;
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(8080);
@@ -44,8 +54,8 @@ public class RabbitSender {
         catch (Exception e) {
             e.printStackTrace();
         }
-        */
     }
+
 
     /**
      * Вывод сообщения в поток вывода
@@ -77,12 +87,14 @@ public class RabbitSender {
 
     @PreDestroy
     protected void onDestroy() {
-        /*
         try {
             channel.close();
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
-        */
+    }
+
+    public String getSessionId(){
+        return sessionID;
     }
 }

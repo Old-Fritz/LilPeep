@@ -9,4 +9,5 @@
         <br>
     </c:forEach>
     ${form.url}
+    <button style="float: right" {КОД НА ЖСП}>Изменить</button>
 </c:forEach>

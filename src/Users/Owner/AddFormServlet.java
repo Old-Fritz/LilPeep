@@ -3,6 +3,7 @@ package Users.Owner;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserForm;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -31,6 +32,7 @@ public class AddFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
             sender.sendErr("Такого пользователя не существует");

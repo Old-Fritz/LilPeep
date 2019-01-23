@@ -2,6 +2,7 @@ package Users.Owner;
 
 import DataBaseAcces.Entities.Settings;
 import DataBaseAcces.Entities.User;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -30,10 +31,17 @@ public class OwnerSettingsServlet extends HttpServlet {
     private List<Settings> settings;
 
     @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
+        super.service(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
+            sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
             sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
