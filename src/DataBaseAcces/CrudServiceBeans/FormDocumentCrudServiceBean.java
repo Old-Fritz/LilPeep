@@ -45,6 +45,6 @@ public class FormDocumentCrudServiceBean implements FormDocumentCrudService {
 
     @Override
     public List<FormDocument> findByUserForm(UserForm form) {
-        return form.getFormDocuments();
+       return em.createQuery("select t from FormDocument t where t.form.id="+form.getId()).getResultList();
     }
 }

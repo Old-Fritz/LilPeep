@@ -46,17 +46,17 @@ public class DocumentKindCrudServiceBean implements DocumentKindCrudService {
 
     @Override
     public List<DocumentKind> findByName(String name) {
-        return em.createQuery("select t from DocumentKind t where t.name like %'"+name+"%'", DocumentKind.class).getResultList();
+        return em.createQuery("select t from DocumentKind t where LOWER(t.name) like '%"+name+"%'", DocumentKind.class).getResultList();
     }
 
     @Override
     public List<DocumentKind> findNotUsedByUserAndName(User user, String name) {
         List<DocumentKind> list = em.createQuery("select t from DocumentKind t" +
-                " where t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
+                " where LOWER(t.name) like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
 
         list.removeAll(em.createQuery("select t from UserDocument d join d.documentKind t" +
                         " where d.user.id ="+ user.getId()+
-                        " and t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
+                        " and LOWER(t.name) like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
         return list;
     }
 
@@ -70,16 +70,13 @@ public class DocumentKindCrudServiceBean implements DocumentKindCrudService {
     @Override
     public List<DocumentKind> findNotUsedByUserFormAndName(UserForm userForm, String name) {
         List<DocumentKind> list = em.createQuery("select t from DocumentKind t" +
-                " where t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
+                " where LOWER(t.name) like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList();
 
         list.removeAll(em.createQuery("select t from FormDocument d join d.documentKind t" +
                 " where d.userForm.id ="+ userForm.getId()+
-                " and t.name like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
+                " and LOWER(t.name) like '%" + name.toLowerCase() +"%'", DocumentKind.class).getResultList());
 
-        return em.createQuery(
-                "select distinct t from DocumentKind t left outer join FormDocument d where d.documentKind = t and d.userForm.id != " + userForm.getId() +
-                        " and t.name like '%" + name +"%'"
-                , DocumentKind.class).getResultList();
+        return list;
     }
 
     @Override

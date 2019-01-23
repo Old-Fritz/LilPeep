@@ -4,7 +4,7 @@
 <c:forEach var="form" items="${forms}">
     <h1>${form.name}</h1>
     <br>
-    <c:forEach var="document" items="form.formDocuments">
+    <c:forEach var="document" items="${form.formDocuments}">
         ${document.documentKind.name}
         <br>
     </c:forEach>

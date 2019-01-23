@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
-        <script src=src="../Resources/CSS/list.js" type="text/javascript"></script>
+        <script src=src="../Resources/JS/list.js" type="text/javascript"></script>
     </head>
     <body>
         <table>

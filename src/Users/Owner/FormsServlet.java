@@ -52,6 +52,6 @@ public class FormsServlet extends HttpServlet{
             text="";
         List<UserForm> forms = userFormCrudService.findByUserAndName(user,text);
         req.setAttribute("forms", forms);
-        req.getRequestDispatcher("/Users/Owner/JSP/FormsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Owner/includes/FormsList.jsp").forward(req,resp);
     }
 }

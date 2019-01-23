@@ -60,6 +60,7 @@ public class EditFormServlet extends HttpServlet {
             return;
         }
 
+        req.setAttribute("form", form);
         super.service(req, resp);
     }
 
@@ -70,6 +71,7 @@ public class EditFormServlet extends HttpServlet {
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
+            req.setAttribute("documents", formDocumentCrudService.findByUserForm(form));
             req.getRequestDispatcher("/Users/Owner/JSP/AddForm.jsp").forward(req,resp);
             return;
         }
@@ -83,7 +85,7 @@ public class EditFormServlet extends HttpServlet {
             List<DocumentKind> documents = documentKindCrudService.findNotUsedByUserFormAndName(form,text);
             // send document in jsp to show
             req.setAttribute("documents",documents);
-            req.getRequestDispatcher("/Users/Owner/JSP/SearchDocumentList.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Owner/includes/SearchDocumentList.jsp").forward(req,resp);
             return;
         }
 
@@ -91,10 +93,10 @@ public class EditFormServlet extends HttpServlet {
         if(type.equals("formDocument"))
         {
             try{
-                long documentInd = Long.parseLong(req.getParameter("documentInd"));
+                long documentInd = Long.parseLong(req.getParameter("documentID"));
                 FormDocument document = formDocumentCrudService.findById(documentInd);
                 req.setAttribute("document", document);
-                req.getRequestDispatcher("/Users/Owner/JSP/FormDocument.jsp").forward(req,resp);
+                req.getRequestDispatcher("/Users/Owner/includes/FormDocument.jsp").forward(req,resp);
                 return;
             }catch (Exception e){
                 sender.sendErr("Не удалось получить документ: " + e.toString());
@@ -108,22 +110,19 @@ public class EditFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        if(type == null) {
-            sender.sendErr("Такого параметра не существует");
-            return;
-        }
+
         // create user document
-        if(type.equals("addDocument")) {
+        if(type != null && type.equals("addDocument")) {
             createDocument(req, resp);
             return;
         }
 
-        if(type.equals("deleteDocument")) {
+        if(type != null && type.equals("deleteDocument")) {
             deleteDocument(req, resp);
             return;
         }
 
-        if(type.equals("deleteForm")) {
+        if(type != null && type.equals("deleteForm")) {
             deleteForm(req, resp);
             return;
         }
@@ -140,6 +139,7 @@ public class EditFormServlet extends HttpServlet {
                     field.setChecked(false);
             }
         }
+        resp.sendRedirect("/ownner");
     }
 
     private void deleteDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {// Удвление документа
@@ -147,7 +147,7 @@ public class EditFormServlet extends HttpServlet {
         try{
             long documentID = Long.parseLong(req.getParameter("documentID"));
             formDocumentFieldCrudService.deleteById(documentID);
-            form.setDocumentCount(form.getDocumentCount()+1);
+            form.setDocumentCount(form.getDocumentCount()-1);
 
         }catch (Exception e){
             sender.sendErr("Ошибка при удалении документа: " + e.toString());
@@ -173,8 +173,18 @@ public class EditFormServlet extends HttpServlet {
         try{
             long documentID = Long.parseLong(req.getParameter("documentID"));
 
+            DocumentKind documentKind;
 
-            DocumentKind documentKind = documentKindCrudService.findById(documentID);
+            if(documentID>=0)
+            {
+                documentKind = documentKindCrudService.findById(documentID);
+            }
+            else
+            {
+                documentKind = documentKindCrudService.findByName(req.getParameter("name")).get(0);
+            }
+
+
             if(documentKind==null)
                 throw new Exception();
 

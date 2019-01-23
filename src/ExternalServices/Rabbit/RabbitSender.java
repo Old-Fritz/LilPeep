@@ -5,6 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
 import javax.annotation.PreDestroy;
+import javax.ejb.EJBContext;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import java.io.FileNotFoundException;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+
 <td class="leftpanel">
     <div class="email" {email}>bibib-happens@habah.ru</div>
     <hr class="divider">
