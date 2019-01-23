@@ -32,7 +32,6 @@ public class OwnerSettingsServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         super.service(req, resp);
     }
 
@@ -41,7 +40,6 @@ public class OwnerSettingsServlet extends HttpServlet {
         req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
             sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;

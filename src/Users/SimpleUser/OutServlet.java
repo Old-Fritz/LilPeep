@@ -37,7 +37,6 @@ public class OutServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Get and check data
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         UserForm form;
         try{
             String returnURL = req.getParameter("returnURL");

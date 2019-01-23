@@ -44,7 +44,6 @@ public class EditFormServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user
         User user = ssoManager.getCurrentUser(req);
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
             return;
