@@ -50,7 +50,6 @@ public class UserDocumentsServlet extends HttpServlet {
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
-            resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
 

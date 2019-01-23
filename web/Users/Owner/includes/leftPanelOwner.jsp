@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+
 <td class="leftpanel">
     <button onclick="change()">Меню</button>
     <div  id="panel">

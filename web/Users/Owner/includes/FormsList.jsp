@@ -4,10 +4,10 @@
 <c:forEach var="form" items="${forms}">
     <h1>${form.name}</h1>
     <br>
-    <c:forEach var="document" items="form.formDocuments">
+    <c:forEach var="document" items="${form.formDocuments}">
         ${document.documentKind.name}
         <br>
     </c:forEach>
     ${form.url}
-    <button style="float: right" {КОД НА ЖСП}>Изменить</button>
+    <button style="float: right" onclick="window.location =  'editForm?formID=${document.id}'">Изменить</button>
 </c:forEach>

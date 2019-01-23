@@ -45,6 +45,6 @@ public class UserDocumentFieldCrudServiceBean implements UserDocumentFieldCrudSe
 
     @Override
     public List<UserDocumentField> findByUserDocument(UserDocument userDocument) {
-        return userDocument.getUserDocumentFields();
+        return em.createQuery("select t from UserDocumentField t where t.field.id = " + userDocument.getId(), UserDocumentField.class).getResultList();
     }
 }

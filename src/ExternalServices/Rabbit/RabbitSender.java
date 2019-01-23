@@ -6,6 +6,7 @@ import com.rabbitmq.client.Channel;
 import com.sun.deploy.net.HttpRequest;
 
 import javax.annotation.PreDestroy;
+import javax.ejb.EJBContext;
 import javax.ejb.Local;
 import javax.ejb.Stateful;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,6 @@ public class RabbitSender {
     private Channel channel;
 
     public RabbitSender() {
-
     }
 
     public void init(String sessionID) {

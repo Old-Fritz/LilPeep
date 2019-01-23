@@ -23,13 +23,13 @@ public class UserDocumentField {
     private String value;
 
     /** ID поля */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_FIELD",nullable = false)
     @NotNull
     private Field field;
 
     /** Документ пользователя */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USER_DOCUMENT",nullable = false)
     @NotNull
     private UserDocument userDocument;

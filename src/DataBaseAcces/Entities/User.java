@@ -39,13 +39,13 @@ public class User {
      */
     @NotNull
     @JoinColumn(name = "ID_TYPE", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserKind userKind;
 
     /**
      * Список настроек пользователя
      */
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Settings> settings;
 
     public User() {

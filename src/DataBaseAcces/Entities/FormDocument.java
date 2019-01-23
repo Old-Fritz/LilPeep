@@ -24,18 +24,18 @@ public class FormDocument {
 
     /** Тип документа */
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
 
     /** Форма владельца */
     @NotNull
     @JoinColumn(name = "ID_FORM", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserForm userForm;
 
     /** Список полей документа в форме */
-    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
     private List<FormDocumentField> formDocumentFields;
 
     public FormDocument()

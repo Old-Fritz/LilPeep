@@ -38,12 +38,12 @@ public class UserForm {
 
     /** Пользователь */
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USER", nullable = false)
     private User user;
 
     /** Список форм ползователя */
-    @OneToMany(mappedBy = "userForm", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userForm", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<FormDocument> formDocuments;
 
     public UserForm()

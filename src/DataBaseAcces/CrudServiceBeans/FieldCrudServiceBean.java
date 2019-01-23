@@ -45,6 +45,6 @@ public class FieldCrudServiceBean implements FieldCrudService {
 
     @Override
     public List<Field> findByDocumentKind(DocumentKind documentKind) {
-        return documentKind.getFields();
+        return em.createQuery("select t from Field t where t.documentKind.id = " + documentKind.getId(), Field.class).getResultList();
     }
 }

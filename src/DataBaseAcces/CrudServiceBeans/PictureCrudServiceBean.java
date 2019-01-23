@@ -44,6 +44,6 @@ public class PictureCrudServiceBean implements PictureCrudService {
 
     @Override
     public Picture findByURL(String url) {
-        return em.createQuery("select t from Picture t where t.url = " + url, Picture.class).getSingleResult();
+        return em.createQuery("select t from Picture t where t.url = " + url, Picture.class).getResultList().get(0);
     }
 }

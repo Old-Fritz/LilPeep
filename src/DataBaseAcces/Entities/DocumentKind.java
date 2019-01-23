@@ -29,7 +29,7 @@ public class DocumentKind {
 
     /** Описание документа */
     @NotNull
-    @Column(name = "DESCRIPTION", nullable = false,columnDefinition = "TEXT")
+    @Column(name = "DESCRIPTION", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     /** Порядковый номер документа */
@@ -38,12 +38,12 @@ public class DocumentKind {
     private int order;
 
     /** ID URL картинки документа */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PICTURE")
     private Picture picture;
 
     /** Поля документа */
-    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "documentKind", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Field> fields;
 
     public DocumentKind()

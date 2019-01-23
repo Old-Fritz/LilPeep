@@ -40,9 +40,15 @@ public class SSOManager {
      * @return текущий пользователь
      */
     public User getCurrentUser(HttpServletRequest req) {
-        String ssoToken = getSSOToken(req.getCookies());
-        long userID = openAM.getUserID(ssoToken);
-        return userCrudService.findById(userID);
+        try{
+            String ssoToken = getSSOToken(req.getCookies());
+            long userID = openAM.getUserID(ssoToken);
+            return userCrudService.findById(userID);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     /**

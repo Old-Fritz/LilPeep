@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -6,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
-        <script src="../Resources/CSS/list.js" type="text/javascript"></script>
+        <script src="../Resources/JS/list.js" type="text/javascript"></script>
     </head>
     <body>
         <table>

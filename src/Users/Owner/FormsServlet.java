@@ -47,7 +47,6 @@ public class FormsServlet extends HttpServlet{
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
             sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
@@ -59,6 +58,6 @@ public class FormsServlet extends HttpServlet{
             text="";
         List<UserForm> forms = userFormCrudService.findByUserAndName(user,text);
         req.setAttribute("forms", forms);
-        req.getRequestDispatcher("/Users/Owner/JSP/FormsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Owner/includes/FormsList.jsp").forward(req,resp);
     }
 }

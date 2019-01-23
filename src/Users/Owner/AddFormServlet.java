@@ -36,11 +36,11 @@ public class AddFormServlet extends HttpServlet {
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
             sender.sendErr("Такого пользователя не существует");
-            resp.sendRedirect(req.getContextPath() + "/logout");
             return;
         }
 
-        UserForm form = new UserForm(0, "", "", userFormCrudService.findByUser(user).size(), user);
+        // Create new userform and edit it immidietly
+        UserForm form = new UserForm(0, "Name", "Url", userFormCrudService.findByUser(user).size(), user);
         userFormCrudService.save(form);
 
         resp.sendRedirect(req.getContextPath() + "/owner/editForm?formID=" + form.getId());

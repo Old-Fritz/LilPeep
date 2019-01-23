@@ -47,13 +47,13 @@ public class EditFormServlet extends HttpServlet {
         sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
-            resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
 
         try {
             long formID = Long.parseLong(req.getParameter("formID"));
             form = userFormCrudService.findById(formID);
+            // check that form and user are same
             if(form==null||form.getUser().getId()!=user.getId())
                 throw new Exception();
         }catch (Exception e){
@@ -61,6 +61,7 @@ public class EditFormServlet extends HttpServlet {
             return;
         }
 
+        req.setAttribute("form", form);
         super.service(req, resp);
     }
 
@@ -70,6 +71,7 @@ public class EditFormServlet extends HttpServlet {
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
+            req.setAttribute("documents", formDocumentCrudService.findByUserForm(form));
             req.getRequestDispatcher("/Users/Owner/JSP/AddForm.jsp").forward(req,resp);
             return;
         }
@@ -83,7 +85,7 @@ public class EditFormServlet extends HttpServlet {
             List<DocumentKind> documents = documentKindCrudService.findNotUsedByUserFormAndName(form,text);
             // send document in jsp to show
             req.setAttribute("documents",documents);
-            req.getRequestDispatcher("/Users/Owner/JSP/SearchDocumentList.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Owner/includes/SearchDocumentList.jsp").forward(req,resp);
             return;
         }
 
@@ -91,39 +93,36 @@ public class EditFormServlet extends HttpServlet {
         if(type.equals("formDocument"))
         {
             try{
-                long documentInd = Long.parseLong(req.getParameter("documentInd"));
+                long documentInd = Long.parseLong(req.getParameter("documentID"));
                 FormDocument document = formDocumentCrudService.findById(documentInd);
                 req.setAttribute("document", document);
-                req.getRequestDispatcher("/Users/Owner/JSP/FormDocument.jsp").forward(req,resp);
+                req.getRequestDispatcher("/Users/Owner/includes/FormDocument.jsp").forward(req,resp);
                 return;
             }catch (Exception e){
                 sender.sendErr("Не удалось получить документ: " + e.toString());
             }
         }
 
-        // send document in jsp to show
-        resp.sendRedirect(req.getContextPath()+"owner");
+        // Go back if all gets are faileds
+        resp.sendRedirect(req.getContextPath()+"/owner");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        if(type == null) {
-            sender.sendErr("Такого параметра не существует");
-            return;
-        }
+
         // create user document
-        if(type.equals("addDocument")) {
+        if(type != null && type.equals("addDocument")) {
             createDocument(req, resp);
             return;
         }
 
-        if(type.equals("deleteDocument")) {
+        if(type != null && type.equals("deleteDocument")) {
             deleteDocument(req, resp);
             return;
         }
 
-        if(type.equals("deleteForm")) {
+        if(type != null && type.equals("deleteForm")) {
             deleteForm(req, resp);
             return;
         }
@@ -143,11 +142,10 @@ public class EditFormServlet extends HttpServlet {
     }
 
     private void deleteDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {// Удвление документа
-
         try{
             long documentID = Long.parseLong(req.getParameter("documentID"));
             formDocumentFieldCrudService.deleteById(documentID);
-            form.setDocumentCount(form.getDocumentCount()+1);
+            form.setDocumentCount(form.getDocumentCount()-1);
 
         }catch (Exception e){
             sender.sendErr("Ошибка при удалении документа: " + e.toString());
@@ -159,7 +157,6 @@ public class EditFormServlet extends HttpServlet {
         // Удаление формы
         try{
             userFormCrudService.deleteById(form.getId());
-            resp.sendRedirect("/owner");
         }catch (Exception e) {
             sender.sendErr("Ошибка при удалении формы: " + e.toString());
         }
@@ -171,13 +168,17 @@ public class EditFormServlet extends HttpServlet {
      */
     private void createDocument(HttpServletRequest req, HttpServletResponse resp) {
         try{
+            // get document kind in some way
             long documentID = Long.parseLong(req.getParameter("documentID"));
-
-
-            DocumentKind documentKind = documentKindCrudService.findById(documentID);
+            DocumentKind documentKind;
+            if(documentID>=0)
+                documentKind = documentKindCrudService.findById(documentID);
+            else
+                documentKind = documentKindCrudService.findByName(req.getParameter("name")).get(0);
             if(documentKind==null)
                 throw new Exception();
 
+            // Create and save empty document
             FormDocument document = new FormDocument(form.getFormDocuments().size(),documentKind,form);
             formDocumentCrudService.save(document);
 
@@ -189,13 +190,12 @@ public class EditFormServlet extends HttpServlet {
 
             form.setDocumentCount(form.getDocumentCount()+1);
 
+            // return id for next show
             resp.getWriter().write(documentID+"");
 
         }catch (Exception e){
-            sender.sendErr("Ошибка при удалении документа: " + e.toString());
+            sender.sendErr("Ошибка при создании документа: " + e.toString());
         }
-
-
     }
 
 }
