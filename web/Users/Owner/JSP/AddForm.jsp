@@ -17,23 +17,29 @@
             <td class="content">
                 <h1>Добавление формы</h1>
                 <form method="POST">
-                    <input type="text" name ="name"/><br>
-                    <input type="text" name ="url"/><br>
-
+                    Название формы
+                    <input type="text" name ="name"/>
+                    <br>
+                    <br>
+                    URL формы
+                    <br>
+                    <input type="text" name ="url"/>
+                    <br>
+                    <br>
                     Добавить документ
                     <br>
                     <table>
-                        <tr>
+                        <td>
                             <input type="hidden" id="selectedDocument" value="-1">
                             <input type="text" id="searchField" oninput="getSearchList(this.value, '')" autocomplete="off"/>
                             <div class="searchresults">
                                 {здесь элементы поиска}
                                 <br>
                             </div>
-                        </tr>
-                        <tr>
+                        </td>
+                        <td>
                             <button onclick="addFormDocument()">Добавить</button>
-                        </tr>
+                        </td>
                     </table>
                     <div id="searchList"></div>
                     <div id="formDocuments">

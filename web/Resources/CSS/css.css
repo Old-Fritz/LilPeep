@@ -156,6 +156,11 @@ button, input, select{
     border: 3px solid #ff0088; /* ????? ????? */
 }
 
+.docimg{
+    width: 6em;
+    height: 6em;
+}
+
 .docedit{
     vertical-align: top;
     padding-left: 1em;

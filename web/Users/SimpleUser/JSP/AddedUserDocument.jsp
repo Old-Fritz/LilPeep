@@ -14,7 +14,7 @@
                 <jsp:include page="../includes/leftPanelUser.jsp"/>
                 <td class="content">
                     <h1>Добавление документа</h1>
-                    <image width="128" height="128" src="${document.picture.url}" alt="Случился Бибиб"/>
+                    <image image class="docimg" src="${document.picture.url}" alt="Случился Бибиб"/>
                     <c:forEach var="field" items="${document.fields}" varStatus="status">
                         <h1>${field.name}</h1>
                         <input class="docfield" type="text" name="field${status.getIndex()}"/>
