@@ -20,13 +20,13 @@ public class UserDocument {
     /** ID типа документа */
     @NotNull
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private DocumentKind documentKind;
 
     /** ID пользователя */
     @NotNull
     @JoinColumn(name = "ID_USER", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     /** Список полей документа пользователя */

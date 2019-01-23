@@ -38,7 +38,7 @@ public class DocumentKind {
     private int order;
 
     /** ID URL картинки документа */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PICTURE")
     private Picture picture;
 

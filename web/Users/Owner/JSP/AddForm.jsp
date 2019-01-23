@@ -25,15 +25,11 @@
                     <table>
                         <tr>
                             <input type="hidden" id="selectedDocument" value="-1">
-<<<<<<< HEAD
-                            <input type="text" id="searchField" oninput="showSearchList(this.value, '')"/>
-=======
-                            <input type="text" id="searchField" oninput="getSearchList(this.value, '')"/>
+                            <input type="text" id="searchField" oninput="getSearchList(this.value, '')" autocomplete="off"/>
                             <div class="searchresults">
                                 {здесь элементы поиска}
                                 <br>
                             </div>
->>>>>>> nekit
                         </tr>
                         <tr>
                             <button onclick="addFormDocument()">Добавить</button>

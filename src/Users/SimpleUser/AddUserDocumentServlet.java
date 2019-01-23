@@ -41,6 +41,7 @@ public class AddUserDocumentServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
+
         // show simple page without any info
         if(type == null || type.equals("page")) {
             req.getRequestDispatcher("/Users/SimpleUser/JSP/AddUserDocument.jsp").forward(req,resp);
@@ -52,7 +53,6 @@ public class AddUserDocumentServlet extends HttpServlet{
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
-            resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
 

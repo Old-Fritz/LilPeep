@@ -32,7 +32,6 @@ public class RabbitSender {
     private Channel channel;
 
     public RabbitSender() {
-
     }
 
     public void init(String sessionID) {

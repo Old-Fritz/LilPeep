@@ -52,12 +52,14 @@ public class AddedUserDocumentServlet extends HttpServlet {
                 throw new Exception();
         }catch (Exception e) {
             sender.sendErr("Ошибка при открытии документа: " + e.toString());
+            resp.sendRedirect(req.getContextPath()+"/user");
             return;
         }
 
         // check for existing of this document
         if(userDocumentCrudService.findByUserAndDocument(user,document)!=null) {
             sender.sendErr("Такой документ уже существует");
+            resp.sendRedirect(req.getContextPath()+"/user");
             return;
         }
 

@@ -29,13 +29,13 @@ public class Settings {
     /** ID пользователя */
     @NotNull
     @JoinColumn(name = "ID_USER", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     /** ID типа настройки */
     @NotNull
     @JoinColumn(name = "ID_SETTINGS_TYPE", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SettingsType type;
 
     public Settings()

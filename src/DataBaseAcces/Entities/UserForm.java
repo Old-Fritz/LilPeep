@@ -38,7 +38,7 @@ public class UserForm {
 
     /** Пользователь */
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USER", nullable = false)
     private User user;
 

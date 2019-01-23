@@ -32,13 +32,13 @@ public class Complaint {
     /** Пользователь, отправивший жалобу */
     @NotNull
     @JoinColumn(name = "ID_SENDER", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User sender;
 
     /** Пользователь, на которого отправлена жалоба*/
     @NotNull
     @JoinColumn(name = "ID_USER", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Complaint() {

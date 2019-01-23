@@ -28,13 +28,13 @@ public class Field {
 
     /** Тип документа */
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
     private DocumentKind documentKind;
 
     /** Тип поля */
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TYPE", nullable = false)
     private FieldType fieldType;
 

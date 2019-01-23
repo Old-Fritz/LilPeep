@@ -39,7 +39,7 @@ public class User {
      */
     @NotNull
     @JoinColumn(name = "ID_TYPE", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserKind userKind;
 
     /**

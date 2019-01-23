@@ -47,7 +47,6 @@ public class FormsServlet extends HttpServlet{
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
             sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
