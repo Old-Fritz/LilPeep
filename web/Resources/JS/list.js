@@ -8,5 +8,5 @@ function getList(input, url) {
 }
 
 $(document).ready(function() {
-    getList("", $('#searchField').value);
+    getList($('#searchField').value, window.location);
 });
