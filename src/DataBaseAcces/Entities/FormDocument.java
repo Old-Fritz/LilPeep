@@ -35,7 +35,7 @@ public class FormDocument {
     private UserForm userForm;
 
     /** Список полей документа в форме */
-    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
     private List<FormDocumentField> formDocumentFields;
 
     public FormDocument()

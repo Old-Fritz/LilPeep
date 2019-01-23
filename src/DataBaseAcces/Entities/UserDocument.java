@@ -30,7 +30,7 @@ public class UserDocument {
     private User user;
 
     /** Список полей документа пользователя */
-    @OneToMany(mappedBy = "userDocument", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userDocument", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<UserDocumentField> userDocumentFields;
 
     public UserDocument()

@@ -56,13 +56,9 @@ public class UserDocumentCrudServiceBean implements UserDocumentCrudService {
 
     @Override
     public UserDocument findByUserAndDocument(User user, DocumentKind documentKind) {
-        try{
-            return em.createQuery("select t from UserDocument t where" +
-                    " t.user.id="+user.getId()+
-                    " and t.documentKind.id="+documentKind.getId(),
-                    UserDocument.class).getSingleResult();
-        }catch (Exception e){
-            return null;
-        }
+        return em.createQuery("select t from UserDocument t where" +
+                " t.user.id="+user.getId()+
+                " and t.documentKind.id="+documentKind.getId(),
+                UserDocument.class).getResultList().get(0);
     }
 }

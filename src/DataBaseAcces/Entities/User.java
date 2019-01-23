@@ -45,7 +45,7 @@ public class User {
     /**
      * Список настроек пользователя
      */
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Settings> settings;
 
     public User() {

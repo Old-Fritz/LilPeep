@@ -21,7 +21,7 @@ public class FormDocumentField {
 
     /** Форма документа */
     @NotNull
-    @JoinColumn(name = "ID_FORM", nullable = false)
+    @JoinColumn(name = "ID_DOCUMENT", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private FormDocument formDocument;
 
