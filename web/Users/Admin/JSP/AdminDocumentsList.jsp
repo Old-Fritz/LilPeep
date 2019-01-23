@@ -1,23 +1,22 @@
-<%@ page import="java.util.List" %>
-<%@ page import="DataBaseAcces.Entities.DocumentKind" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%List<DocumentKind> documents = (List<DocumentKind>)request.getAttribute("documents");
-    for(DocumentKind document:documents){%>
-<%=document.getName()%>
-<button onclick="window.location = 'addedDocument?documentID=<%=document.getId()%>'">create</button>
-<br>
-<%}%>
-
-<div class="docitem">
+<div >
     <table>
-        <td>
-            <image src="https://2ch.hk/b/arch/2018-11-26/src/187158673/15431788494610.jpg" alt="Случился Бибиб"/>
-        </td>
-        <td>
-            <h1>Название</h1>
-            Краткое описание
-            <br>
-            Есть даже место под вторую строку!
-        </td>
+        <c:forEach var="document" items="${documents}">
+            <table  class="docitem" onclick="window.location = '${action}?documentID=${document.id}'">
+                <tr>
+                    <td>
+                        <image class="docimg" src="${documentKind.picture.url}" alt="Случился Бибиб"/>
+                    </td>
+                    <td>
+                        <h1>${documentKind.name}</h1>
+                        <p>
+                                ${documentKind.description}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </c:forEach>
     </table>
 </div>

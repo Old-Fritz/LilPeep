@@ -7,7 +7,7 @@
     <body>
         <table>
             <td class="leftpanel">
-                <jsp:include page="../Includes/leftPanelAdmin.html"/>
+                <jsp:include page="../includes/leftPanelAdmin.jsp"/>
             </td>
             <td class="content">
                 <input type="text" oninput="getList(this.value)"/>

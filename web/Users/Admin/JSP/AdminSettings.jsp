@@ -6,7 +6,7 @@
 </head>
 <body>
 <table>
-    <jsp:include page="../Includes/leftPanelAdmin.html"/>
+    <jsp:include page="../includes/leftPanelAdmin.jsp"/>
     <td class="docedit">
         <form method = "POST" action="admin">
             Пароль

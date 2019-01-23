@@ -10,7 +10,7 @@
         <input type="text" oninput="getList(this.value)"/>
         <td class="content">
             <h1>Изменение документа</h1>
-            <jsp:include page="../Includes/leftPanelAdmin.html"/>
+            <jsp:include page="../includes/leftPanelAdmin.jsp"/>
             {Тут поля документа AdminField.html}
         </td>
 
