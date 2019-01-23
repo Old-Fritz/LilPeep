@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="docitem" >
+<div>
     <table>
         <c:forEach var="document" items="${documents}">
-            <table  onclick="window.location = '${action}?documentID=${document.id}'">
+            <table  class="docitem" onclick="window.location = '${action}?documentID=${document.id}'">
                 <tr>
                     <td>
                         <image src="${document.picture.url}" alt="Случился Бибиб"/>
