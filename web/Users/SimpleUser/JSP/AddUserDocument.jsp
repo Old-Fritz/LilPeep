@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
+<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <title>Добавление документа</title>
@@ -19,6 +20,7 @@
             </td>
         </table>
     </body>
+=======
 <head>
     <meta charset="utf-8">
     <title>Добавление документа</title>
@@ -41,4 +43,5 @@
     </td>
 </table>
 </body>
+>>>>>>> nekit
 </html>
