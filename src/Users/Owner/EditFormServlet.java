@@ -5,6 +5,7 @@ import DataBaseAcces.CrudServices.FormDocumentCrudService;
 import DataBaseAcces.CrudServices.FormDocumentFieldCrudService;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.*;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -43,6 +44,7 @@ public class EditFormServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user
         User user = ssoManager.getCurrentUser(req);
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath()+"/logout");
@@ -55,7 +57,6 @@ public class EditFormServlet extends HttpServlet {
             if(form==null||form.getUser().getId()!=user.getId())
                 throw new Exception();
         }catch (Exception e){
-            sender.sendErr("Не удалось получить форму: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/owner/");
             return;
         }
@@ -65,7 +66,6 @@ public class EditFormServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String type = req.getParameter("type");
         // show simple page without any info
         if(type == null || type.equals("page"))

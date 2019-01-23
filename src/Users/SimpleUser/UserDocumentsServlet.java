@@ -3,6 +3,7 @@ package Users.SimpleUser;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserDocument;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -31,11 +32,16 @@ public class UserDocumentsServlet extends HttpServlet {
     private RabbitSender sender;
 
     @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
+        super.service(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
         // show simple page without any info
-        if(type == null || type.equals("page"))
-        {
+        if(type == null || type.equals("page")) {
             req.getRequestDispatcher("/Users/SimpleUser/JSP/UserDocuments.jsp").forward(req,resp);
             return;
         }

@@ -3,6 +3,7 @@ package Users.Owner;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserForm;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -29,11 +30,16 @@ public class FormsServlet extends HttpServlet{
     private RabbitSender sender;
 
     @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
+        super.service(req, resp);
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
         // show simple page without any info
-        if(type == null || type.equals("page"))
-        {
+        if(type == null || type.equals("page")) {
             req.getRequestDispatcher("/Users/Owner/JSP/Forms.jsp").forward(req,resp);
             return;
         }
@@ -41,6 +47,7 @@ public class FormsServlet extends HttpServlet{
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
+            sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
             sender.sendErr("Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;

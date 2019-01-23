@@ -4,6 +4,7 @@ import DataBaseAcces.CrudServices.DocumentKindCrudService;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
 import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
 import DataBaseAcces.Entities.*;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -43,6 +44,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         user = ssoManager.getCurrentUser(req);
         // getting document
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         try {
             long documentID = Long.parseLong(req.getParameter("documentID"));
             document = documentKindCrudService.findById(documentID);

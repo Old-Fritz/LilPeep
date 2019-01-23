@@ -8,6 +8,7 @@ import DataBaseAcces.Entities.DocumentKind;
 import DataBaseAcces.Entities.Field;
 import DataBaseAcces.Entities.FieldType;
 import DataBaseAcces.Entities.Picture;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
@@ -43,6 +44,7 @@ public class EditDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         try{
             documentKind = (DocumentKind)req.getSession().getAttribute("newDocument");
             if(documentKind == null){

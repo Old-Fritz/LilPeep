@@ -4,6 +4,7 @@ import DataBaseAcces.CrudServices.ComplaintCrudService;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.*;
+import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -36,6 +37,7 @@ public class OutServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Get and check data
+        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         UserForm form;
         try{
             String returnURL = req.getParameter("returnURL");
