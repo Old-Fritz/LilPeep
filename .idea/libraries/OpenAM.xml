@@ -2,7 +2,7 @@
   <library name="OpenAM">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/agent.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/openssoclientsdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ClientSDK-14.1.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

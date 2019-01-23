@@ -30,7 +30,6 @@ public class UserSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/Users/SimpleUser/JSP/UserSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");
@@ -38,6 +37,8 @@ public class UserSettingsServlet extends HttpServlet {
             return;
         }
         settings = user.getSettings();
+
+        req.getRequestDispatcher("/Users/SimpleUser/JSP/UserSettings.jsp").forward(req,resp);
     }
 
     @Override

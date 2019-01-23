@@ -4,50 +4,19 @@
     <head>
         <meta charset="utf-8">
         <title>Список документов</title>
-<<<<<<< HEAD
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
-=======
-        <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"
+                type="text/javascript"></script>
+        <script src="../Users/SimpleUser/JS/DocumentLists.js" type="text/javascript"></script>
     </head>
     <body>
         <table>
-            <td class="docedit">
-                <jsp:include page="../Includes/leftPanel.html"/>
-            </td>
+            <jsp:include page="../includes/leftPanelUser.jsp"/>
             <td class="content">
                 <h1>Список документов</h1>
-                <input type="text" oninput="getList(this.value)"/>
-                {Сюда список из документов}
+                <input type="text" id='searchField', oninput="getList(this.value, 'documents')"/>
+                <div id="list"></div>
             </td>
-            <script>getList("")</script>
         </table>
->>>>>>> nekit
-        <script>
-            function getList(input) {
-                let xhr = new XMLHttpRequest();
-                let queryString = "type=list" +
-                    "&text="+ input;
-                xhr.open("GET","addDocument?"+queryString, true);
-                xhr.onload = function() {
-                    let list = document.querySelector("#list");
-                    list.innerHTML = xhr.response;
-                };
-                xhr.send(null);
-            }
-        </script>
-    </head>
-    <body>
-    <table>
-        <jsp:include page="/Includes/leftPanelAdmin.jsp"/>
-        <td class="docedit">
-            <h1>Список документов</h1>
-        </td>
-        <td class="content">
-            <input type="text" oninput="getList(this.value)"/>
-            {Сюда список из документов}
-        </td>
-        <script>getList("")</script>
-    </table>
-
     </body>
 </html>

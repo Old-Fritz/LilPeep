@@ -45,7 +45,7 @@ public class AddUserDocumentServlet extends HttpServlet{
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
-            resp.sendRedirect(req.getContextPath()+"/user/");
+            resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
 
@@ -55,6 +55,7 @@ public class AddUserDocumentServlet extends HttpServlet{
             text="";
         List<DocumentKind> documents = documentKindCrudService.findNotUsedByUserAndName(user,text);
         req.setAttribute("documents", documents);
-        req.getRequestDispatcher("/Users/SimpleUser/JSP/DocumentsList.jsp").forward(req,resp);
+        req.setAttribute("action", "addedDocument");
+        req.getRequestDispatcher("/Users/SimpleUser/includes/AddDocumentsList.jsp").forward(req,resp);
     }
 }

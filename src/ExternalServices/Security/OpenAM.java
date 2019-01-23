@@ -30,6 +30,8 @@ public class OpenAM {
      */
     public long getUserID(String tokenID)
     {
+        return 2;
+        /*
         if(tokenID==null)
             return -1;
         try{
@@ -45,6 +47,7 @@ public class OpenAM {
         {
             return -1;
         }
+        */
     }
 
     /**

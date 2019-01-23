@@ -58,6 +58,11 @@ public class EditUserDocumentServlet extends HttpServlet {
             return;
         }
 
+        if(req.getParameter("isDelete")!=null)
+        {
+            delete(req,resp);
+            return;
+        }
         super.service(req, resp);
     }
 
@@ -82,8 +87,7 @@ public class EditUserDocumentServlet extends HttpServlet {
         resp.sendRedirect(req.getContextPath()+"/user/");
     }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         userDocumentCrudService.deleteById(document.getId());
         resp.sendRedirect(req.getContextPath()+"/user/documents");
     }
