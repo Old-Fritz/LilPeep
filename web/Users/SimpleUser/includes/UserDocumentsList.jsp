@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div class="docitem">
-    <table>
+<div>
+    <table class="docitem" onclick="window.location = '${action}?documentID=${document.id}'">
     <c:forEach var="document" items="${documents}">
         <tr>
             <td>
@@ -15,7 +15,7 @@
                 </p>
             </td>
             <td>
-                <button onclick="window.location = '${action}?documentID=${document.id}'">open</button>
+                <button >open</button>
             </td>
         </tr>
     </c:forEach>

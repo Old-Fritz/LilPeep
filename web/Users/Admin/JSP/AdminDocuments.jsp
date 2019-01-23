@@ -12,6 +12,10 @@
     </td>
     <td class="content">
         <input type="text" oninput="getList(this.value)"/>
+        <div class="searchresults">
+            {здесь элементы поиска}
+            <br>
+        </div>
         {Сюда список из документов}
     </td>
     <script>getList("")</script>

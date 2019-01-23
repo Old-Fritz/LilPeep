@@ -15,6 +15,10 @@
             <td class="content">
                 <h1>Список документов</h1>
                 <input type="text" id='searchField' oninput="getList(this.value, 'documents')"/>
+                <div class="searchresults">
+                    {здесь элементы поиска}
+                    <br>
+                </div>
                 <div id="list"></div>
             </td>
         </table>

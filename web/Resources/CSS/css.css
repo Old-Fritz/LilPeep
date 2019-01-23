@@ -91,11 +91,12 @@ button, input, select{
     width: 10vw;
 }
 
-.leftpanel > .button{
+.leftpanel .button{
     height: 2em;
     line-height: 2em;
     width: 100%;
     padding-left: 1em;
+    cursor: pointer;
 }
 
 .leftpanel > .email{
@@ -130,6 +131,9 @@ button, input, select{
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
+    cursor: pointer;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .docitem:hover{
@@ -159,7 +163,8 @@ button, input, select{
 
 .content{
     vertical-align: top;
-    padding-left: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
 }
 
 .buttonbar {
@@ -184,4 +189,13 @@ button, input, select{
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
+}
+
+.docfield{
+    width: 50%;
+}
+
+.searchresults{
+    position: relative;
+    z-index: 5;
 }

@@ -21,6 +21,10 @@
                         <tr>
                             <input type="hidden" id="selectedDocument" value="-1">
                             <input type="text" id="searchField" oninput="getSearchList(this.value, '')"/>
+                            <div class="searchresults">
+                                {здесь элементы поиска}
+                                <br>
+                            </div>
                         </tr>
                         <tr>
                             <button onclick="addFormDocument()">Добавить</button>
