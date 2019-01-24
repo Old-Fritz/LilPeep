@@ -146,6 +146,11 @@ button, input, select{
     background: #ffccff;
 }
 
+.docitem:hover[editable]{
+    background: #ffffff;
+    cursor: default;
+}
+
 .docitem td{
     vertical-align: top;
 }
@@ -158,4 +163,9 @@ button, input, select{
     text-align: right;
     bottom: 1em;
     right: 3em;
+}
+
+.searchresults{
+    z-index: 5;
+    position: absolute;
 }
