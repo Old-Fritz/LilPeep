@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
 
+
 <div class="docitem">
     <table>
         <td style="width: 70vw">
@@ -16,3 +17,4 @@
         </td>
     </table>
 </div>
+

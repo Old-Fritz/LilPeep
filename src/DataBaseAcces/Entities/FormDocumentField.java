@@ -22,13 +22,13 @@ public class FormDocumentField {
     /** Форма документа */
     @NotNull
     @JoinColumn(name = "ID_DOCUMENT", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private FormDocument formDocument;
 
     /** Поле документа */
     @NotNull
     @JoinColumn(name = "FIELD", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Field field;
 
 

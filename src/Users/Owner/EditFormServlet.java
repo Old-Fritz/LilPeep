@@ -117,12 +117,12 @@ public class EditFormServlet extends HttpServlet {
         }
 
         if(type != null && type.equals("deleteDocument")) {
-            deleteDocument(req, resp);
+            deleteDocument(Long.parseLong(req.getParameter("documentID")));
             return;
         }
 
         if(type != null && type.equals("deleteForm")) {
-            deleteForm(req, resp);
+            deleteForm();
             return;
         }
 
@@ -138,12 +138,16 @@ public class EditFormServlet extends HttpServlet {
                     field.setChecked(false);
             }
         }
+        req.getRequestDispatcher("/owner").forward(req,resp);
     }
 
-    private void deleteDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {// Удвление документа
+    private void deleteDocument(long id) throws ServletException, IOException {// Удвление документа
         try{
-            long documentID = Long.parseLong(req.getParameter("documentID"));
-            formDocumentFieldCrudService.deleteById(documentID);
+            FormDocument document = formDocumentCrudService.findById(id);
+            List<FormDocumentField> fields =formDocumentFieldCrudService.findByFormDocument(document);
+            for(FormDocumentField field:fields)
+                formDocumentFieldCrudService.deleteById(field.getId());
+            formDocumentCrudService.deleteById(id);
             form.setDocumentCount(form.getDocumentCount()-1);
 
         }catch (Exception e){
@@ -152,9 +156,12 @@ public class EditFormServlet extends HttpServlet {
 
     }
 
-    private void deleteForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void deleteForm() throws ServletException, IOException {
         // Удаление формы
         try{
+            List<FormDocument> documents = formDocumentCrudService.findByUserForm(form);
+            for(FormDocument document : documents)
+                deleteDocument(document.getId());
             userFormCrudService.deleteById(form.getId());
         }catch (Exception e) {
             sender.sendErr("Ошибка при удалении формы: " + e.toString());
@@ -184,17 +191,17 @@ public class EditFormServlet extends HttpServlet {
             for(Field field:documentKind.getFields())
             {
                 FormDocumentField formField = new FormDocumentField(document,field,false);
+                document.getFormDocumentFields().add(formField);
                 formDocumentFieldCrudService.save(formField);
             }
-
+            form.getFormDocuments().add(document);
             form.setDocumentCount(form.getDocumentCount()+1);
 
-            // return id for next show
-            resp.getWriter().write(documentID+"");
+    // return id for next show
+            resp.getWriter().write(document.getId()+"");
 
-        }catch (Exception e){
-            sender.sendErr("Ошибка при создании документа: " + e.toString());
+}catch (Exception e){
+        sender.sendErr("Ошибка при создании документа: " + e.toString());
         }
-    }
-
+        }
 }

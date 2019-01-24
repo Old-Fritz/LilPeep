@@ -23,8 +23,8 @@
                 </td>
             </table>
             <div class="buttonbar">
-                <button onclick="$.get( 'editDocument',  {isDelete: true, documentID : '${document.id}'}, function(response) {window.location = 'user/'});">Удалить</button>
-                <button onclick="window.history.back()">Отменить</button>
+                <button onclick="$.get( 'editDocument',  {isDelete: true, documentID : '${document.id}'}, function(response) {window.location = '.'});">Удалить</button>
+                <button onclick="window.location = '.'">Отменить</button>
                 <button type="submit">Сохранить</button>
             </div>
         </form>

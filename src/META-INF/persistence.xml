@@ -8,11 +8,13 @@
     <persistence-unit name="mainUnit" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/heliosDB</jta-data-source>
+        <class>DataBaseAcces.Entities.FormDocument</class>
+        <class>DataBaseAcces.Entities.FormDocumentField</class>
+        <class>DataBaseAcces.Entities.Field</class>
         <class>DataBaseAcces.Entities.Complaint</class>
         <class>DataBaseAcces.Entities.DocumentKind</class>
         <class>DataBaseAcces.Entities.Field</class>
         <class>DataBaseAcces.Entities.FieldType</class>
-        <class>DataBaseAcces.Entities.Complaint</class>
         <class>DataBaseAcces.Entities.Picture</class>
         <class>DataBaseAcces.Entities.Settings</class>
         <class>DataBaseAcces.Entities.SettingsType</class>
