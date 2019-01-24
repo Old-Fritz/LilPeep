@@ -137,6 +137,11 @@ button, input, select{
     margin-top: 1em;
 }
 
+.docimg{
+    width: 6em;
+    height: 6em;
+}
+
 .docitem:hover{
     background: #ffccff;
 }

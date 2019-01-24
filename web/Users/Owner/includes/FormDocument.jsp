@@ -3,9 +3,6 @@
 
 <div class="docitem">
     <table>
-        <td>
-            <image class="docimg" src="https://i.ytimg.com/vi/6Y3HE1_-lDQ/maxresdefault.jpg" alt="Случился Бибиб"/>
-        </td>
         <td style="width: 70vw">
             <h>${document.documentKind.name}</h>
             <br>
