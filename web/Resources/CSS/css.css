@@ -1,4 +1,4 @@
-.logintitle{
+logintitle{
     color: black;
     border: 0px;
     font-size: 20pt;
@@ -135,6 +135,11 @@ button, input, select{
     cursor: pointer;
     margin-bottom: 1em;
     margin-top: 1em;
+}
+
+.docimg{
+    width: 6em;
+    height: 6em;
 }
 
 .docitem:hover{
