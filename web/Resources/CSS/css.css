@@ -153,3 +153,9 @@ button, input, select{
 .docitem h1{
 
 }
+
+.buttonbar{
+    text-align: right;
+    bottom: 1em;
+    right: 3em;
+}
