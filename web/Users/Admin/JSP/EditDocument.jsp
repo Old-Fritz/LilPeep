@@ -41,6 +41,7 @@
                             <script>loadField(${field.id})</script>
                         </div>
                     </c:forEach>
+                    <button type="button">Добавить поле</button>
                 </td>
             </table>
             <div class="buttonbar">
