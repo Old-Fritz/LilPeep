@@ -7,7 +7,7 @@
         <hr class="divider">
         <div class="button" onclick="window.location='forms'">Список формы</div>
         <br>
-        <div class="button" onclick="window.location='addDocument'">Добавить форму</div>
+        <div class="button" onclick="window.location='addForm'">Добавить форму</div>
         <br>
         <div class="button" onclick="window.location='settings'">Настройки</div>
         <br><br>

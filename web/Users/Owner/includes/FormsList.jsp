@@ -9,5 +9,5 @@
         <br>
     </c:forEach>
     ${form.url}
-    <button style="float: right" onclick="window.location =  'editForm?formID=${document.id}'">Изменить</button>
+    <button style="float: right" onclick="window.location =  'editForm?formID=${form.id}'">Изменить</button>
 </c:forEach>

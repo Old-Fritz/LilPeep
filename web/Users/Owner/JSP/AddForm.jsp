@@ -16,26 +16,33 @@
             <jsp:include page="../includes/leftPanelOwner.jsp"/>
             <td class="content">
                 <h1>Добавление формы</h1>
-                <form method="POST">
-                    <input type="text" name ="name"/><br>
-                    <input type="text" name ="url"/><br>
+
+                <input type="text" oninput="$('#name').val(this.value)"/><br>
+                <input type="text" oninput="$('#url').val(this.value)"/><br>
 
                     Добавить документ
                     <br>
                     <table>
                         <tr>
-                            <input type="hidden" id="selectedDocument" value="-1">
-                            <input type="text" id="searchField" oninput="getSearchList(this.value, '')" autocomplete="off"/>
-                            <div class="searchresults">
-                                {здесь элементы поиска}
-                                <br>
-                            </div>
+                            <td>
+                                <input type="hidden" id="selectedDocument" value="-1">
+                                <input type="text" id="searchField" oninput="getSearchList(this.value, '')" autocomplete="off"/>
+
+                            </td>
+                            <td>
+                                <button onclick="addFormDocument()">Добавить</button>
+                            </td>
                         </tr>
                         <tr>
-                            <button onclick="addFormDocument()">Добавить</button>
+                            <td>
+                                <div id="searchList" class="searchresults"></div>
+                            </td>
+                            <td></td>
                         </tr>
                     </table>
-                    <div id="searchList"></div>
+                <form id="docsForm" method="post" >
+                    <input type="hidden" id = "name" name ="name"/><br>
+                    <input type="hidden" id = "url" name ="url"/><br>
                     <div id="formDocuments">
                         <div class="formDocument"></div>
                         <c:forEach var="document" items="${documents}">
@@ -44,12 +51,13 @@
                             </div>
                         </c:forEach>
                     </div>
-                    <div class="buttonbar">
-                        <button onclick="deleteForm()">Удалить</button>
-                        <button onclick="window.history.back()">Отменить</button>
-                        <button type="submit">Сохранить</button>
-                    </div>
                 </form>
+                    <div class="buttonbar">
+                        <button onclick="deleteForm(); window.location = '../owner'">Удалить</button>
+                        <button onclick="window.location = '../owner'">Отменить</button>
+                        <button type="submit" form="docsForm">Сохранить</button>
+                    </div>
+
             </td>
         </table>
     </body>

@@ -38,12 +38,12 @@ public class DocumentKind {
     private int order;
 
     /** ID URL картинки документа */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_PICTURE")
     private Picture picture;
 
     /** Поля документа */
-    @OneToMany(mappedBy = "documentKind", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Field> fields;
 
     public DocumentKind()

@@ -20,17 +20,17 @@ public class UserDocument {
     /** ID типа документа */
     @NotNull
     @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private DocumentKind documentKind;
 
     /** ID пользователя */
     @NotNull
     @JoinColumn(name = "ID_USER", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     /** Список полей документа пользователя */
-    @OneToMany(mappedBy = "userDocument", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userDocument", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<UserDocumentField> userDocumentFields;
 
     public UserDocument()
