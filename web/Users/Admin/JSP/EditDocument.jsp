@@ -7,10 +7,22 @@
 <body>
 <form method = "POST" action="/user/addedDocument">
     <table>
-        <input type="text" oninput="getList(this.value)"/>
+        <jsp:include page="../includes/leftPanelAdmin.jsp"/>
         <td class="content">
             <h1>Изменение документа</h1>
-            <jsp:include page="../includes/leftPanelAdmin.jsp"/>
+            <table  class="docitem" onclick="window.location = '${action}?documentID=${document.id}'">
+                <tr>
+                    <td>
+                        <image class="docimg" src="${documentKind.picture.url}" alt="Случился Бибиб"/>
+                    </td>
+                    <td>
+                        <h1>${documentKind.name}</h1>
+                        <p>
+                            ${documentKind.description}
+                        </p>
+                    </td>
+                </tr>
+            </table>
             {Тут поля документа AdminField.html}
         </td>
 
