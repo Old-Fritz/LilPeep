@@ -26,7 +26,7 @@ public class AdminDocumentsServlet extends HttpServlet {
         // show simple page without any info
         if(type == null || type.equals("page"))
         {
-            req.getRequestDispatcher("/admin/JSP/AdminDocuments.jsp").forward(req,resp);
+            req.getRequestDispatcher("/Users/Admin/JSP/AdminDocuments.jsp").forward(req,resp);
             return;
         }
 
@@ -36,6 +36,6 @@ public class AdminDocumentsServlet extends HttpServlet {
             text="";
         List<DocumentKind> documents = documentKindCrudService.findByName(text);
         req.setAttribute("documents", documents);
-        req.getRequestDispatcher("/admin/JSP/AdminDocumentsList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Admin/includes/AdminDocumentsList.jsp").forward(req,resp);
     }
 }

@@ -4,10 +4,7 @@ import DataBaseAcces.CrudServices.DocumentKindCrudService;
 import DataBaseAcces.CrudServices.FieldCrudService;
 import DataBaseAcces.CrudServices.FieldTypeCrudService;
 import DataBaseAcces.CrudServices.PictureCrudService;
-import DataBaseAcces.Entities.DocumentKind;
-import DataBaseAcces.Entities.Field;
-import DataBaseAcces.Entities.FieldType;
-import DataBaseAcces.Entities.Picture;
+import DataBaseAcces.Entities.*;
 import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 
@@ -44,6 +41,7 @@ public class EditDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Get creating document or already existing
         try{
             documentKind = (DocumentKind)req.getSession().getAttribute("newDocument");
             if(documentKind == null){
@@ -71,13 +69,20 @@ public class EditDocumentServlet extends HttpServlet {
             return;
         }
 
-        // return only types of field
-        if(type.equals("types")) {
-            List<FieldType> types = fieldTypeCrudService.findAll();
-            // send document in jsp to show
-            req.setAttribute("types",types);
-            req.getRequestDispatcher("/Users/Admin/JSP/FieldTypesList.jsp").forward(req,resp);
-            return;
+        if(type.equals("field"))
+        {
+            try{
+                long fieldID = Long.parseLong(req.getParameter("fieldID"));
+                Field field = getField(fieldID);
+                if(field != null)
+                {
+                    req.setAttribute("field", field);
+                    req.getRequestDispatcher("/Users/Owner/includes/AdminField.jsp").forward(req,resp);
+                }
+                return;
+            }catch (Exception e){
+                sender.sendErr("Не удалось получить поле документа: " + e.toString());
+            }
         }
     }
 
@@ -94,6 +99,7 @@ public class EditDocumentServlet extends HttpServlet {
             return;
         }
 
+        // fill document field
         String name = req.getParameter("name");
         if(name!=null)
             documentKind.setName(name);
@@ -130,5 +136,16 @@ public class EditDocumentServlet extends HttpServlet {
             documentKind.getFields().add(field);
         else
             fieldCrudService.save(field);
+    }
+
+    private Field getField(long fieldID) {
+        List<Field> fields = documentKind.getFields();
+        for (Field field : fields)
+        {
+            if(field.getId() == fieldID)
+                return field;
+        }
+
+        return null;
     }
 }
