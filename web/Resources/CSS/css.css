@@ -188,3 +188,7 @@ button, input, select{
         width: 80vw;
     }
 }
+
+.content{
+    vertical-align: top;
+}
