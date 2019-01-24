@@ -88,7 +88,7 @@ button, input, select{
     background: #ccccff;
     padding-right:12px;
     height: 100vh;
-    width: 10vw;
+    width: 30vw;
 }
 
 .leftpanel .button{
@@ -102,7 +102,7 @@ button, input, select{
 .leftpanel > .email{
     height: 2em;
     line-height: 3em;
-    width: 15em;
+    width: 20em;
     margin-left: 1.5em;
     font-size: 120%;
 }
@@ -168,4 +168,23 @@ button, input, select{
 .searchresults{
     z-index: 5;
     position: absolute;
+}
+
+.menubutton{
+    display: none;
+}
+
+@media (max-width: 854px) {
+    .menubutton{
+        left: 1em;
+        top: 1em;
+        display: inherit;
+        cursor: pointer;
+        width: 2em;
+        height: 2em;
+    }
+
+    .leftpanel{
+        width: 80vw;
+    }
 }
