@@ -10,7 +10,7 @@
                 <jsp:include page="../includes/leftPanelAdmin.jsp"/>
             </td>
             <td class="content">
-                <input type="text" oninput="getList(this.value)"/>
+                <input type="text" autocomplete="false" oninput="getList(this.value)"/>
                 {Сюда список из владельцев}
             </td>
             <script>getList("")</script>

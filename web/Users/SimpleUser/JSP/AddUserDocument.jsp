@@ -14,7 +14,7 @@
             <jsp:include page="../includes/leftPanelUser.jsp"/>
             <td class="content">
                 <h1>Добавление документа</h1>
-                <input type="text"  id='searchField' oninput="getList(this.value, 'addDocument')"/>
+                <input type="text" autocomplete="false" id='searchField' oninput="getList(this.value, 'addDocument')"/>
                 <div id="list" class="searchresults"></div>
             </td>
         </table>
