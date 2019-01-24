@@ -146,6 +146,11 @@ button, input, select{
     background: #ffccff;
 }
 
+.docitem:hover[editable]{
+    background: #ffffff;
+    cursor: default;
+}
+
 .docitem td{
     vertical-align: top;
 }
