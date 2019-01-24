@@ -15,7 +15,7 @@
                 <jsp:include page="../includes/leftPanelUser.jsp"/>
                 <td class="content">
                     <h1>Изменение документа</h1>
-                    <image src="${document.documentKind.picture.url}" alt="Случился Бибиб"/>
+                    <image class="docimg" src="${document.documentKind.picture.url}" alt="Случился Бибиб"/>
                     <c:forEach var="field" items="${document.userDocumentFields}" varStatus="status">
                         <h1>${field.field.name}</h1>
                         <input type="text" name="field${status.getIndex()}" value="${field.value}"/>

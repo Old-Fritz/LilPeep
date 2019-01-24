@@ -44,7 +44,6 @@ public class AddedUserDocumentServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         user = ssoManager.getCurrentUser(req);
         // getting document
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         try {
             long documentID = Long.parseLong(req.getParameter("documentID"));
             document = documentKindCrudService.findById(documentID);

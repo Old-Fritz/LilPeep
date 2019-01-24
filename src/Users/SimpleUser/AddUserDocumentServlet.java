@@ -34,7 +34,6 @@ public class AddUserDocumentServlet extends HttpServlet{
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         super.service(req, resp);
     }
 

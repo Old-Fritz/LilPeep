@@ -16,10 +16,16 @@
             <jsp:include page="../includes/leftPanelOwner.jsp"/>
             <td class="content">
                 <h1>Добавление формы</h1>
-
+				Название формы
+				<br>
                 <input type="text" oninput="$('#name').val(this.value)"/><br>
+				<br>
+				<br>
+				URL формы
+				<br>
                 <input type="text" oninput="$('#url').val(this.value)"/><br>
-
+				<br>
+				<br>
                     Добавить документ
                     <br>
                     <table>

@@ -44,7 +44,6 @@ public class EditDocumentServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         try{
             documentKind = (DocumentKind)req.getSession().getAttribute("newDocument");
             if(documentKind == null){

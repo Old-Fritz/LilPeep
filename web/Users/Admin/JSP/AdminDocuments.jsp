@@ -1,37 +1,24 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java"  %>
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="utf-8">
     <title>Список документов</title>
-    <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
+    <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"
+            type="text/javascript"></script>
+    <script src="../Resources/JS/list.js" type="text/javascript"></script>
 </head>
 <body>
 <table>
-    <td class="docedit">
-        <h1>Список документов</h1>
-        <jsp:include page="../Includes/leftPanelAdmin.html"/>
-    </td>
+    <jsp:include page="../includes/leftPanelAdmin.jsp"/>
     <td class="content">
-        <input type="text" oninput="getList(this.value)"/>
-        <div class="searchresults">
-            {здесь элементы поиска}
-            <br>
+        <h1>Список документов</h1>
+        <input type="text" id='searchField' oninput="getList(this.value, 'documents')"/>
+        <div class="searchresults" id="list">
+
         </div>
-        {Сюда список из документов}
     </td>
-    <script>getList("")</script>
 </table>
-<script>
-    function getList(input) {
-        let xhr = new XMLHttpRequest();
-        let queryString = "type=list" +
-            "&text="+ input;
-        xhr.open("GET","addDocument?"+queryString, true);
-        xhr.onload = function() {
-            let list = document.querySelector("#list");
-            list.innerHTML = xhr.response;
-        };
-        xhr.send(null);
-    }
-</script>
 </body>
 </html>
