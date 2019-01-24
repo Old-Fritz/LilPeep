@@ -32,10 +32,6 @@ function insertAfter(el, referenceNode) {
 }
 
 
-
-
-
-
 function addFormDocument() {
     $.post("editForm", {
             type : 'addDocument',
@@ -43,10 +39,10 @@ function addFormDocument() {
             name : $("#searchField").val(),
             formID : $("#formID").val()},
         function(responseText) {
-            // example
-            var newEl = document.createElement('div');
+            let newEl = document.createElement('div');
             newEl.id =  "document"+responseText;
-            var node =  document.querySelectorAll(".formDocument").item(document.querySelectorAll(".formDocument").length-1)
+            newEl.classList.add("formDocument");
+            let node =  document.querySelectorAll(".formDocument").item(document.querySelectorAll(".formDocument").length-1);
             insertAfter(newEl, node);
             showDocument(responseText);
         });

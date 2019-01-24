@@ -4,7 +4,7 @@
 <table>
     <td>
         <input type="text" name="name${field.id}" title="${field.name}"/>
-        <select>
+        <select name="fieldType${field.id}">
             <option ${field.fieldType.id==1? 'selected' : ' '} value="1">Строка</option>
             <option ${field.fieldType.id==2? 'selected' : ' '} value="2">Число</option>
             <option ${field.fieldType.id==3? 'selected' : ' '} value="3">Дата</option>
