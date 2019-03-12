@@ -83,12 +83,17 @@ button, input, select{
     padding-left: 20pt;
 }
 
-.leftpanel{
+.leftpaneltd{
+    position:relative;
     vertical-align: top;
+}
+
+.leftpanel{
+    width: 24em;
     background: #ccccff;
-    padding-right:12px;
-    height: 100vh;
-    width: 30vw;
+    margin-right: 2em;
+    min-height:100vh;
+    position:relative;
 }
 
 .leftpanel .button{
@@ -96,6 +101,7 @@ button, input, select{
     line-height: 2em;
     width: 100%;
     padding-left: 1em;
+    padding-right: -2em;
     cursor: pointer;
 }
 
@@ -116,7 +122,6 @@ button, input, select{
 }
 
 .docitem{
-    width: 70vw;
     background-position: -1px -1px;
     background-repeat: repeat-x;
     background-size: 110% 110%;
@@ -132,9 +137,8 @@ button, input, select{
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
-    cursor: pointer;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    margin: 1em 1em 1em 1em;
+    width: 80%;
 }
 
 .docimg{
@@ -166,11 +170,13 @@ button, input, select{
 }
 
 .searchresults{
+    width: 100%;
     z-index: 5;
-    position: absolute;
+    position: relative;
 }
 
 .menubutton{
+    vertical-align: top;
     display: none;
 }
 
@@ -183,12 +189,10 @@ button, input, select{
         width: 2em;
         height: 2em;
     }
-
-    .leftpanel{
-        width: 80vw;
-    }
 }
 
 .content{
+    width : 100%;
     vertical-align: top;
+    horiz-align: left;
 }
