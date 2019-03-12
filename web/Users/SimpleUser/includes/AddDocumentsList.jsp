@@ -7,7 +7,7 @@
             <table  class="docitem" onclick="window.location = '${action}?documentID=${document.id}'">
                 <tr>
                     <td>
-                        <image src="${document.picture.url}" alt="Случился Бибиб"></image>
+                        <image class="docimg" src="${document.picture.url}" alt="Случился Бибиб"></image>
                     </td>
                     <td>
                         <h1>${document.name}</h1>

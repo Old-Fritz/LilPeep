@@ -62,6 +62,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
             return;
         }
 
+        req.setAttribute("user", user);
         super.service(req, resp);
     }
 

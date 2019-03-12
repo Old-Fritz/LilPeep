@@ -164,8 +164,10 @@ button, input, select{
 }
 
 .buttonbar{
+    position: relative;
+    vertical-align: bottom;
     text-align: right;
-    bottom: 1em;
+    bottom: -2em;
     right: 3em;
 }
 
@@ -195,4 +197,6 @@ button, input, select{
     width : 100%;
     vertical-align: top;
     horiz-align: left;
+    min-height: 100vh;
+    position: relative;
 }

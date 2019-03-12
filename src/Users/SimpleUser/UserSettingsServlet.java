@@ -39,11 +39,12 @@ public class UserSettingsServlet extends HttpServlet {
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");
-            resp.sendRedirect(req.getContextPath()+"/logout");
+            resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
         settings = user.getSettings();
 
+        req.setAttribute("user", user);
         req.getRequestDispatcher("/Users/SimpleUser/JSP/UserSettings.jsp").forward(req,resp);
     }
 

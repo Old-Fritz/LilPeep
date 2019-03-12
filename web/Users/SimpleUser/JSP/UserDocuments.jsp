@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>Список документов</title>
-        <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css?v=32">
+        <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css?v=38">
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
         <script src="../Resources/JS/list.js" type="text/javascript"></script>

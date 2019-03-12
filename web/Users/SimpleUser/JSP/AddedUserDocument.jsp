@@ -34,12 +34,12 @@
                     <br>
                     <input class="docfield" type="text" name="field${status.getIndex()}"/>
                 </c:forEach>
+                <div class="buttonbar">
+                    <button onclick="window.history.back()">Отменить</button>
+                    <button type="submit">Сохранить</button>
+                </div>
             </td>
         </table>
-    <div class="buttonbar">
-        <button onclick="window.history.back()">Отменить</button>
-        <button type="submit">Сохранить</button>
-    </div>
 </form>
 </body>
 </html>

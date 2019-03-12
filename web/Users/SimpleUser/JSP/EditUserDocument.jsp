@@ -20,13 +20,14 @@
                         <h1>${field.field.name}</h1>
                         <input type="text" name="field${status.getIndex()}" value="${field.value}"/>
                     </c:forEach>
+                    <div class="buttonbar">
+                        <button onclick="$.get( 'editDocument',  {isDelete: true, documentID : '${document.id}'}, function(response) {window.location = '.'});">Удалить</button>
+                        <button onclick="window.location = '.'">Отменить</button>
+                        <button type="submit">Сохранить</button>
+                    </div>
                 </td>
             </table>
-            <div class="buttonbar">
-                <button onclick="$.get( 'editDocument',  {isDelete: true, documentID : '${document.id}'}, function(response) {window.location = '.'});">Удалить</button>
-                <button onclick="window.location = '.'">Отменить</button>
-                <button type="submit">Сохранить</button>
-            </div>
+
         </form>
     </body>
 </html>

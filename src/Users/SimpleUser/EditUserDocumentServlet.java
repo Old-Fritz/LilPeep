@@ -64,6 +64,7 @@ public class EditUserDocumentServlet extends HttpServlet {
             delete(req,resp);
             return;
         }
+        req.setAttribute("user", user);
         super.service(req, resp);
     }
 

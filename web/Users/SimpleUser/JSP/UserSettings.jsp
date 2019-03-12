@@ -8,8 +8,9 @@
     <body>
         <table>
             <jsp:include page="../includes/leftPanelUser.jsp"/>
-            <td class="docedit">
+            <td class="content">
                 <form method = "POST" action="settings">
+                    <h1>Настройки</h1>
                     Новый пароль
                     <br>
                     <input name="password" type="password"/>

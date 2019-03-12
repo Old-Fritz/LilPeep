@@ -39,16 +39,19 @@ public class UserDocumentsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        // show simple page without any info
-        if(type == null || type.equals("page")) {
-            req.getRequestDispatcher("/Users/SimpleUser/JSP/UserDocuments.jsp").forward(req,resp);
-            return;
-        }
 
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Такого пользователя не существует");
+            resp.sendRedirect(req.getContextPath()+"/user/");
+            return;
+        }
+
+        // show simple page without any info
+        if(type == null || type.equals("page")) {
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("/Users/SimpleUser/JSP/UserDocuments.jsp").forward(req,resp);
             return;
         }
 
