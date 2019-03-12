@@ -37,7 +37,6 @@ public class OwnerSettingsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings").forward(req,resp);
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");
@@ -45,7 +44,10 @@ public class OwnerSettingsServlet extends HttpServlet {
             return;
         }
         settings = user.getSettings();
-    }
+
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings.jsp").forward(req,resp);
+}
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

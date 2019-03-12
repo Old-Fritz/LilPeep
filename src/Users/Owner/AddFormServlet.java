@@ -39,9 +39,8 @@ public class AddFormServlet extends HttpServlet {
         }
 
         // Create new userform and edit it immidietly
-        UserForm form = new UserForm(0, "Name", "Url", userFormCrudService.findByUser(user).size(), user);
-        userFormCrudService.save(form);
-
+        UserForm form = new UserForm(0, "", "", userFormCrudService.findByUser(user).size(), user);
+        req.getSession().setAttribute("newForm", form);
         resp.sendRedirect(req.getContextPath() + "/owner/editForm?formID=" + form.getId());
     }
 }

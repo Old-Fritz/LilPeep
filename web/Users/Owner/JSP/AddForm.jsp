@@ -15,15 +15,22 @@
         <table>
             <jsp:include page="../includes/leftPanelOwner.jsp"/>
             <td class="content">
-                <h1>Добавление формы</h1>
+                <c:choose>
+                    <c:when test="$newForm">
+                        <h1>Добавление формы</h1>
+                    </c:when>
+                    <c:otherwise>
+                        <h1>Изменение формы</h1>
+                    </c:otherwise>
+                </c:choose>
 				Название формы
 				<br>
-                <input type="text" oninput="$('#name').val(this.value)"/><br>
+                <input type="text" value = "${form.name}" oninput="$('#name').val(this.value)"/><br>
 				<br>
 				<br>
 				URL формы
 				<br>
-                <input type="text" oninput="$('#url').val(this.value)"/><br>
+                <input type="text" value = "${form.url}" oninput="$('#url').val(this.value)"/><br>
 				<br>
 				<br>
                     Добавить документ
@@ -33,7 +40,6 @@
                             <td>
                                 <input type="hidden" id="selectedDocument" value="-1">
                                 <input type="text" id="searchField" oninput="getSearchList(this.value, '')" autocomplete="off"/>
-
                             </td>
                             <td>
                                 <button onclick="addFormDocument()">Добавить</button>
@@ -41,7 +47,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div id="searchList" class="searchresults"></div>
+                                <div id="searchList" class="searchlist"></div>
                             </td>
                             <td></td>
                         </tr>

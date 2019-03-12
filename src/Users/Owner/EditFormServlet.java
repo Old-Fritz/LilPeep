@@ -61,6 +61,7 @@ public class EditFormServlet extends HttpServlet {
         }
 
         req.setAttribute("form", form);
+        req.setAttribute("user", user);
         super.service(req, resp);
     }
 

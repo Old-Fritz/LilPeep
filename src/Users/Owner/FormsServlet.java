@@ -37,17 +37,19 @@ public class FormsServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
-        // show simple page without any info
-        if(type == null || type.equals("page")) {
-            req.getRequestDispatcher("/Users/Owner/JSP/Forms.jsp").forward(req,resp);
-            return;
-        }
 
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
             sender.sendErr("Ошибка доступа");
-            resp.sendRedirect(req.getContextPath()+"/logout");
+            resp.sendRedirect(req.getContextPath()+"/owner");
+            return;
+        }
+
+        // show simple page without any info
+        if(type == null || type.equals("page")) {
+            req.setAttribute("user", user);
+            req.getRequestDispatcher("/Users/Owner/JSP/Forms.jsp").forward(req,resp);
             return;
         }
 

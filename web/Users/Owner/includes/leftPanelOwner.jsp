@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
-<td>
+
+<td class = "leftpaneltd">
     <img class="menubutton" src="https://textseovip.ru/images/white-menu-icon.png" onclick="change()"/>
     <div id="panel" class="leftpanel">
-        <div class="email" {email}>bibib-happens@habah.ru</div>
+        <div class="email">${user.email}</div>
         <hr class="divider">
-        <div class="button" onclick="window.location='forms'">Список формы</div>
+        <div class="button" onclick="window.location='forms'">Список форм</div>
         <br>
         <div class="button" onclick="window.location='addForm'">Добавить форму</div>
         <br>

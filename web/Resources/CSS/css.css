@@ -172,9 +172,18 @@ button, input, select{
 }
 
 .searchresults{
-    width: 100%;
     z-index: 5;
     position: relative;
+}
+
+.searchlist{
+    width: 163pt;
+    z-index: 5;
+    position: absolute;
+}
+
+.searchlist > button{
+    width: 100%;
 }
 
 .menubutton{
