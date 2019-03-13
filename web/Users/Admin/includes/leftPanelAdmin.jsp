@@ -2,7 +2,7 @@
 <td>
     <img class="menubutton" src="https://textseovip.ru/images/white-menu-icon.png" onclick="change()"/>
     <div id="panel" class="leftpanel">
-        <div class="email" {email}>bibib-happens@habah.ru</div>
+        <div class="email">Администратор</div>
         <hr class="divider">
         <div class="button" onclick="window.location='documents'">Список документов</div>
         <br>
