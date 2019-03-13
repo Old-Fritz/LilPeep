@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  %>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Изменение документа</title>
-        <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
+        <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
         <script src="../Users/Owner/JS/FormsLists.js" type="text/javascript"></script>
@@ -41,14 +42,15 @@
                             <script>loadField(${field.id})</script>
                         </div>
                     </c:forEach>
-                    <button type="button">Добавить поле</button>
+                    <button type="button" onclick="createField()">Добавить поле</button>
+                    <div class="buttonbar">
+                        <button onclick="deleteDocumentKind()">Удалить</button>
+                        <button onclick="window.history.back()">Отменить</button>
+                        <button type="submit">Сохранить</button>
+                    </div>
                 </td>
             </table>
-            <div class="buttonbar">
-                <button onclick="deleteDocumentKind()">Удалить</button>
-                <button onclick="window.history.back()">Отменить</button>
-                <button type="submit">Сохранить</button>
-            </div>
+
         </form>
     </body>
 </html>

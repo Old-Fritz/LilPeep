@@ -23,6 +23,6 @@ public class AddDocumentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DocumentKind documentKind = new DocumentKind(0,"","",documentKindCrudService.findAll().size(), null);
         req.getSession().setAttribute("newDocument", documentKind);
-        req.getRequestDispatcher("/Users/Admin/JSP/editDocument").forward(req,resp);
+        req.getRequestDispatcher("/admin/editDocument").forward(req,resp);
     }
 }
