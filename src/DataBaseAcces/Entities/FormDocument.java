@@ -1,6 +1,8 @@
 package DataBaseAcces.Entities;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.validation.constraints.NotNull;
 
@@ -35,7 +37,8 @@ public class FormDocument {
     private UserForm userForm;
 
     /** Список полей документа в форме */
-    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "formDocument", fetch =  FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<FormDocumentField> formDocumentFields;
 
 

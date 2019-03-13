@@ -1,6 +1,8 @@
 package DataBaseAcces.Entities;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.validation.constraints.NotNull;
 
@@ -43,7 +45,8 @@ public class DocumentKind {
     private Picture picture;
 
     /** Поля документа */
-    @OneToMany(mappedBy = "documentKind", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "documentKind", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Field> fields;
 
     public DocumentKind()
