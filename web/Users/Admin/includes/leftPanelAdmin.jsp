@@ -10,7 +10,7 @@
         <br>
         <div class="button" onclick="window.location='owners'">Список владельцев</div>
         <br>
-        <div class="button" onclick="window.location='complains'">Поступившие жалобы</div>
+        <div class="button" onclick="window.location='complaints'">Поступившие жалобы</div>
         <br><br>
         <div class="button" onclick="window.location='../logout'">Выйти</div>
         <script>

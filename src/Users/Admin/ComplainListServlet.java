@@ -16,7 +16,7 @@ import java.util.List;
  *Сервлет жалобы
  */
 
-@WebServlet(name = "ComplainListServlet", urlPatterns = {"/admin/complains"})
+@WebServlet(name = "ComplainListServlet", urlPatterns = {"/admin/complaints"})
 public class ComplainListServlet extends HttpServlet{
     @EJB
     private ComplaintCrudService complaintCrudService;
@@ -26,7 +26,7 @@ public class ComplainListServlet extends HttpServlet{
         // show page with list
         List<Complaint> complaints = complaintCrudService.findAll();
         req.setAttribute("complaints", complaints);
-        req.getRequestDispatcher("/Users/Admin/JSP/Complains.jsp").forward(req,resp);
+        req.getRequestDispatcher("/Users/Admin/JSP/Complaints.jsp").forward(req,resp);
     }
 
 }
