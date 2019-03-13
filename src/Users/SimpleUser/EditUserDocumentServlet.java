@@ -91,6 +91,6 @@ public class EditUserDocumentServlet extends HttpServlet {
 
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         userDocumentCrudService.deleteById(document.getId());
-        resp.sendRedirect(req.getContextPath()+"/documents");
+        resp.sendRedirect(req.getContextPath()+"/user/");
     }
 }

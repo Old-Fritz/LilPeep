@@ -10,24 +10,27 @@
                 type="text/javascript"></script>
     </head>
     <body>
-            <input type="hidden" name="documentID" value="${document.id}">
+
             <table>
                 <jsp:include page="../includes/leftPanelUser.jsp"/>
                 <td class="content">
                     <h1>Изменение документа</h1>
                     <image class="docimg" src="${document.documentKind.picture.url}" alt="Случился Бибиб"/>
-                    <c:forEach var="field" items="${document.userDocumentFields}" varStatus="status">
-                        <h1>${field.field.name}</h1>
-                        <input type="text" name="field${status.getIndex()}" value="${field.value}"/>
-                    </c:forEach>
+                    <form method="post" id="form" action="editDocument">
+                        <input type="hidden" name="documentID" value="${document.id}">
+                        <c:forEach var="field" items="${document.userDocumentFields}" varStatus="status">
+                            <h1>${field.field.name}</h1>
+                            <input type="text" name="field${status.getIndex()}" value="${field.value}"/>
+                        </c:forEach>
+                    </form>
                     <div class="buttonbar">
                         <button onclick="$.get( 'editDocument',  {isDelete: true, documentID : '${document.id}'}, function(response) {window.location = '.'});">Удалить</button>
                         <button onclick="window.location = '.'">Отменить</button>
-                        <button type="submit">Сохранить</button>
+                        <button type="submit" form="form">Сохранить</button>
                     </div>
+
                 </td>
             </table>
 
-        </form>
     </body>
 </html>
