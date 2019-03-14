@@ -10,6 +10,7 @@ import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +39,9 @@ public class EditFormServlet extends HttpServlet {
     @EJB
     private RabbitSender sender;
 
-    private UserForm form;
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // get user
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
@@ -49,24 +49,33 @@ public class EditFormServlet extends HttpServlet {
             return;
         }
 
-        try {
-            long formID = Long.parseLong(req.getParameter("formID"));
-            form = userFormCrudService.findById(formID);
-            // check that form and user are same
-            if(form==null||form.getUser().getId()!=user.getId())
-                throw new Exception();
-        }catch (Exception e){
+        // get current by id
+        UserForm form = getForm(req, user);
+        if(form==null)
+        {
             resp.sendRedirect(req.getContextPath()+"/owner/");
             return;
         }
 
+        // check for new form
+        UserForm newForm = (UserForm)req.getSession().getAttribute("newForm");
+        Boolean isNewForm;
+        if(newForm == form)
+            isNewForm = true;
+        else
+            isNewForm = false;
+
         req.setAttribute("form", form);
         req.setAttribute("user", user);
+        req.setAttribute("isNewForm", isNewForm);
         super.service(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Boolean isNewForm = (Boolean)req.getAttribute("isNewForm");
+        UserForm form = (UserForm)req.getAttribute("form");
+
         String type = req.getParameter("type");
         // show simple page without any info
         if(type == null || type.equals("page"))
@@ -94,7 +103,12 @@ public class EditFormServlet extends HttpServlet {
         {
             try{
                 long documentInd = Long.parseLong(req.getParameter("documentID"));
-                FormDocument document = formDocumentCrudService.findById(documentInd);
+                FormDocument document;
+                if(isNewForm)
+                    document = form.getFormDocuments().get((int)documentInd);
+                else
+                    document = formDocumentCrudService.findById(documentInd);
+
                 req.setAttribute("document", document);
                 req.getRequestDispatcher("/Users/Owner/includes/FormDocument.jsp").forward(req,resp);
                 return;
@@ -103,7 +117,7 @@ public class EditFormServlet extends HttpServlet {
             }
         }
 
-        // Go back if all gets are faileds
+        // Go back if all gets are failed
         resp.sendRedirect(req.getContextPath()+"/owner");
     }
 
@@ -118,14 +132,67 @@ public class EditFormServlet extends HttpServlet {
         }
 
         if(type != null && type.equals("deleteDocument")) {
-            deleteDocument(Long.parseLong(req.getParameter("documentID")));
+            deleteDocument(req, Long.parseLong(req.getParameter("documentID")));
             return;
         }
 
         if(type != null && type.equals("deleteForm")) {
-            deleteForm();
+            deleteForm(req);
             return;
         }
+
+        // save in default
+        saveForm(req,resp);
+
+    }
+
+    private void deleteDocument(HttpServletRequest req, long id) throws ServletException, IOException {
+        Boolean isNewForm = (Boolean)req.getAttribute("isNewForm");
+        UserForm form = (UserForm)req.getAttribute("form");
+
+        FormDocument document;
+        if(isNewForm)
+            document = form.getFormDocuments().get((int)id);
+        else
+            document = formDocumentCrudService.findById(id);
+        if(document == null)
+        {
+              sender.sendErr("Неверное id документа: ");
+              return;
+        }
+
+        form.setDocumentCount(form.getDocumentCount()-1);
+        form.getFormDocuments().removeIf(doc->doc.getId()==id);
+        if(!isNewForm)
+        {
+            document.setUserForm(null);
+            document = formDocumentCrudService.update(document);
+            List<FormDocumentField> fields =formDocumentFieldCrudService.findByFormDocument(document);
+            for(FormDocumentField field:fields)
+            {
+                field.setFormDocument(null);
+                field = formDocumentFieldCrudService.update(field);
+                formDocumentFieldCrudService.deleteById(field.getId());
+            }
+            formDocumentCrudService.deleteById(id);
+        }
+
+    }
+
+    private void deleteForm(HttpServletRequest req) throws ServletException, IOException {
+        Boolean isNewForm = (Boolean)req.getAttribute("isNewForm");
+        UserForm form = (UserForm)req.getAttribute("form");
+        // Удаление формы
+        if(isNewForm)
+            req.getSession().removeAttribute("newForm");
+        else
+            userFormCrudService.deleteById(form.getId());
+    }
+
+    private void saveForm(HttpServletRequest req, HttpServletResponse resp)  throws ServletException, IOException
+    {
+        Boolean isNewForm = (Boolean)req.getAttribute("isNewForm");
+        UserForm form = (UserForm)req.getAttribute("form");
 
         form.setName(req.getParameter("name"));
         form.setUrl(req.getParameter("url"));
@@ -139,41 +206,40 @@ public class EditFormServlet extends HttpServlet {
                     field.setChecked(false);
             }
         }
-        req.getRequestDispatcher("/owner").forward(req,resp);
-    }
+        // save in DB if this is new form
+        if(isNewForm)
+        {
 
-    private void deleteDocument(long id) throws ServletException, IOException {// Удвление документа
-        try{
-            FormDocument document = formDocumentCrudService.findById(id);
-            List<FormDocumentField> fields =formDocumentFieldCrudService.findByFormDocument(document);
-            for(FormDocumentField field:fields)
-                formDocumentFieldCrudService.deleteById(field.getId());
-            formDocumentCrudService.deleteById(id);
-            form.setDocumentCount(form.getDocumentCount()-1);
-
-        }catch (Exception e){
-            sender.sendErr("Ошибка при удалении документа: " + e.toString());
+            UserForm newForm = new UserForm(form.getDocumentCount(), form.getName(),form.getUrl(), form.getOrder(), form.getUser());
+            userFormCrudService.save(newForm);
+            for(FormDocument document:form.getFormDocuments())
+            {
+                FormDocument newDocument = new FormDocument(document.getOrder(), document.getDocumentKind(),newForm);
+                newForm.getFormDocuments().add(newDocument);
+                formDocumentCrudService.save(newDocument);
+                for(FormDocumentField field:document.getFormDocumentFields())
+                {
+                    FormDocumentField newField = new FormDocumentField(newDocument, field.getField(),field.isChecked());
+                    newDocument.getFormDocumentFields().add(newField);
+                    formDocumentFieldCrudService.save(newField);
+                }
+                formDocumentCrudService.update(newDocument);
+            }
+            userFormCrudService.update(newForm);
+            req.getSession().removeAttribute("newForm");
         }
-
+        else
+            userFormCrudService.update(form);
+        resp.sendRedirect(req.getContextPath()+"/owner/");
     }
-
-    private void deleteForm() throws ServletException, IOException {
-        // Удаление формы
-        try{
-            List<FormDocument> documents = formDocumentCrudService.findByUserForm(form);
-            for(FormDocument document : documents)
-                deleteDocument(document.getId());
-            userFormCrudService.deleteById(form.getId());
-        }catch (Exception e) {
-            sender.sendErr("Ошибка при удалении формы: " + e.toString());
-        }
-    }
-
     /**
      * Создание документа
      * @param req HTTP-запрос
      */
-    private void createDocument(HttpServletRequest req, HttpServletResponse resp) {
+    private void createDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        Boolean isNewForm = (Boolean)req.getAttribute("isNewForm");
+        UserForm form = (UserForm)req.getAttribute("form");
+
         try{
             // get document kind in some way
             long documentID = Long.parseLong(req.getParameter("documentID"));
@@ -182,27 +248,71 @@ public class EditFormServlet extends HttpServlet {
                 documentKind = documentKindCrudService.findById(documentID);
             else
                 documentKind = documentKindCrudService.findByName(req.getParameter("name")).get(0);
+
             if(documentKind==null)
                 throw new Exception();
 
+            // check for existing in documents
+            for (FormDocument formDocument : form.getFormDocuments()) {
+                if(formDocument.getDocumentKind().getId()==documentKind.getId())
+                {
+                    sender.sendErr("Нельзя добавить два одинаковых документа");
+                    throw new Exception();
+                }
+            }
+
             // Create and save empty document
             FormDocument document = new FormDocument(form.getFormDocuments().size(),documentKind,form);
-            formDocumentCrudService.save(document);
+            if(isNewForm)
+                document.setId(form.getDocumentCount());
+            else
+                formDocumentCrudService.save(document);
 
-            for(Field field:documentKind.getFields())
+            // create fields
+            List<Field> fields = documentKind.getFields();
+            for(int i = 0;i<fields.size();i++)
             {
-                FormDocumentField formField = new FormDocumentField(document,field,false);
+
+                FormDocumentField formField = new FormDocumentField(document,fields.get(i),false);
                 document.getFormDocumentFields().add(formField);
-                formDocumentFieldCrudService.save(formField);
+                if(isNewForm)
+                    formField.setId(i);
+                else
+                    formDocumentFieldCrudService.save(formField);
             }
             form.getFormDocuments().add(document);
             form.setDocumentCount(form.getDocumentCount()+1);
 
-    // return id for next show
+            // return id for next show
             resp.getWriter().write(document.getId()+"");
 
-}catch (Exception e){
-        sender.sendErr("Ошибка при создании документа: " + e.toString());
+        }catch (Exception e){
+            sender.sendErr("Ошибка при создании документа: " + e.toString());
+            resp.getWriter().write("-1");
         }
-        }
+
+    }
+
+    private UserForm getForm(HttpServletRequest req, User user)
+    {
+        UserForm outForm;
+        String formIDStr = req.getParameter("formID");
+        // if sended without form id this is new form or null
+        if(formIDStr == null)
+            return (UserForm)req.getSession().getAttribute("newForm");
+
+
+        // get form by id
+        long formID = Long.parseLong(req.getParameter("formID"));
+        if(formID<0)
+            return (UserForm)req.getSession().getAttribute("newForm");
+
+        outForm = userFormCrudService.findById(formID);
+        // check that form and user are same
+        if(outForm==null||outForm.getUser().getId()!=user.getId())
+            return null;
+
+        return outForm;
+    }
 }
+

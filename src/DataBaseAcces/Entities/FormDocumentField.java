@@ -20,8 +20,7 @@ public class FormDocumentField {
     private boolean isChecked;
 
     /** Форма документа */
-    @NotNull
-    @JoinColumn(name = "ID_DOCUMENT", nullable = false)
+    @JoinColumn(name = "ID_DOCUMENT")
     @ManyToOne(fetch = FetchType.EAGER)
     private FormDocument formDocument;
 

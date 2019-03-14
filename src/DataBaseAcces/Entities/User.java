@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -66,6 +67,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.userKind = userKind;
+        this.settings = new ArrayList<>();
     }
 
 }

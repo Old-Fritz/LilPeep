@@ -9,6 +9,7 @@
             ${document.documentKind.name}
             <br>
         </c:forEach>
-            ${form.url}
+            <br>
+        <i>${form.url}</i>
     </div>
 </c:forEach>

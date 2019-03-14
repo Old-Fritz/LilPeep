@@ -28,8 +28,6 @@ public class OwnerSettingsServlet extends HttpServlet {
     @EJB
     private RabbitSender sender;
 
-    private List<Settings> settings;
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
@@ -43,7 +41,7 @@ public class OwnerSettingsServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath()+"/logout");
             return;
         }
-        settings = user.getSettings();
+
 
         req.setAttribute("user", user);
         req.getRequestDispatcher("/Users/Owner/JSP/OwnerSettings.jsp").forward(req,resp);
@@ -51,6 +49,14 @@ public class OwnerSettingsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = ssoManager.getCurrentUser(req);
+        if(user==null) {
+            sender.sendErr("Ошибка доступа");
+            resp.sendRedirect(req.getContextPath()+"/logout");
+            return;
+        }
+
+        List<Settings> settings = user.getSettings();
         for(int i = 0;i<settings.size();i++) {
             String settingValue = req.getParameter("setting" + i);
             if(settingValue == null)

@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Добавление формы</title>
+        <title>Форма</title>
         <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
@@ -16,7 +16,7 @@
             <jsp:include page="../includes/leftPanelOwner.jsp"/>
             <td class="content">
                 <c:choose>
-                    <c:when test="$newForm">
+                    <c:when test="${isNewForm}">
                         <h1>Добавление формы</h1>
                     </c:when>
                     <c:otherwise>
@@ -53,8 +53,8 @@
                         </tr>
                     </table>
                 <form id="docsForm" method="post" >
-                    <input type="hidden" id = "name" name ="name"/><br>
-                    <input type="hidden" id = "url" name ="url"/><br>
+                    <input type="hidden" id = "name" name ="name" value="${form.name}"/><br>
+                    <input type="hidden" id = "url" name ="url" value="${form.url}"/><br>
                     <div id="formDocuments">
                         <div class="formDocument"></div>
                         <c:forEach var="document" items="${documents}">
@@ -69,7 +69,6 @@
                         <button onclick="window.location = '../owner'">Отменить</button>
                         <button type="submit" form="docsForm">Сохранить</button>
                     </div>
-
             </td>
         </table>
     </body>

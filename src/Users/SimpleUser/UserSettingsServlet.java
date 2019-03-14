@@ -42,7 +42,7 @@ public class UserSettingsServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
-        settings = user.getSettings();
+
 
         req.setAttribute("user", user);
         req.getRequestDispatcher("/Users/SimpleUser/JSP/UserSettings.jsp").forward(req,resp);
@@ -50,6 +50,14 @@ public class UserSettingsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = ssoManager.getCurrentUser(req);
+        if(user==null) {
+            sender.sendErr("Ошибка доступа");
+            resp.sendRedirect(req.getContextPath()+"/user/");
+            return;
+        }
+
+        List<Settings> settings = user.getSettings();
         for(int i = 0;i<settings.size();i++) {
             String settingValue = req.getParameter("setting" + i);
             if(settingValue == null)

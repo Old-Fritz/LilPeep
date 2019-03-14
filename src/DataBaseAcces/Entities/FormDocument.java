@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @Entity
@@ -31,8 +32,7 @@ public class FormDocument {
     private DocumentKind documentKind;
 
     /** Форма владельца */
-    @NotNull
-    @JoinColumn(name = "ID_FORM", nullable = false)
+    @JoinColumn(name = "ID_FORM")
     @ManyToOne(fetch = FetchType.EAGER)
     private UserForm userForm;
 
@@ -57,5 +57,6 @@ public class FormDocument {
         this.order = order;
         this.documentKind = documentKind;
         this.userForm = userForm;
+        this.formDocumentFields = new ArrayList<>();
     }
 }

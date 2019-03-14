@@ -37,11 +37,12 @@ public class AddedUserDocumentServlet extends HttpServlet {
     @EJB
     private RabbitSender sender;
 
-    private DocumentKind document;
-    private User user;
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user;
+        DocumentKind document;
+
         user = ssoManager.getCurrentUser(req);
         // getting document
         try {
@@ -62,6 +63,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
             return;
         }
 
+        req.setAttribute("document",document);
         req.setAttribute("user", user);
         super.service(req, resp);
     }
@@ -69,12 +71,14 @@ public class AddedUserDocumentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // send document in jsp to show
-        req.setAttribute("document",document);
         req.getRequestDispatcher("/Users/SimpleUser/JSP/AddedUserDocument.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DocumentKind document = (DocumentKind)req.getAttribute("document");
+        User user = (User)req.getAttribute("user");
+
         UserDocument userDocument = new UserDocument(document, user);
         userDocumentCrudService.save(userDocument);
 

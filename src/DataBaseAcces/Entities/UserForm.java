@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -68,5 +69,6 @@ public class UserForm {
         this.url = url;
         this.user = user;
         this.order = order;
+        this.formDocuments = new ArrayList<>();
     }
 }

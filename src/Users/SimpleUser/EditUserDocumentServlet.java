@@ -35,11 +35,10 @@ public class EditUserDocumentServlet extends HttpServlet {
     @EJB
     private RabbitSender sender;
 
-    private UserDocument document;
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = ssoManager.getCurrentUser(req);
+        UserDocument document;
         // getting document
         try {
             long documentID = Long.parseLong(req.getParameter("documentID"));
@@ -64,12 +63,14 @@ public class EditUserDocumentServlet extends HttpServlet {
             delete(req,resp);
             return;
         }
+        req.setAttribute("document", document);
         req.setAttribute("user", user);
         super.service(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDocument document = (UserDocument)req.getAttribute("document") ;
         // send document in jsp to show
         req.setAttribute("document",document);
         req.getRequestDispatcher("/Users/SimpleUser/JSP/EditUserDocument.jsp").forward(req,resp);
@@ -77,6 +78,8 @@ public class EditUserDocumentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDocument document = (UserDocument)req.getAttribute("document") ;
+
         List<UserDocumentField> fields = document.getUserDocumentFields();
         // change all field values
         for(int i = 0;i<fields.size();i++) {
@@ -90,6 +93,8 @@ public class EditUserDocumentServlet extends HttpServlet {
     }
 
     protected void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        UserDocument document = (UserDocument)req.getAttribute("document") ;
+
         userDocumentCrudService.deleteById(document.getId());
         resp.sendRedirect(req.getContextPath()+"/user/");
     }

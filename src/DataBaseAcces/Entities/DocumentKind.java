@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @Entity
@@ -68,6 +69,7 @@ public class DocumentKind {
         this.description = description;
         this.picture = picture;
         this.order = order;
+        this.fields = new ArrayList<>();
     }
 
 

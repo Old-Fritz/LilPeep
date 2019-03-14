@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -49,6 +50,7 @@ public class UserDocument {
     public UserDocument(@NotNull DocumentKind documentKind, @NotNull User user) {
         this.documentKind = documentKind;
         this.user = user;
+        this.userDocumentFields = new ArrayList<>();
     }
 
 }
