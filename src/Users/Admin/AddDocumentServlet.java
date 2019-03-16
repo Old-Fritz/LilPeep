@@ -22,7 +22,8 @@ public class AddDocumentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DocumentKind documentKind = new DocumentKind(0,"","",documentKindCrudService.findAll().size(), null);
+        documentKind.setId(-1);
         req.getSession().setAttribute("newDocument", documentKind);
-        req.getRequestDispatcher("/admin/editDocument").forward(req,resp);
+        resp.sendRedirect(req.getContextPath() + "/admin/editDocument");
     }
 }

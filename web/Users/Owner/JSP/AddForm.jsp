@@ -11,7 +11,6 @@
         <script src="../Users/Owner/JS/FormsLists.js" type="text/javascript"></script>
     </head>
     <body>
-        <input type="hidden" id="formID" value="${form.id}">
         <table>
             <jsp:include page="../includes/leftPanelOwner.jsp"/>
             <td class="content">
@@ -53,6 +52,7 @@
                         </tr>
                     </table>
                 <form id="docsForm" method="post" >
+                    <input type="hidden" id= "formID" value="${form.id}">
                     <input type="hidden" id = "name" name ="name" value="${form.name}"/><br>
                     <input type="hidden" id = "url" name ="url" value="${form.url}"/><br>
                     <div id="formDocuments">

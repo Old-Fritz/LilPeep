@@ -11,7 +11,7 @@
                     </td>
                     <td>
                         <h1>${document.documentKind.name}</h1>
-                        <p>
+                        <p class="restrictedParagraph">
                                 ${document.documentKind.description}
                         </p>
                     </td>

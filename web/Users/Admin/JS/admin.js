@@ -4,41 +4,43 @@ function insertAfter(el, referenceNode) {
 
 function loadField(fieldID){
     $.get("editDocument", {
-            type : 'field',
-        fieldID : fieldID},
+        type : 'field',
+        fieldID : fieldID,
+            documentID : $("#documentID").val()},
         function(responseText) {
-            $(""+documentID).html(responseText);
+            $("#field"+fieldID).html(responseText);
         });
 }
 
 function deleteDocumentKind()
 {
     $.post("editDocument", {
-            type : 'deleteDocument'},
+        documentID : $("#documentID").val(),
+        type : 'deleteDocument'},
         function(responseText) {
         });
-    $("#document"+documentID).remove();
 }
 
 function deleteField(fieldID)
 {
     $.post("editDocument", {
             fieldID : fieldID,
+            documentID : $("#documentID").val(),
             type :"deleteField"},
         function(responseText) {
-
         });
+    $("#field"+fieldID).remove();
 }
 
 function createField(){
-    $.post("editForm", {
-            type : 'createField'},
+    $.post("editDocument", {
+            type : 'createField',
+            documentID : $("#documentID").val()},
         function(responseText) {
             let newEl = document.createElement('div');
-            newEl.id =  responseText;
+            newEl.id =  "field"+responseText;
             newEl.classList.add("docField");
-            let node =  document.querySelectorAll(".docField").item(document.querySelectorAll(".docField").length-1);
-            insertAfter(newEl, node);
-            showDocument(responseText);
+            $("#docFields").append(newEl);
+            loadField(responseText);
         });
 }

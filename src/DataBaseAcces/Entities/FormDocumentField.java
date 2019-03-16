@@ -1,6 +1,8 @@
 package DataBaseAcces.Entities;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -25,8 +27,8 @@ public class FormDocumentField {
     private FormDocument formDocument;
 
     /** Поле документа */
-    @NotNull
-    @JoinColumn(name = "FIELD", nullable = false)
+    @JoinColumn(name = "FIELD")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(fetch = FetchType.EAGER)
     private Field field;
 

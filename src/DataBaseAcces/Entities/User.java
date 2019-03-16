@@ -3,6 +3,8 @@ package DataBaseAcces.Entities;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -42,6 +44,7 @@ public class User {
      */
     @NotNull
     @JoinColumn(name = "ID_TYPE", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(fetch = FetchType.EAGER)
     private UserKind userKind;
 

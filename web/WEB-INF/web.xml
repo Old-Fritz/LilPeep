@@ -16,5 +16,17 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
+    <filter>
+        <filter-name>Encoding</filter-name>
+        <filter-class>EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
 
 </web-app>

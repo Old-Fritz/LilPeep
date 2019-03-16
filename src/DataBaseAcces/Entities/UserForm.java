@@ -3,6 +3,8 @@ package DataBaseAcces.Entities;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -42,6 +44,7 @@ public class UserForm {
     /** Пользователь */
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_USER", nullable = false)
     private User user;
 

@@ -1,6 +1,8 @@
 package DataBaseAcces.Entities;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,8 +26,8 @@ public class UserDocumentField {
 
     /** ID поля */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_FIELD",nullable = false)
-    @NotNull
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "ID_FIELD")
     private Field field;
 
     /** Документ пользователя */

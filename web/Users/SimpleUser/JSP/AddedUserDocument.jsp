@@ -21,7 +21,7 @@
                             </td>
                             <td>
                                 <h1>${document.name}</h1>
-                                <p>
+                                <p class="restrictedParagraph">
                                     ${document.description}
                                 </p>
                             </td>
@@ -30,15 +30,12 @@
                     <form method = "POST" id="form" action="addedDocument">
                         <input type="hidden" name="documentID" value="${document.id}">
                         <c:forEach var="field" items="${document.fields}" varStatus="status">
-                            <br>
-                            <br>
-                            ${field.name}
-                            <br>
+                            <h1>${field.name}</h1>
                             <input class="docfield" type="text" name="field${status.getIndex()}"/>
                         </c:forEach>
                     </form>
                     <div class="buttonbar">
-                        <button onclick="window.history.back()">Отменить</button>
+                        <button onclick="window.location = '../user'">Отменить</button>
                         <button type="submit" form="form">Сохранить</button>
                     </div>
                 </td>

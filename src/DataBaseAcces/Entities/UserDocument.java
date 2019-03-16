@@ -3,6 +3,8 @@ package DataBaseAcces.Entities;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -21,14 +23,15 @@ public class UserDocument {
     private long id;
 
     /** ID типа документа */
-    @NotNull
-    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
+    @JoinColumn(name = "ID_DOCUMENT_KIND")
     @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private DocumentKind documentKind;
 
     /** ID пользователя */
     @NotNull
     @JoinColumn(name = "ID_USER", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 

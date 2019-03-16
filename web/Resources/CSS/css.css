@@ -191,6 +191,11 @@ button, input, select{
     display: none;
 }
 
+.deleteImg{
+    width : 2em;
+    height: 2em;
+}
+
 @media (max-width: 854px) {
     .menubutton{
         left: 1em;
@@ -208,4 +213,13 @@ button, input, select{
     horiz-align: left;
     min-height: 100vh;
     position: relative;
+}
+
+select {
+    width: 163pt;
+}
+
+.restrictedParagraph{
+    width: 100%;
+    white-space: normal;
 }

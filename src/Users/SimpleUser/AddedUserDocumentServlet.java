@@ -83,7 +83,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
         userDocumentCrudService.save(userDocument);
 
         // change all field values
-        for(int i = 0;i<document.getFieldsCount();i++) {
+        for(int i = 0;i<document.getFields().size();i++) {
             String fieldValue = req.getParameter("field" + i);
             if(fieldValue == null)
                 fieldValue = "";

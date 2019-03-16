@@ -44,6 +44,8 @@ public class OwnerListServlet extends HttpServlet {
         List<OwnerStruct> ownerStructs = new ArrayList<>();
         UserKind userKind = userKindCrudService.findByName("Owner");
         List<User> owners = userCrudService.findByEmailLikeAndKind("",userKind);
+        if(owners == null)
+            return ownerStructs;
         for (User owner : owners) {
             int complaintsCount = complaintCrudService.findByUser(owner).size();
             int formsCount = userFormCrudService.findByUser(owner).size();

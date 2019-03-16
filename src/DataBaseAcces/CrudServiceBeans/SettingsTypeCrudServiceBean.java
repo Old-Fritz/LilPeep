@@ -44,6 +44,10 @@ public class SettingsTypeCrudServiceBean implements SettingsTypeCrudService {
 
     @Override
     public SettingsType findByName(String name) {
-        return em.createQuery("select t from SettingsType t where t.name = " + name, SettingsType.class).getSingleResult();
+        try {
+            return em.createQuery("select t from SettingsType t where t.name = " + name, SettingsType.class).getSingleResult();
+        }catch (Exception e){
+        return null;
+        }
     }
 }

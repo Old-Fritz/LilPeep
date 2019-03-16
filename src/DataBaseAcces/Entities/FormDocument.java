@@ -3,6 +3,8 @@ package DataBaseAcces.Entities;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
@@ -26,9 +28,9 @@ public class FormDocument {
     private int order;
 
     /** Тип документа */
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "ID_DOCUMENT_KIND")
     private DocumentKind documentKind;
 
     /** Форма владельца */

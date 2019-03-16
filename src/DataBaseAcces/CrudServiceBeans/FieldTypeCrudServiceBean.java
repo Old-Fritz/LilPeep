@@ -44,6 +44,10 @@ public class FieldTypeCrudServiceBean implements FieldTypeCrudService  {
 
     @Override
     public FieldType findByName(String name) {
-        return em.createQuery("select t from FieldType t where t.name = " + name, FieldType.class).getResultList().get(0);
+        try{
+            return em.createQuery("select t from FieldType t where t.name = " + name, FieldType.class).getResultList().get(0);
+        }catch (Exception e){
+            return null;
+        }
     }
 }

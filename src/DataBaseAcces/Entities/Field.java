@@ -1,10 +1,16 @@
 package DataBaseAcces.Entities;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "FIELD")
@@ -27,16 +33,24 @@ public class Field {
     private int order;
 
     /** Тип документа */
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_DOCUMENT_KIND", nullable = false)
+    @JoinColumn(name = "ID_DOCUMENT_KIND")
     private DocumentKind documentKind;
 
     /** Тип поля */
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_TYPE", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "ID_TYPE")
     private FieldType fieldType;
+
+    @OneToMany(mappedBy = "field", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<FormDocumentField> formDocumentFields;
+
+    @OneToMany(mappedBy = "field", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<FormDocumentField> userDocumentFields;
+
 
     public Field()
     {

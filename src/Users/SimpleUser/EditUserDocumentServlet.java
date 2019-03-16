@@ -58,13 +58,15 @@ public class EditUserDocumentServlet extends HttpServlet {
             return;
         }
 
+        req.setAttribute("document", document);
+        req.setAttribute("user", user);
+
         if(req.getParameter("isDelete")!=null)
         {
             delete(req,resp);
             return;
         }
-        req.setAttribute("document", document);
-        req.setAttribute("user", user);
+
         super.service(req, resp);
     }
 

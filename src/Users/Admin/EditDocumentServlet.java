@@ -1,21 +1,22 @@
 package Users.Admin;
 
 import DataBaseAcces.CrudServices.DocumentKindCrudService;
-import DataBaseAcces.CrudServices.FieldCrudService;
-import DataBaseAcces.CrudServices.FieldTypeCrudService;
-import DataBaseAcces.CrudServices.PictureCrudService;
-import DataBaseAcces.Entities.*;
-import ExternalServices.Rabbit.CockieUtils;
-import ExternalServices.Rabbit.RabbitSender;
+        import DataBaseAcces.CrudServices.FieldCrudService;
+        import DataBaseAcces.CrudServices.FieldTypeCrudService;
+        import DataBaseAcces.CrudServices.PictureCrudService;
+        import DataBaseAcces.Entities.*;
+        import ExternalServices.Rabbit.CockieUtils;
+        import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+        import javax.servlet.ServletException;
+        import javax.servlet.annotation.WebServlet;
+        import javax.servlet.http.HttpServlet;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
+        import java.io.IOException;
+        import java.util.List;
+
 
 /**
  * Сервлет изменения документа администратора
@@ -36,28 +37,22 @@ public class EditDocumentServlet extends HttpServlet {
     @EJB
     private RabbitSender sender;
 
-    private DocumentKind documentKind;
-    private boolean isNew = false;
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Get creating document or already existing
-        try{
-            documentKind = (DocumentKind)req.getSession().getAttribute("newDocument");
-            if(documentKind == null){
-                long documentID=Long.parseLong(req.getParameter("documentID"));
-                documentKind=documentKindCrudService.findById(documentID);
-                if(documentKind==null)
-                    throw new Exception();
-            }
-            else
-                isNew=true;
-        }
-        catch (Exception e){
-            sender.sendErr("Не удалось загрузить документ: " + e.toString());
+        DocumentKind documentKind = getDocumentKind(req);
+        if(documentKind == null){
+            sender.sendErr("Не удалось загрузить документ: ");
             resp.sendRedirect(req.getContextPath()+"/admin/");
             return;
         }
+
+        Boolean isNewDocument = false;
+        if(documentKind.getId()<0)
+            isNewDocument = true;
+
+        req.setAttribute("documentKind", documentKind);
+        req.setAttribute("isNewDocument", isNewDocument);
         super.service(req, resp);
     }
 
@@ -73,11 +68,11 @@ public class EditDocumentServlet extends HttpServlet {
         {
             try{
                 long fieldID = Long.parseLong(req.getParameter("fieldID"));
-                Field field = getField(fieldID);
+                Field field = getField(req, fieldID);
                 if(field != null)
                 {
                     req.setAttribute("field", field);
-                    req.getRequestDispatcher("/Users/Owner/includes/AdminField.jsp").forward(req,resp);
+                    req.getRequestDispatcher("/Users/Admin/includes/AdminField.jsp").forward(req,resp);
                 }
                 return;
             }catch (Exception e){
@@ -89,6 +84,7 @@ public class EditDocumentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String type = req.getParameter("type");
+
 
         if(type!=null && type.equals("createField"))
         {
@@ -104,7 +100,7 @@ public class EditDocumentServlet extends HttpServlet {
         {
             try{
                 long fieldID = Long.parseLong(req.getParameter("fieldID"));
-                deleteField(fieldID);
+                deleteField(req, fieldID);
             } catch (Exception e){
                 sender.sendErr("Не удалось удалить поле: " + e.toString());
             }
@@ -114,9 +110,7 @@ public class EditDocumentServlet extends HttpServlet {
         if(type!=null && type.equals("deleteDocument"))
         {
             try{
-                long fieldID = Long.parseLong(req.getParameter("fieldID"));
-                if(!isNew)
-                    deleteDocument();
+                deleteDocument(req);
             } catch (Exception e){
                 sender.sendErr("Не удалось удалить документ: " + e.toString());
             }
@@ -130,11 +124,14 @@ public class EditDocumentServlet extends HttpServlet {
         }
 
 
-        req.getRequestDispatcher("/admin").forward(req,resp);
+        resp.sendRedirect(req.getContextPath()+"/admin/");
     }
 
     private void saveDocument(HttpServletRequest req)
     {
+        DocumentKind documentKind = (DocumentKind)req.getAttribute("documentKind");
+        Boolean isNewDocument = (Boolean)req.getAttribute("isNewDocument");
+
         // fill document field
         String name = req.getParameter("name");
         if(name!=null)
@@ -154,6 +151,16 @@ public class EditDocumentServlet extends HttpServlet {
             }
             documentKind.setPicture(picture);
         }
+
+        // create new document
+        DocumentKind newDocumentKind = null;
+        if(isNewDocument)
+        {
+            newDocumentKind = new DocumentKind(documentKind.getFieldsCount(),documentKind.getName(),
+                    documentKind.getDescription(),documentKind.getOrder(),documentKind.getPicture());
+            documentKindCrudService.save(newDocumentKind);
+        }
+
         List<Field> fields = documentKind.getFields();
         for (Field field : fields)
         {
@@ -162,20 +169,36 @@ public class EditDocumentServlet extends HttpServlet {
             FieldType type = fieldTypeCrudService.findById(typeID);
             field.setName(fieldName);
             field.setFieldType(type);
-            if(isNew)
-                fieldCrudService.save(field);
+            if(isNewDocument)
+            {
+                Field newField = new Field(field.getName(), field.getOrder(), newDocumentKind, field.getFieldType());
+                newDocumentKind.getFields().add(newField);
+                fieldCrudService.save(newField);
+            }
+            else
+                fieldCrudService.update(field);
         }
-        if(isNew)
-            documentKindCrudService.save(documentKind);
+        if(isNewDocument)
+        {
+            documentKindCrudService.update(newDocumentKind);
+            req.removeAttribute("newDocument");
+        }
+        else
+            documentKindCrudService.update(documentKind);
     }
 
     private void createField(HttpServletRequest req, HttpServletResponse resp)
     {
+        DocumentKind documentKind = (DocumentKind)req.getAttribute("documentKind");
+        Boolean isNewDocument = (Boolean)req.getAttribute("isNewDocument");
+
         try{
             // get document kind in some way
             int order = documentKind.getFieldsCount();
-            Field newField = new Field("", order, documentKind, fieldTypeCrudService.findById(0));
-            if(!isNew)
+            Field newField = new Field("", order, documentKind, fieldTypeCrudService.findById(1));
+            if(isNewDocument)
+                newField.setId(documentKind.getFieldsCount());
+            else
                 fieldCrudService.save(newField);
             documentKind.getFields().add(newField);
             documentKind.setFieldsCount(documentKind.getFieldsCount()+1);
@@ -188,16 +211,27 @@ public class EditDocumentServlet extends HttpServlet {
         }
     }
 
-    private void deleteField(long fieldID)
+    private void deleteField(HttpServletRequest req, long fieldID)
     {
-        Field field = getField(fieldID);
+        DocumentKind documentKind = (DocumentKind)req.getAttribute("documentKind");
+        Boolean isNewDocument = (Boolean)req.getAttribute("isNewDocument");
+
+        Field field = getField(req, fieldID);
         documentKind.getFields().remove(field);
         documentKind.setFieldsCount(documentKind.getFieldsCount()-1);
-        if(!isNew)
+
+        if(!isNewDocument)
+        {
+            field.setFieldType(null);
+            field.setDocumentKind(null);
+            fieldCrudService.update(field);
+            documentKindCrudService.update(documentKind);
             fieldCrudService.deleteById(fieldID);
+        }
     }
 
-    private Field getField(long fieldID) {
+    private Field getField(HttpServletRequest req, long fieldID) {
+        DocumentKind documentKind = (DocumentKind)req.getAttribute("documentKind");
         List<Field> fields = documentKind.getFields();
         for (Field field : fields)
         {
@@ -208,11 +242,34 @@ public class EditDocumentServlet extends HttpServlet {
         return null;
     }
 
-    private void deleteDocument()
+    private void deleteDocument(HttpServletRequest req)
     {
+        DocumentKind documentKind = (DocumentKind)req.getAttribute("documentKind");
+        Boolean isNewDocument = (Boolean)req.getAttribute("isNewDocument");
+        if(isNewDocument)
+            req.removeAttribute("newDocument");
+
         List<Field> fields = documentKind.getFields();
         for(Field field : fields)
             fieldCrudService.deleteById(field.getId());
         documentKindCrudService.deleteById(documentKind.getId());
+    }
+
+    private DocumentKind getDocumentKind(HttpServletRequest req)
+    {
+        DocumentKind outDocument;
+        String formIDStr = req.getParameter("documentID");
+        // if sended without form id this is new form or null
+        if(formIDStr == null)
+            return (DocumentKind)req.getSession().getAttribute("newDocument");
+
+        // get form by id
+        long documentID = Long.parseLong(req.getParameter("documentID"));
+        if(documentID<0)
+            return (DocumentKind)req.getSession().getAttribute("newDocument");
+        outDocument = documentKindCrudService.findById(documentID);
+
+
+        return outDocument;
     }
 }
