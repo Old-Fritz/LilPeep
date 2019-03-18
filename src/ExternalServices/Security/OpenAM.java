@@ -30,11 +30,11 @@ public class OpenAM {
      */
     public long getUserID(String tokenID)
     {
-        return 1;
+        //return 1;
 
-        /*
         if(tokenID==null)
             return -1;
+
         try{
             manager = SSOTokenManager.getInstance();
             SSOToken token = manager.createSSOToken(tokenID);
@@ -48,7 +48,7 @@ public class OpenAM {
         {
             return -1;
         }
-*/
+
     }
 
     /**

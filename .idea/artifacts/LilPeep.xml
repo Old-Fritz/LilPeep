@@ -1,8 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="LilPeep">
+  <artifact type="exploded-war" name="LilPeep">
     <output-path>$PROJECT_DIR$/out/artifacts/LilPeep</output-path>
-    <root id="archive" name="LilPeep.war">
-      <element id="artifact" artifact-name="LilPeep:war exploded" />
+    <root id="root">
+      <element id="javaee-facet-resources" facet="LilPeep/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="LilPeep" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

@@ -15,8 +15,6 @@
     </database>
     <schema id="5" parent="2" name="s244703">
       <ObjectId>18171</ObjectId>
-      <IntrospectionTimestamp>2019-03-16.21:28:20.604</IntrospectionTimestamp>
-      <IntrospectionStateNumber>29346772</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -4000,7 +3998,6 @@
       <ObjectId>1024090</ObjectId>
       <StateNumber>24240407</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4008,7 +4005,6 @@
       <ObjectId>1024088</ObjectId>
       <StateNumber>24240447</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4016,8 +4012,6 @@
       <ObjectId>1024081</ObjectId>
       <StateNumber>24240442</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer, name character varying, surname character varying, passport integer, country integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4025,8 +4019,6 @@
       <ObjectId>1024080</ObjectId>
       <StateNumber>24240441</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer, name character varying, surname character varying, passport integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4034,8 +4026,6 @@
       <ObjectId>1024079</ObjectId>
       <StateNumber>24240440</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer, name character varying, surname character varying, passport integer, country integer, birth_date date</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4043,8 +4033,6 @@
       <ObjectId>1024073</ObjectId>
       <StateNumber>24240434</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_city integer, id_county integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4052,8 +4040,6 @@
       <ObjectId>1024082</ObjectId>
       <StateNumber>24240443</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer, name character varying, surname character varying, passport integer, birth_date date</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4061,8 +4047,6 @@
       <ObjectId>1024085</ObjectId>
       <StateNumber>24240451</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document_type integer, name character varying, surname character varying, passport integer, country integer, birth_date date</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4070,8 +4054,6 @@
       <ObjectId>1024087</ObjectId>
       <StateNumber>24240446</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4079,8 +4061,6 @@
       <ObjectId>1024076</ObjectId>
       <StateNumber>24240437</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_document integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4088,8 +4068,6 @@
       <ObjectId>1024077</ObjectId>
       <StateNumber>24240438</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4097,8 +4075,6 @@
       <ObjectId>1024078</ObjectId>
       <StateNumber>24240439</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, id_document integer</ArgumentsDefinition>
-      <ResultsDefinition>boolean</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4106,8 +4082,6 @@
       <ObjectId>1024071</ObjectId>
       <StateNumber>24240432</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>text character varying, id_document integer</ArgumentsDefinition>
-      <ResultsDefinition>character varying</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4115,8 +4089,6 @@
       <ObjectId>1024083</ObjectId>
       <StateNumber>24240450</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>id_person integer, document_name character varying</ArgumentsDefinition>
-      <ResultsDefinition>integer</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -4124,8 +4096,6 @@
       <ObjectId>1024075</ObjectId>
       <StateNumber>24240433</StateNumber>
       <VolatilityKind>volatile</VolatilityKind>
-      <ArgumentsDefinition>text character varying, id_document integer</ArgumentsDefinition>
-      <ResultsDefinition>integer</ResultsDefinition>
       <LanguageName>plpgsql</LanguageName>
       <RoutineKind>function</RoutineKind>
     </routine>
@@ -5316,78 +5286,70 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <trigger id="1508" parent="1287" name="add_to_history">
-      <ObjectId>1024241</ObjectId>
-      <StateNumber>24240431</StateNumber>
-      <Turn>before-row</Turn>
-      <Events>IU</Events>
-      <FireMode>origin</FireMode>
-      <CallRoutineId>1024088</CallRoutineId>
-    </trigger>
-    <column id="1509" parent="1288" name="ИД">
+    <column id="1508" parent="1288" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30871</StateNumber>
     </column>
-    <column id="1510" parent="1288" name="НАЗВАНИЕ">
+    <column id="1509" parent="1288" name="НАЗВАНИЕ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>30871</StateNumber>
     </column>
-    <column id="1511" parent="1288" name="РАЗМЕР">
+    <column id="1510" parent="1288" name="РАЗМЕР">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30871</StateNumber>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="1512" parent="1288" name="ОСВЕЩЕННОСТЬ">
+    <column id="1511" parent="1288" name="ОСВЕЩЕННОСТЬ">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30871</StateNumber>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <index id="1513" parent="1288" name="ЛОКАЦИЯ_pkey">
+    <index id="1512" parent="1288" name="ЛОКАЦИЯ_pkey">
       <ObjectId>58054</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1514" parent="1288" name="ЛОКАЦИЯ_pkey">
+    <key id="1513" parent="1288" name="ЛОКАЦИЯ_pkey">
       <ObjectId>58055</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ЛОКАЦИЯ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="1515" parent="1288" name="ЛОКАЦИЯ_РАЗМЕР_check">
+    <check id="1514" parent="1288" name="ЛОКАЦИЯ_РАЗМЕР_check">
       <ObjectId>58049</ObjectId>
       <ColNames>РАЗМЕР</ColNames>
       <Predicate>&quot;РАЗМЕР&quot; &gt;= 0</Predicate>
     </check>
-    <check id="1516" parent="1288" name="ЛОКАЦИЯ_ОСВЕЩЕННОСТЬ_check">
+    <check id="1515" parent="1288" name="ЛОКАЦИЯ_ОСВЕЩЕННОСТЬ_check">
       <ObjectId>58050</ObjectId>
       <ColNames>ОСВЕЩЕННОСТЬ</ColNames>
       <Predicate>&quot;ОСВЕЩЕННОСТЬ&quot; &gt;= 0</Predicate>
     </check>
-    <column id="1517" parent="1289" name="ИД_ЧЕЛОВЕКА">
+    <column id="1516" parent="1289" name="ИД_ЧЕЛОВЕКА">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239989</StateNumber>
     </column>
-    <column id="1518" parent="1289" name="ИД_ДОКУМЕНТА">
+    <column id="1517" parent="1289" name="ИД_ДОКУМЕНТА">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239989</StateNumber>
     </column>
-    <column id="1519" parent="1289" name="ДАТА_ВИЗИТА">
+    <column id="1518" parent="1289" name="ДАТА_ВИЗИТА">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <StateNumber>24239989</StateNumber>
     </column>
-    <index id="1520" parent="1289" name="НАЛ_ИНД">
+    <index id="1519" parent="1289" name="НАЛ_ИНД">
       <ObjectId>1024323</ObjectId>
       <ColNames>ИД_ЧЕЛОВЕКА</ColNames>
     </index>
-    <foreign-key id="1521" parent="1289" name="НАЛИЧИЕ_ДОКУМЕНТО_ИД_ДОКУМЕНТА_fkey">
+    <foreign-key id="1520" parent="1289" name="НАЛИЧИЕ_ДОКУМЕНТО_ИД_ДОКУМЕНТА_fkey">
       <ObjectId>1024026</ObjectId>
       <ColNames>ИД_ДОКУМЕНТА</ColNames>
       <RefTableId>1023969</RefTableId>
@@ -5397,37 +5359,29 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <trigger id="1522" parent="1289" name="add_pers_doc">
-      <ObjectId>1024214</ObjectId>
-      <StateNumber>24240406</StateNumber>
-      <Turn>before-row</Turn>
-      <Events>IU</Events>
-      <FireMode>origin</FireMode>
-      <CallRoutineId>1024090</CallRoutineId>
-    </trigger>
-    <column id="1523" parent="1290" name="ИД_ДЕЙСТВИЯ">
+    <column id="1521" parent="1290" name="ИД_ДЕЙСТВИЯ">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30882</StateNumber>
     </column>
-    <column id="1524" parent="1290" name="ИД_ПУТИ">
+    <column id="1522" parent="1290" name="ИД_ПУТИ">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30882</StateNumber>
     </column>
-    <index id="1525" parent="1290" name="ПЕРЕМЕЩЕНИЯ_pkey">
+    <index id="1523" parent="1290" name="ПЕРЕМЕЩЕНИЯ_pkey">
       <ObjectId>58140</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1526" parent="1290" name="ПЕРЕМЕЩЕНИЯ_pkey">
+    <key id="1524" parent="1290" name="ПЕРЕМЕЩЕНИЯ_pkey">
       <ObjectId>58141</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <UnderlyingIndexName>ПЕРЕМЕЩЕНИЯ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="1527" parent="1290" name="ПЕРЕМЕЩЕНИЯ_ИД_ДЕЙСТВИЯ_fkey">
+    <foreign-key id="1525" parent="1290" name="ПЕРЕМЕЩЕНИЯ_ИД_ДЕЙСТВИЯ_fkey">
       <ObjectId>58142</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <RefTableId>58082</RefTableId>
@@ -5436,7 +5390,7 @@
       <RefKeyName>ДЕЙСТВИЕ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <foreign-key id="1528" parent="1290" name="ПЕРЕМЕЩЕНИЯ_ИД_ПУТИ_fkey">
+    <foreign-key id="1526" parent="1290" name="ПЕРЕМЕЩЕНИЯ_ИД_ПУТИ_fkey">
       <ObjectId>58147</ObjectId>
       <ColNames>ИД_ПУТИ</ColNames>
       <RefTableId>58122</RefTableId>
@@ -5445,94 +5399,94 @@
       <RefKeyName>ПУТИ_ЛОКАЦИИ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <column id="1529" parent="1291" name="ИД">
+    <column id="1527" parent="1291" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30869</StateNumber>
     </column>
-    <column id="1530" parent="1291" name="НАЗВАНИЕ">
+    <column id="1528" parent="1291" name="НАЗВАНИЕ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>30869</StateNumber>
     </column>
-    <column id="1531" parent="1291" name="РАЗМЕР">
+    <column id="1529" parent="1291" name="РАЗМЕР">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30869</StateNumber>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="1532" parent="1291" name="ПРЕДМЕТ_pkey">
+    <index id="1530" parent="1291" name="ПРЕДМЕТ_pkey">
       <ObjectId>58034</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1533" parent="1291" name="ПРЕДМЕТ_pkey">
+    <key id="1531" parent="1291" name="ПРЕДМЕТ_pkey">
       <ObjectId>58035</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ПРЕДМЕТ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="1534" parent="1291" name="ПРЕДМЕТ_РАЗМЕР_check">
+    <check id="1532" parent="1291" name="ПРЕДМЕТ_РАЗМЕР_check">
       <ObjectId>58030</ObjectId>
       <ColNames>РАЗМЕР</ColNames>
       <Predicate>(&quot;РАЗМЕР&quot; &gt;= 0) AND (&quot;РАЗМЕР&quot; &lt;= 300)</Predicate>
     </check>
-    <column id="1535" parent="1292" name="ИД">
+    <column id="1533" parent="1292" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>24240281</StateNumber>
     </column>
-    <column id="1536" parent="1292" name="ИД_ФОТО">
+    <column id="1534" parent="1292" name="ИД_ФОТО">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240281</StateNumber>
     </column>
-    <index id="1537" parent="1292" name="ПРЕСТУПНИКИ_pkey">
+    <index id="1535" parent="1292" name="ПРЕСТУПНИКИ_pkey">
       <ObjectId>1024181</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1538" parent="1292" name="ПРЕСТУПНИКИ_pkey">
+    <key id="1536" parent="1292" name="ПРЕСТУПНИКИ_pkey">
       <ObjectId>1024182</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ПРЕСТУПНИКИ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="1539" parent="1293" name="ИД">
+    <column id="1537" parent="1293" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30881</StateNumber>
     </column>
-    <column id="1540" parent="1293" name="ИД_ЛОКАЦИИ1">
+    <column id="1538" parent="1293" name="ИД_ЛОКАЦИИ1">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30881</StateNumber>
     </column>
-    <column id="1541" parent="1293" name="ИД_ЛОКАЦИИ2">
+    <column id="1539" parent="1293" name="ИД_ЛОКАЦИИ2">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30881</StateNumber>
     </column>
-    <column id="1542" parent="1293" name="ВРЕМЯ">
+    <column id="1540" parent="1293" name="ВРЕМЯ">
       <Position>4</Position>
       <DataType>interval|0</DataType>
       <StateNumber>30881</StateNumber>
     </column>
-    <index id="1543" parent="1293" name="ПУТИ_ЛОКАЦИИ_pkey">
+    <index id="1541" parent="1293" name="ПУТИ_ЛОКАЦИИ_pkey">
       <ObjectId>58125</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1544" parent="1293" name="ПУТИ_ЛОКАЦИИ_pkey">
+    <key id="1542" parent="1293" name="ПУТИ_ЛОКАЦИИ_pkey">
       <ObjectId>58126</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ПУТИ_ЛОКАЦИИ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="1545" parent="1293" name="ПУТИ_ЛОКАЦИИ_ИД_ЛОКАЦИИ1_fkey">
+    <foreign-key id="1543" parent="1293" name="ПУТИ_ЛОКАЦИИ_ИД_ЛОКАЦИИ1_fkey">
       <ObjectId>58127</ObjectId>
       <ColNames>ИД_ЛОКАЦИИ1</ColNames>
       <RefTableId>58044</RefTableId>
@@ -5541,7 +5495,7 @@
       <RefKeyName>ЛОКАЦИЯ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <foreign-key id="1546" parent="1293" name="ПУТИ_ЛОКАЦИИ_ИД_ЛОКАЦИИ2_fkey">
+    <foreign-key id="1544" parent="1293" name="ПУТИ_ЛОКАЦИИ_ИД_ЛОКАЦИИ2_fkey">
       <ObjectId>58132</ObjectId>
       <ColNames>ИД_ЛОКАЦИИ2</ColNames>
       <RefTableId>58044</RefTableId>
@@ -5550,66 +5504,66 @@
       <RefKeyName>ЛОКАЦИЯ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <column id="1547" parent="1294" name="ИД">
+    <column id="1545" parent="1294" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>24239979</StateNumber>
     </column>
-    <column id="1548" parent="1294" name="ИМЯ">
+    <column id="1546" parent="1294" name="ИМЯ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>24239979</StateNumber>
     </column>
-    <column id="1549" parent="1294" name="ФАМИЛИЯ">
+    <column id="1547" parent="1294" name="ФАМИЛИЯ">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>24239979</StateNumber>
     </column>
-    <index id="1550" parent="1294" name="СОТРУДНИК_pkey">
+    <index id="1548" parent="1294" name="СОТРУДНИК_pkey">
       <ObjectId>1023900</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1551" parent="1294" name="СОТРУДНИК_pkey">
+    <key id="1549" parent="1294" name="СОТРУДНИК_pkey">
       <ObjectId>1023901</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>СОТРУДНИК_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="1552" parent="1295" name="ИД">
+    <column id="1550" parent="1295" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>24239977</StateNumber>
     </column>
-    <column id="1553" parent="1295" name="НАЗВАНИЕ">
+    <column id="1551" parent="1295" name="НАЗВАНИЕ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>24239977</StateNumber>
     </column>
-    <index id="1554" parent="1295" name="СТРАНЫ_pkey">
+    <index id="1552" parent="1295" name="СТРАНЫ_pkey">
       <ObjectId>1023884</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1555" parent="1295" name="СТРАНЫ_pkey">
+    <key id="1553" parent="1295" name="СТРАНЫ_pkey">
       <ObjectId>1023885</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>СТРАНЫ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="1556" parent="1296" name="ИД_ДОКУМЕНТА">
+    <column id="1554" parent="1296" name="ИД_ДОКУМЕНТА">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239990</StateNumber>
     </column>
-    <column id="1557" parent="1296" name="ИД_СТРАНЫ">
+    <column id="1555" parent="1296" name="ИД_СТРАНЫ">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239990</StateNumber>
     </column>
-    <foreign-key id="1558" parent="1296" name="СТРАНЫ_ДИП_СТАТУСА_ИД_ДОКУМЕНТА_fkey">
+    <foreign-key id="1556" parent="1296" name="СТРАНЫ_ДИП_СТАТУСА_ИД_ДОКУМЕНТА_fkey">
       <ObjectId>1024034</ObjectId>
       <ColNames>ИД_ДОКУМЕНТА</ColNames>
       <RefTableId>1023969</RefTableId>
@@ -5619,7 +5573,7 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="1559" parent="1296" name="СТРАНЫ_ДИП_СТАТУСА_ИД_СТРАНЫ_fkey">
+    <foreign-key id="1557" parent="1296" name="СТРАНЫ_ДИП_СТАТУСА_ИД_СТРАНЫ_fkey">
       <ObjectId>1024039</ObjectId>
       <ColNames>ИД_СТРАНЫ</ColNames>
       <RefTableId>1023878</RefTableId>
@@ -5629,39 +5583,39 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="1560" parent="1297" name="ИД">
+    <column id="1558" parent="1297" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>24239980</StateNumber>
     </column>
-    <column id="1561" parent="1297" name="НАЗВАНИЕ">
+    <column id="1559" parent="1297" name="НАЗВАНИЕ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>24239980</StateNumber>
     </column>
-    <index id="1562" parent="1297" name="ТИПЫ_ДОП_ХАРАКТЕРИСТИК_pkey">
+    <index id="1560" parent="1297" name="ТИПЫ_ДОП_ХАРАКТЕРИСТИК_pkey">
       <ObjectId>1023908</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1563" parent="1297" name="ТИПЫ_ДОП_ХАРАКТЕРИСТИК_pkey">
+    <key id="1561" parent="1297" name="ТИПЫ_ДОП_ХАРАКТЕРИСТИК_pkey">
       <ObjectId>1023909</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ТИПЫ_ДОП_ХАРАКТЕРИСТИК_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="1564" parent="1298" name="ИД_СТРАНЫ">
+    <column id="1562" parent="1298" name="ИД_СТРАНЫ">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239983</StateNumber>
     </column>
-    <column id="1565" parent="1298" name="ИД_ВИДА_ДОКУМЕНТА">
+    <column id="1563" parent="1298" name="ИД_ВИДА_ДОКУМЕНТА">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24239983</StateNumber>
     </column>
-    <foreign-key id="1566" parent="1298" name="ТРЕБОВАНИЯ_ИД_СТРАНЫ_fkey">
+    <foreign-key id="1564" parent="1298" name="ТРЕБОВАНИЯ_ИД_СТРАНЫ_fkey">
       <ObjectId>1023944</ObjectId>
       <ColNames>ИД_СТРАНЫ</ColNames>
       <RefTableId>1023878</RefTableId>
@@ -5671,7 +5625,7 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="1567" parent="1298" name="ТРЕБОВАНИЯ_ИД_ВИДА_ДОКУМЕНТА_fkey">
+    <foreign-key id="1565" parent="1298" name="ТРЕБОВАНИЯ_ИД_ВИДА_ДОКУМЕНТА_fkey">
       <ObjectId>1023949</ObjectId>
       <ColNames>ИД_ВИДА_ДОКУМЕНТА</ColNames>
       <RefTableId>1023870</RefTableId>
@@ -5681,29 +5635,29 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="1568" parent="1299" name="ИД_ДЕЙСТВИЯ">
+    <column id="1566" parent="1299" name="ИД_ДЕЙСТВИЯ">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30884</StateNumber>
     </column>
-    <column id="1569" parent="1299" name="ИД_ЭМОЦИИ">
+    <column id="1567" parent="1299" name="ИД_ЭМОЦИИ">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30884</StateNumber>
     </column>
-    <index id="1570" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_pkey">
+    <index id="1568" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_pkey">
       <ObjectId>58163</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1571" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_pkey">
+    <key id="1569" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_pkey">
       <ObjectId>58164</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <UnderlyingIndexName>УСТАНОВКА_ЭМОЦИЙ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="1572" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_ИД_ДЕЙСТВИЯ_fkey">
+    <foreign-key id="1570" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_ИД_ДЕЙСТВИЯ_fkey">
       <ObjectId>58165</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <RefTableId>58082</RefTableId>
@@ -5712,7 +5666,7 @@
       <RefKeyName>ДЕЙСТВИЕ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <foreign-key id="1573" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_ИД_ЭМОЦИИ_fkey">
+    <foreign-key id="1571" parent="1299" name="УСТАНОВКА_ЭМОЦИЙ_ИД_ЭМОЦИИ_fkey">
       <ObjectId>58170</ObjectId>
       <ColNames>ИД_ЭМОЦИИ</ColNames>
       <RefTableId>58152</RefTableId>
@@ -5721,34 +5675,34 @@
       <RefKeyName>ЭМОЦИЯ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <column id="1574" parent="1300" name="ВРЕМЯ">
+    <column id="1572" parent="1300" name="ВРЕМЯ">
       <Position>1</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30890</StateNumber>
     </column>
-    <column id="1575" parent="1300" name="ИД_ЧЕЛОВЕКА">
+    <column id="1573" parent="1300" name="ИД_ЧЕЛОВЕКА">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30890</StateNumber>
     </column>
-    <column id="1576" parent="1300" name="ИД_ДЕЙСТВИЯ">
+    <column id="1574" parent="1300" name="ИД_ДЕЙСТВИЯ">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>30890</StateNumber>
     </column>
-    <index id="1577" parent="1300" name="ХРОНОЛОГИЯ_pkey">
+    <index id="1575" parent="1300" name="ХРОНОЛОГИЯ_pkey">
       <ObjectId>58218</ObjectId>
       <ColNames>ВРЕМЯ</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1578" parent="1300" name="ХРОНОЛОГИЯ_pkey">
+    <key id="1576" parent="1300" name="ХРОНОЛОГИЯ_pkey">
       <ObjectId>58219</ObjectId>
       <ColNames>ВРЕМЯ</ColNames>
       <UnderlyingIndexName>ХРОНОЛОГИЯ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="1579" parent="1300" name="ХРОНОЛОГИЯ_ИД_ДЕЙСТВИЯ_fkey">
+    <foreign-key id="1577" parent="1300" name="ХРОНОЛОГИЯ_ИД_ДЕЙСТВИЯ_fkey">
       <ObjectId>58225</ObjectId>
       <ColNames>ИД_ДЕЙСТВИЯ</ColNames>
       <RefTableId>58082</RefTableId>
@@ -5757,68 +5711,68 @@
       <RefKeyName>ДЕЙСТВИЕ_pkey</RefKeyName>
       <RefColNames>ИД</RefColNames>
     </foreign-key>
-    <column id="1580" parent="1301" name="ИД">
+    <column id="1578" parent="1301" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1581" parent="1301" name="ПОЛ">
+    <column id="1579" parent="1301" name="ПОЛ">
       <Position>2</Position>
       <DataType>char|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1582" parent="1301" name="ИД_ОТПЕЧАТКОВ">
+    <column id="1580" parent="1301" name="ИД_ОТПЕЧАТКОВ">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1583" parent="1301" name="РОСТ">
+    <column id="1581" parent="1301" name="РОСТ">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1584" parent="1301" name="ВЕС">
+    <column id="1582" parent="1301" name="ВЕС">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1585" parent="1301" name="ИД_ФОТО">
+    <column id="1583" parent="1301" name="ИД_ФОТО">
       <Position>6</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1586" parent="1301" name="ИД_ЦЕЛИ_ВИЗИТА">
+    <column id="1584" parent="1301" name="ИД_ЦЕЛИ_ВИЗИТА">
       <Position>7</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1587" parent="1301" name="ПРОДОЛЖИТЕЛЬНОСТЬ">
+    <column id="1585" parent="1301" name="ПРОДОЛЖИТЕЛЬНОСТЬ">
       <Position>8</Position>
       <DataType>integer|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <column id="1588" parent="1301" name="НАЛИЧИЕ_КОНТРАБАНДЫ">
+    <column id="1586" parent="1301" name="НАЛИЧИЕ_КОНТРАБАНДЫ">
       <Position>9</Position>
       <DataType>boolean|0</DataType>
       <StateNumber>24240231</StateNumber>
     </column>
-    <index id="1589" parent="1301" name="ЧЕЛОВЕК_pkey">
+    <index id="1587" parent="1301" name="ЧЕЛОВЕК_pkey">
       <ObjectId>1024171</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="1590" parent="1301" name="ЧЕЛ_ИНД">
+    <index id="1588" parent="1301" name="ЧЕЛ_ИНД">
       <ObjectId>1024322</ObjectId>
       <ColNames>ИД</ColNames>
     </index>
-    <key id="1591" parent="1301" name="ЧЕЛОВЕК_pkey">
+    <key id="1589" parent="1301" name="ЧЕЛОВЕК_pkey">
       <ObjectId>1024172</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ЧЕЛОВЕК_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="1592" parent="1301" name="ЧЕЛОВЕК_ИД_ЦЕЛИ_ВИЗИТА_fkey">
+    <foreign-key id="1590" parent="1301" name="ЧЕЛОВЕК_ИД_ЦЕЛИ_ВИЗИТА_fkey">
       <ObjectId>1024173</ObjectId>
       <ColNames>ИД_ЦЕЛИ_ВИЗИТА</ColNames>
       <RefTableId>1023862</RefTableId>
@@ -5828,280 +5782,280 @@
       <RefColNames>ИД</RefColNames>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <check id="1593" parent="1301" name="ЧЕЛОВЕК_ПОЛ_check">
+    <check id="1591" parent="1301" name="ЧЕЛОВЕК_ПОЛ_check">
       <ObjectId>1024168</ObjectId>
       <ColNames>ПОЛ</ColNames>
       <Predicate>(&quot;ПОЛ&quot; = &apos;М&apos;::bpchar) OR (&quot;ПОЛ&quot; = &apos;Ж&apos;::bpchar) OR (&quot;ПОЛ&quot; = &apos;Т&apos;::bpchar)</Predicate>
     </check>
-    <check id="1594" parent="1301" name="ЧЕЛОВЕК_РОСТ_check">
+    <check id="1592" parent="1301" name="ЧЕЛОВЕК_РОСТ_check">
       <ObjectId>1024169</ObjectId>
       <ColNames>РОСТ</ColNames>
       <Predicate>&quot;РОСТ&quot; &lt; 300</Predicate>
     </check>
-    <check id="1595" parent="1301" name="ЧЕЛОВЕК_ВЕС_check">
+    <check id="1593" parent="1301" name="ЧЕЛОВЕК_ВЕС_check">
       <ObjectId>1024170</ObjectId>
       <ColNames>ВЕС</ColNames>
       <Predicate>&quot;ВЕС&quot; &lt; 180</Predicate>
     </check>
-    <column id="1596" parent="1302" name="ИД">
+    <column id="1594" parent="1302" name="ИД">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>30883</StateNumber>
     </column>
-    <column id="1597" parent="1302" name="НАЗВАНИЕ">
+    <column id="1595" parent="1302" name="НАЗВАНИЕ">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
       <StateNumber>30883</StateNumber>
     </column>
-    <index id="1598" parent="1302" name="ЭМОЦИЯ_pkey">
+    <index id="1596" parent="1302" name="ЭМОЦИЯ_pkey">
       <ObjectId>58158</ObjectId>
       <ColNames>ИД</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="1599" parent="1302" name="ЭМОЦИЯ_pkey">
+    <key id="1597" parent="1302" name="ЭМОЦИЯ_pkey">
       <ObjectId>58159</ObjectId>
       <ColNames>ИД</ColNames>
       <UnderlyingIndexName>ЭМОЦИЯ_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <argument id="1600" parent="1303">
+    <argument id="1598" parent="1303">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>trigger|0</DataType>
     </argument>
-    <argument id="1601" parent="1304">
+    <argument id="1599" parent="1304">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>trigger|0</DataType>
     </argument>
-    <argument id="1602" parent="1305" name="id_person">
+    <argument id="1600" parent="1305" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1603" parent="1305" name="id_document">
+    <argument id="1601" parent="1305" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1604" parent="1305" name="name">
+    <argument id="1602" parent="1305" name="name">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1605" parent="1305" name="surname">
+    <argument id="1603" parent="1305" name="surname">
       <Position>4</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1606" parent="1305" name="passport">
+    <argument id="1604" parent="1305" name="passport">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1607" parent="1305" name="country">
+    <argument id="1605" parent="1305" name="country">
       <Position>6</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1608" parent="1305">
+    <argument id="1606" parent="1305">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1609" parent="1306" name="id_person">
+    <argument id="1607" parent="1306" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1610" parent="1306" name="id_document">
+    <argument id="1608" parent="1306" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1611" parent="1306" name="name">
+    <argument id="1609" parent="1306" name="name">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1612" parent="1306" name="surname">
+    <argument id="1610" parent="1306" name="surname">
       <Position>4</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1613" parent="1306" name="passport">
+    <argument id="1611" parent="1306" name="passport">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1614" parent="1306">
+    <argument id="1612" parent="1306">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1615" parent="1307" name="id_person">
+    <argument id="1613" parent="1307" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1616" parent="1307" name="id_document">
+    <argument id="1614" parent="1307" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1617" parent="1307" name="name">
+    <argument id="1615" parent="1307" name="name">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1618" parent="1307" name="surname">
+    <argument id="1616" parent="1307" name="surname">
       <Position>4</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1619" parent="1307" name="passport">
+    <argument id="1617" parent="1307" name="passport">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1620" parent="1307" name="country">
+    <argument id="1618" parent="1307" name="country">
       <Position>6</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1621" parent="1307" name="birth_date">
+    <argument id="1619" parent="1307" name="birth_date">
       <Position>7</Position>
       <DataType>date|0</DataType>
     </argument>
-    <argument id="1622" parent="1307">
+    <argument id="1620" parent="1307">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1623" parent="1308" name="id_city">
+    <argument id="1621" parent="1308" name="id_city">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1624" parent="1308" name="id_county">
+    <argument id="1622" parent="1308" name="id_county">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1625" parent="1308">
+    <argument id="1623" parent="1308">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1626" parent="1309" name="id_person">
+    <argument id="1624" parent="1309" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1627" parent="1309" name="id_document">
+    <argument id="1625" parent="1309" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1628" parent="1309" name="name">
+    <argument id="1626" parent="1309" name="name">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1629" parent="1309" name="surname">
+    <argument id="1627" parent="1309" name="surname">
       <Position>4</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1630" parent="1309" name="passport">
+    <argument id="1628" parent="1309" name="passport">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1631" parent="1309" name="birth_date">
+    <argument id="1629" parent="1309" name="birth_date">
       <Position>6</Position>
       <DataType>date|0</DataType>
     </argument>
-    <argument id="1632" parent="1309">
+    <argument id="1630" parent="1309">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1633" parent="1310" name="id_person">
+    <argument id="1631" parent="1310" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1634" parent="1310" name="id_document_type">
+    <argument id="1632" parent="1310" name="id_document_type">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1635" parent="1310" name="name">
+    <argument id="1633" parent="1310" name="name">
       <Position>3</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1636" parent="1310" name="surname">
+    <argument id="1634" parent="1310" name="surname">
       <Position>4</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1637" parent="1310" name="passport">
+    <argument id="1635" parent="1310" name="passport">
       <Position>5</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1638" parent="1310" name="country">
+    <argument id="1636" parent="1310" name="country">
       <Position>6</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1639" parent="1310" name="birth_date">
+    <argument id="1637" parent="1310" name="birth_date">
       <Position>7</Position>
       <DataType>date|0</DataType>
     </argument>
-    <argument id="1640" parent="1310">
+    <argument id="1638" parent="1310">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1641" parent="1311" name="id_person">
+    <argument id="1639" parent="1311" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1642" parent="1311">
+    <argument id="1640" parent="1311">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1643" parent="1312" name="id_document">
+    <argument id="1641" parent="1312" name="id_document">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1644" parent="1312">
+    <argument id="1642" parent="1312">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1645" parent="1313" name="id_person">
+    <argument id="1643" parent="1313" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1646" parent="1313" name="id_document">
+    <argument id="1644" parent="1313" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1647" parent="1313">
+    <argument id="1645" parent="1313">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1648" parent="1314" name="id_person">
+    <argument id="1646" parent="1314" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1649" parent="1314" name="id_document">
+    <argument id="1647" parent="1314" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1650" parent="1314">
+    <argument id="1648" parent="1314">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>boolean|0</DataType>
     </argument>
-    <argument id="1651" parent="1315" name="text">
+    <argument id="1649" parent="1315" name="text">
       <Position>1</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1652" parent="1315" name="id_document">
+    <argument id="1650" parent="1315" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1653" parent="1315">
+    <argument id="1651" parent="1315">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1654" parent="1316" name="id_person">
+    <argument id="1652" parent="1316" name="id_person">
       <Position>1</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1655" parent="1316" name="document_name">
+    <argument id="1653" parent="1316" name="document_name">
       <Position>2</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1656" parent="1316">
+    <argument id="1654" parent="1316">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1657" parent="1317" name="text">
+    <argument id="1655" parent="1317" name="text">
       <Position>1</Position>
       <DataType>varchar|0</DataType>
     </argument>
-    <argument id="1658" parent="1317" name="id_document">
+    <argument id="1656" parent="1317" name="id_document">
       <Position>2</Position>
       <DataType>integer|0</DataType>
     </argument>
-    <argument id="1659" parent="1317">
+    <argument id="1657" parent="1317">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>integer|0</DataType>
     </argument>
