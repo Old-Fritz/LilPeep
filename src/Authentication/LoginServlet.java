@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet{
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         if(email == null || password == null) {
-            sender.sendErr("Отсутствует e-mail и/или пароль");
+            sender.sendErr(req, "Отсутствует e-mail и/или пароль");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
@@ -60,14 +60,14 @@ public class LoginServlet extends HttpServlet{
             if(userKind == null)
                 throw new Exception();
         } catch (Exception e) {
-            sender.sendErr("Такого типа записи не существует");
+            sender.sendErr(req, "Такого типа записи не существует");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         // try login
-        if(!ssoManager.login(resp, email,password,userKind)) {
-            sender.sendErr("Авторизация не удалась, попробуйте ещё раз");
+        if(!ssoManager.login(req, resp, email,password,userKind)) {
+            sender.sendErr(req, "Авторизация не удалась, попробуйте ещё раз");
             resp.sendRedirect(req.getRequestURI());
             return;
         }

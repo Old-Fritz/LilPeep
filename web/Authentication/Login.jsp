@@ -5,8 +5,11 @@
         <meta charset="utf-8">
         <title>Авторизация</title>
         <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+        <script src="Resources/JS/js.js" type="text/javascript"></script>
     </head>
     <body>
+    <div id="rabbitWindow"></div>
         <table class="titlebar">
             <th>
                 <span selected class="title"><b>Авторизация</b></span>

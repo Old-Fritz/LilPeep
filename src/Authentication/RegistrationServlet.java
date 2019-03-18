@@ -3,14 +3,12 @@ package Authentication;
 import DataBaseAcces.CrudServices.UserKindCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserKind;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +28,6 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = ssoManager.getCurrentUser(req);
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         // forward to register page if user hasn't logged in
         if (user == null) {
             req.getRequestDispatcher("/Authentication/Registration.jsp").forward(req, resp);
@@ -44,12 +41,11 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get parameters
-        sender.init(CockieUtils.getSessionCookie(req, resp).getValue());
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("passwordRepeat");
         if (email == null || password == null) {
-            sender.sendErr("Отсутствует e-mail и/или пароль");
+            sender.sendErr(req, "Отсутствует e-mail и/или пароль");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
@@ -60,19 +56,19 @@ public class RegistrationServlet extends HttpServlet {
             if (userKind == null)
                 throw new Exception();
         } catch (Exception e) {
-            sender.sendErr("Такого типа записи не существует.");
+            sender.sendErr(req, "Такого типа записи не существует.");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         // check correct double input of password
         if (!password.equals(passwordRepeat)) {
-            sender.sendOut("Пароли не совпадают!!!");
+            sender.sendOut(req, "Пароли не совпадают!!!");
             resp.sendRedirect(req.getRequestURI());
             return;
         }
 
-        if(!ssoManager.register(email,password,userKind))
+        if(!ssoManager.register(req, email,password,userKind))
         {
             resp.sendRedirect(req.getRequestURI());
             return;

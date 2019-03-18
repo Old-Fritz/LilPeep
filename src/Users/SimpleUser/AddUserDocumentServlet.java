@@ -3,7 +3,6 @@ package Users.SimpleUser;
 import DataBaseAcces.CrudServices.DocumentKindCrudService;
 import DataBaseAcces.Entities.DocumentKind;
 import DataBaseAcces.Entities.User;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -44,7 +43,7 @@ public class AddUserDocumentServlet extends HttpServlet{
         // get user
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.sendErr("Такого пользователя не существует");
+            sender.sendErr(req, "Такого пользователя не существует");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }

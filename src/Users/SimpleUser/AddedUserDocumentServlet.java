@@ -4,7 +4,6 @@ import DataBaseAcces.CrudServices.DocumentKindCrudService;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
 import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
 import DataBaseAcces.Entities.*;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -51,14 +50,14 @@ public class AddedUserDocumentServlet extends HttpServlet {
             if(document==null)
                 throw new Exception();
         }catch (Exception e) {
-            sender.sendErr("Ошибка при открытии документа: " + e.toString());
+            sender.sendErr(req, "Ошибка при открытии документа: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/user");
             return;
         }
 
         // check for existing of this document
         if(userDocumentCrudService.findByUserAndDocument(user,document)!=null) {
-            sender.sendErr("Такой документ уже существует");
+            sender.sendErr(req, "Такой документ уже существует");
             resp.sendRedirect(req.getContextPath()+"/user");
             return;
         }
@@ -91,7 +90,7 @@ public class AddedUserDocumentServlet extends HttpServlet {
             try {
                 userDocumentFieldCrudService.save(field);
             } catch (Exception e) {
-                sender.sendErr("Ошибка при сохранении документа: " + e.toString());
+                sender.sendErr(req, "Ошибка при сохранении документа: " + e.toString());
             }
         }
         resp.sendRedirect(req.getContextPath()+"/user/");

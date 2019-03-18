@@ -215,11 +215,19 @@ button, input, select{
     position: relative;
 }
 
-select {
-    width: 163pt;
-}
-
 .restrictedParagraph{
     width: 100%;
     white-space: normal;
+}
+
+#rabbitWindow {
+    display : none;
+    position: fixed;
+    background: red;
+    bottom: 4em;
+    right: 7em;
+    width: 18em;
+    height: 9em;
+    opacity: 0.8;
+    text-align: center;
 }

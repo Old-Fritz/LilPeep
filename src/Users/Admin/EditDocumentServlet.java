@@ -5,8 +5,7 @@ import DataBaseAcces.CrudServices.DocumentKindCrudService;
         import DataBaseAcces.CrudServices.FieldTypeCrudService;
         import DataBaseAcces.CrudServices.PictureCrudService;
         import DataBaseAcces.Entities.*;
-        import ExternalServices.Rabbit.CockieUtils;
-        import ExternalServices.Rabbit.RabbitSender;
+import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
         import javax.servlet.ServletException;
@@ -42,7 +41,7 @@ public class EditDocumentServlet extends HttpServlet {
         // Get creating document or already existing
         DocumentKind documentKind = getDocumentKind(req);
         if(documentKind == null){
-            sender.sendErr("Не удалось загрузить документ: ");
+            sender.sendErr(req, "Не удалось загрузить документ: ");
             resp.sendRedirect(req.getContextPath()+"/admin/");
             return;
         }
@@ -76,7 +75,7 @@ public class EditDocumentServlet extends HttpServlet {
                 }
                 return;
             }catch (Exception e){
-                sender.sendErr("Не удалось получить поле документа: " + e.toString());
+                sender.sendErr(req, "Не удалось получить поле документа: " + e.toString());
             }
         }
     }
@@ -91,7 +90,7 @@ public class EditDocumentServlet extends HttpServlet {
             try{
                 createField(req,resp);
             } catch (Exception e){
-                sender.sendErr("Не удалось добавить поле: " + e.toString());
+                sender.sendErr(req, "Не удалось добавить поле: " + e.toString());
             }
             return;
         }
@@ -102,7 +101,7 @@ public class EditDocumentServlet extends HttpServlet {
                 long fieldID = Long.parseLong(req.getParameter("fieldID"));
                 deleteField(req, fieldID);
             } catch (Exception e){
-                sender.sendErr("Не удалось удалить поле: " + e.toString());
+                sender.sendErr(req, "Не удалось удалить поле: " + e.toString());
             }
             return;
         }
@@ -112,7 +111,7 @@ public class EditDocumentServlet extends HttpServlet {
             try{
                 deleteDocument(req);
             } catch (Exception e){
-                sender.sendErr("Не удалось удалить документ: " + e.toString());
+                sender.sendErr(req, "Не удалось удалить документ: " + e.toString());
             }
             return;
         }
@@ -120,7 +119,7 @@ public class EditDocumentServlet extends HttpServlet {
         try{
             saveDocument(req);
         } catch (Exception e){
-            sender.sendErr("Не удалсоь сохранить документ: " + e.toString());
+            sender.sendErr(req, "Не удалсоь сохранить документ: " + e.toString());
         }
 
 
@@ -207,7 +206,7 @@ public class EditDocumentServlet extends HttpServlet {
             resp.getWriter().write(newField.getId()+"");
 
         }catch (Exception e){
-            sender.sendErr("Ошибка при создании поля: " + e.toString());
+            sender.sendErr(req, "Ошибка при создании поля: " + e.toString());
         }
     }
 

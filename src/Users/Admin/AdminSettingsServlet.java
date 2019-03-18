@@ -40,7 +40,7 @@ public class AdminSettingsServlet extends HttpServlet {
         req.getRequestDispatcher("/Users/Admin/JSP/AdminSettings").forward(req, resp);
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
-            sender.sendErr("Ошибка доступа");
+            sender.sendErr(req, "Ошибка доступа");
             resp.sendRedirect(req.getContextPath() + "/logout");
             return;
         }

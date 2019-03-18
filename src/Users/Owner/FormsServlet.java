@@ -3,7 +3,6 @@ package Users.Owner;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserForm;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -41,7 +40,7 @@ public class FormsServlet extends HttpServlet{
         // security check
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.sendErr("Ошибка доступа");
+            sender.sendErr(req, "Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/owner");
             return;
         }

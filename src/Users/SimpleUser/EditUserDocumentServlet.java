@@ -5,7 +5,6 @@ import DataBaseAcces.CrudServices.UserDocumentFieldCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserDocument;
 import DataBaseAcces.Entities.UserDocumentField;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -46,14 +45,14 @@ public class EditUserDocumentServlet extends HttpServlet {
             if(document==null)
                 throw new Exception();
         }catch (Exception e) {
-            sender.sendErr("Ошибка при открытии документа: " + e.toString());
+            sender.sendErr(req, "Ошибка при открытии документа: " + e.toString());
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
 
         // security check
         if(document.getUser().getId()!=user.getId()) {
-            sender.sendErr("Ошибка доступа");
+            sender.sendErr(req, "Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }

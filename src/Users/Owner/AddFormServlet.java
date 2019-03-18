@@ -3,7 +3,6 @@ package Users.Owner;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.User;
 import DataBaseAcces.Entities.UserForm;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -34,7 +33,7 @@ public class AddFormServlet extends HttpServlet {
         // get user
         User user = ssoManager.getCurrentUser(req);
         if (user == null) {
-            sender.sendErr("Такого пользователя не существует");
+            sender.sendErr(req, "Такого пользователя не существует");
             return;
         }
 

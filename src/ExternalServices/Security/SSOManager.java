@@ -7,6 +7,7 @@ import ExternalServices.Rabbit.RabbitSender;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Менеджер системы единого входа
  */
-@Stateless
+@Stateful
 @Local
 public class SSOManager {
 
@@ -59,21 +60,21 @@ public class SSOManager {
      * @param userKind тип учётной записи
      * @return true при удачной авторизации, false — при неудачной
      */
-    public boolean login(HttpServletResponse resp, String email, String password, UserKind userKind){
+    public boolean login(HttpServletRequest req, HttpServletResponse resp, String email, String password, UserKind userKind){
         User user = userCrudService.findByEmailAndKind(email,userKind);
         if(user == null) {
-            sender.sendOut("Такого пользователя не существует");
+            sender.sendOut(req, "Такого пользователя не существует");
             return false;
         }
 
         if(!user.getPassword().equals(password)) {
-            sender.sendOut("Неверный пароль");
+            sender.sendOut(req, "Неверный пароль");
             return false;
         }
 
         String SSOTokenId = openAM.login(user);
         if(SSOTokenId==null) {
-            sender.sendErr("Случился БИБИБ");
+            sender.sendErr(req, "Случился БИБИБ");
             return false;
         }
 
@@ -104,11 +105,11 @@ public class SSOManager {
      * @param userKind тип учётной записи
      * @return true при удачной регистрации, false — при неудачной
      */
-    public boolean register(String email, String password, UserKind userKind) {
+    public boolean register(HttpServletRequest req, String email, String password, UserKind userKind) {
         User user = userCrudService.findByEmailAndKind(email,userKind);
         // can't register existed user
         if(user!=null) {
-            sender.sendOut("Это имя пользователя уже занято");
+            sender.sendOut(req, "Это имя пользователя уже занято");
             return false;
         }
 
@@ -118,7 +119,7 @@ public class SSOManager {
         }
         catch (Exception e)
         {
-            sender.sendErr("Не зарегистрировать пользователя: " + e.toString());
+            sender.sendErr(req, "Не зарегистрировать пользователя: " + e.toString());
             return false;
         }
 

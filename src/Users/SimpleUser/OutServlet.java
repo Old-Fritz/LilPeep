@@ -4,7 +4,6 @@ import DataBaseAcces.CrudServices.ComplaintCrudService;
 import DataBaseAcces.CrudServices.UserDocumentCrudService;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.*;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -47,7 +46,7 @@ public class OutServlet extends HttpServlet {
             if(form==null)
                 throw new Exception();
         }catch(Exception e){
-            sender.sendErr("Не удалось получить форму");
+            sender.sendErr(req, "Не удалось получить форму");
             req.getRequestDispatcher("/Common/InvalideForm.jsp").forward(req,resp);
             return;
         }

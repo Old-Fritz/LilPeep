@@ -5,12 +5,10 @@ import DataBaseAcces.CrudServices.FormDocumentCrudService;
 import DataBaseAcces.CrudServices.FormDocumentFieldCrudService;
 import DataBaseAcces.CrudServices.UserFormCrudService;
 import DataBaseAcces.Entities.*;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +43,7 @@ public class EditFormServlet extends HttpServlet {
         // get user
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.sendErr("Такого пользователя не существует");
+            sender.sendErr(req, "Такого пользователя не существует");
             return;
         }
 
@@ -113,7 +111,7 @@ public class EditFormServlet extends HttpServlet {
                 req.getRequestDispatcher("/Users/Owner/includes/FormDocument.jsp").forward(req,resp);
                 return;
             }catch (Exception e){
-                sender.sendErr("Не удалось получить документ: " + e.toString());
+                sender.sendErr(req, "Не удалось получить документ: " + e.toString());
             }
         }
 
@@ -157,7 +155,7 @@ public class EditFormServlet extends HttpServlet {
             document = formDocumentCrudService.findById(id);
         if(document == null)
         {
-              sender.sendErr("Неверное id документа: ");
+              sender.sendErr(req, "Неверное id документа: ");
               return;
         }
 
@@ -256,7 +254,7 @@ public class EditFormServlet extends HttpServlet {
             for (FormDocument formDocument : form.getFormDocuments()) {
                 if(formDocument.getDocumentKind().getId()==documentKind.getId())
                 {
-                    sender.sendErr("Нельзя добавить два одинаковых документа");
+                    sender.sendErr(req, "Нельзя добавить два одинаковых документа");
                     throw new Exception();
                 }
             }
@@ -287,7 +285,7 @@ public class EditFormServlet extends HttpServlet {
             resp.getWriter().write(document.getId()+"");
 
         }catch (Exception e){
-            sender.sendErr("Ошибка при создании документа: " + e.toString());
+            sender.sendErr(req, "Ошибка при создании документа: " + e.toString());
             resp.getWriter().write("-1");
         }
 

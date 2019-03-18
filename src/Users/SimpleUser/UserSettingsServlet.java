@@ -2,7 +2,6 @@ package Users.SimpleUser;
 
 import DataBaseAcces.Entities.Settings;
 import DataBaseAcces.Entities.User;
-import ExternalServices.Rabbit.CockieUtils;
 import ExternalServices.Rabbit.RabbitSender;
 import ExternalServices.Security.SSOManager;
 
@@ -38,7 +37,7 @@ public class UserSettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.sendErr("Ошибка доступа");
+            sender.sendErr(req, "Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
@@ -52,7 +51,7 @@ public class UserSettingsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = ssoManager.getCurrentUser(req);
         if(user==null) {
-            sender.sendErr("Ошибка доступа");
+            sender.sendErr(req, "Ошибка доступа");
             resp.sendRedirect(req.getContextPath()+"/user/");
             return;
         }
