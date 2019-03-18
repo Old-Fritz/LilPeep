@@ -16,7 +16,7 @@ function showRabbit(text) {
     if(text==="")
         return;
 
-    let rabbitWindow =  document.getElementById("rabbitWindow")
+    let rabbitWindow =  document.getElementById("rabbitWindow");
     rabbitWindow.innerHTML=text;
     rabbitWindow.style.display = 'flex';
     setTimeout(hideRabbit, 10000);
@@ -24,7 +24,7 @@ function showRabbit(text) {
 
 function hideRabbit()
 {
-    let rabbitWindow =  document.getElementById("rabbitWindow")
+    let rabbitWindow =  document.getElementById("rabbitWindow");
     rabbitWindow.innerHTML='';
     rabbitWindow.style.display = 'none';
 }

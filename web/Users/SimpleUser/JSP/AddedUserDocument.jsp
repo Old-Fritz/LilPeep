@@ -6,10 +6,12 @@
     <meta charset="utf-8">
     <title>Добавление документа</title>
     <link rel="stylesheet" type="text/css" href="../Resources/CSS/css.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="../Resources/JS/js.js" type="text/javascript"></script>
 </head>
     <body>
 
-
+    <div id="rabbitWindow"></div>
             <table>
                 <jsp:include page="../includes/leftPanelUser.jsp"/>
                 <td class="content">
@@ -27,11 +29,14 @@
                             </td>
                         </tr>
                     </table>
+                    <c:forEach var="field" items="${document.fields}" varStatus="status">
+                        <h1>${field.name}</h1>
+                        <input class="docfield" type="text" name="field${status.getIndex()}Orig" oninput="$('#field${status.getIndex()}').val(cryptStr(this.value))"/>
+                    </c:forEach>
                     <form method = "POST" id="form" action="addedDocument">
                         <input type="hidden" name="documentID" value="${document.id}">
                         <c:forEach var="field" items="${document.fields}" varStatus="status">
-                            <h1>${field.name}</h1>
-                            <input class="docfield" type="text" name="field${status.getIndex()}"/>
+                            <input class="docfield" id="field${status.getIndex()}" type="hidden" name="field${status.getIndex()}"/>
                         </c:forEach>
                     </form>
                     <div class="buttonbar">

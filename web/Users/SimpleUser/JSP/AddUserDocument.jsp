@@ -8,8 +8,10 @@
         <script src="https://code.jquery.com/jquery-1.10.2.js"
                 type="text/javascript"></script>
         <script src="../Resources/JS/list.js" type="text/javascript"></script>
+        <script src="../Resources/JS/js.js" type="text/javascript"></script>
     </head>
     <body>
+    <div id="rabbitWindow"></div>
         <table>
             <jsp:include page="../includes/leftPanelUser.jsp"/>
             <td class="content">

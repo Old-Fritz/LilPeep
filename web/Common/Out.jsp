@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="Resources/CSS/css.css">
     </head>
     <body class="form">
-        <text>Сайт sas.ifmo.ru запрашивает доступ к следующим данным:</text>
+        <text>Сайт ${form.url} запрашивает доступ к следующим данным:</text>
         <br>
         <br>
         <text class="title">Название документа</text>
